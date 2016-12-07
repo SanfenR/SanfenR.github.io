@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+    
+    <entry>
+      <title><![CDATA[MarkDowm命令]]></title>
+      <url>http://yoursite.com/2016/12/06/MarkDowm/</url>
+      <content type="html"><![CDATA[<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 一级标题</div><div class="line">## 二级标题</div><div class="line">### 三级标题</div><div class="line">...</div></pre></td></tr></table></figure>
+<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1. 列表</div><div class="line">2. 列表</div><div class="line">3. 列表</div><div class="line">...</div></pre></td></tr></table></figure>
+<h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">* 列表</div><div class="line">* 列表</div><div class="line">* 列表</div></pre></td></tr></table></figure>
+<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; 这是一个引用</div></pre></td></tr></table></figure>
+<h3 id="链接与图片"><a href="#链接与图片" class="headerlink" title="链接与图片"></a>链接与图片</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[baidu](www.baidu.com)</div><div class="line"></div><div class="line">![icon](http://ohqvqufyf.bkt.clouddn.com/%E4%B8%8B%E8%BD%BD.jpeg)</div></pre></td></tr></table></figure>
+<h3 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">*这是斜体*</div><div class="line"></div><div class="line">**这是粗体**</div></pre></td></tr></table></figure>
+<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">| 表格1 | 表格2  |</div><div class="line">|--- |--- |</div><div class="line">|  哈哈 | 呵呵  |</div></pre></td></tr></table></figure>
+<h3 id="code"><a href="#code" class="headerlink" title="code"></a>code</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">helloWorld</span><span class="params">()</span></span>&#123;</div><div class="line">  print(<span class="string">"%s"</span>, <span class="string">"helloWorld"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Vim-command]]></title>
+      <url>http://yoursite.com/2016/12/06/vim-command/</url>
+      <content type="html"><![CDATA[<h3 id="光标移动"><a href="#光标移动" class="headerlink" title="光标移动"></a>光标移动</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>h,j,k,l</td>
+<td>左 下 右 上</td>
+</tr>
+<tr>
+<td>Ctrl+f</td>
+<td>上一页</td>
+</tr>
+<tr>
+<td>Ctrl+b</td>
+<td>下一页</td>
+</tr>
+<tr>
+<td>w,e,W,E</td>
+<td>调到单词后面，小写包括标点</td>
+</tr>
+<tr>
+<td>O</td>
+<td>开启新的一行</td>
+</tr>
+<tr>
+<td>^</td>
+<td>一行的开始</td>
+</tr>
+<tr>
+<td>gg</td>
+<td>文档的结尾</td>
+</tr>
+<tr>
+<td>[N]G</td>
+<td>文档的第N行或者最后一行</td>
+</tr>
+</tbody>
+</table>
+<h3 id="插入模式"><a href="#插入模式" class="headerlink" title="插入模式"></a>插入模式</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>i</td>
+<td>插入到光标前面</td>
+</tr>
+<tr>
+<td>I</td>
+<td>插入到行的开始位置</td>
+</tr>
+<tr>
+<td>a</td>
+<td>插入到光标的后面</td>
+</tr>
+<tr>
+<td>A</td>
+<td>插入到行的最后位置</td>
+</tr>
+<tr>
+<td>o,O</td>
+<td>新开一行</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>关闭插入模式</td>
+</tr>
+</tbody>
+</table>
+<h3 id="编辑"><a href="#编辑" class="headerlink" title="编辑"></a>编辑</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>r</td>
+<td>在插入模式替换光标所在的一个字符</td>
+</tr>
+<tr>
+<td>J</td>
+<td>合并下一行到上一行</td>
+</tr>
+<tr>
+<td>s</td>
+<td>删除光标所在的一个字符，光标还在当行</td>
+</tr>
+<tr>
+<td>S</td>
+<td>删除光标所在的一行, 光标还在当行，不同于dd</td>
+</tr>
+<tr>
+<td>u</td>
+<td>撤销上一步操作</td>
+</tr>
+<tr>
+<td>ctrl+r</td>
+<td>恢复上一步操作</td>
+</tr>
+<tr>
+<td>.</td>
+<td>重复最后一个命令</td>
+</tr>
+<tr>
+<td>~</td>
+<td>变换为大写</td>
+</tr>
+<tr>
+<td>[N]&gt;&gt;</td>
+<td>一行或N行往右移动一个tab</td>
+</tr>
+<tr>
+<td>[N]&lt;&lt;</td>
+<td>一行或N行往左移动一个tab</td>
+</tr>
+</tbody>
+</table>
+<h3 id="关闭"><a href="#关闭" class="headerlink" title="关闭"></a>关闭</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>:q</td>
+<td>保存</td>
+</tr>
+<tr>
+<td>:wq, :x</td>
+<td>保存并关闭</td>
+</tr>
+<tr>
+<td>:q</td>
+<td>关闭</td>
+</tr>
+<tr>
+<td>:q!</td>
+<td>强制关闭</td>
+</tr>
+</tbody>
+</table>
+<h3 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/pattern</td>
+<td>搜索(非插入模式)</td>
+</tr>
+<tr>
+<td>?pattern</td>
+<td>向后搜索</td>
+</tr>
+<tr>
+<td>n</td>
+<td>光标到达搜索结果的前一个目标</td>
+</tr>
+<tr>
+<td>N</td>
+<td>光标到达搜索结果的后一个目标</td>
+</tr>
+</tbody>
+</table>
+<h3 id="视觉模式"><a href="#视觉模式" class="headerlink" title="视觉模式"></a>视觉模式</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v</td>
+<td>选中一个或多个字符</td>
+</tr>
+<tr>
+<td>V</td>
+<td>选中一行</td>
+</tr>
+</tbody>
+</table>
+<h3 id="剪切和复制"><a href="#剪切和复制" class="headerlink" title="剪切和复制"></a>剪切和复制</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dd</td>
+<td>删除一行</td>
+</tr>
+<tr>
+<td>dw</td>
+<td>删除一个单词</td>
+</tr>
+<tr>
+<td>x</td>
+<td>删除后一个字符</td>
+</tr>
+<tr>
+<td>X</td>
+<td>删除前一个字符</td>
+</tr>
+<tr>
+<td>D</td>
+<td>删除一行最后一个字符</td>
+</tr>
+<tr>
+<td>[N]yy</td>
+<td>复制一行或者N行</td>
+</tr>
+<tr>
+<td>yw</td>
+<td>复制一个单词</td>
+</tr>
+<tr>
+<td>p</td>
+<td>粘贴</td>
+</tr>
+</tbody>
+</table>
+<h3 id="窗口命令"><a href="#窗口命令" class="headerlink" title="窗口命令"></a>窗口命令</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>: split</td>
+<td>水平分割出一个窗口</td>
+</tr>
+<tr>
+<td>:vsplit</td>
+<td>垂直分割出一个窗口</td>
+</tr>
+<tr>
+<td>:close</td>
+<td>关闭窗口</td>
+</tr>
+<tr>
+<td>ctrl+w</td>
+<td>切换窗口  h,j,k,l 左下上右</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    </entry>
+    
+  
+  
+</search>
