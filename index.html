@@ -135,26 +135,83 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-everydayc/day3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-GreenDao使用基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/14/everydayc/day3/">链表删除(day1)</a>
+      <a class="article-title" href="/2016/12/16/GreenDao使用基础/">GreenDao使用</a>
     </h1>
   
 
-        <a href="/2016/12/14/everydayc/day3/" class="archive-article-date">
-  	<time datetime="2016-12-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-14</time>
+        <a href="/2016/12/16/GreenDao使用基础/" class="archive-article-date">
+  	<time datetime="2016-12-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-16</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="假设链表……—A–B–C–D…-，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O-n-。删除节点的实质为更改后驱指针指向。-这里，复制C的内容至B-此时B，C同时指向D-，删除节点C，即达到间接删除节点B的目的。-倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O-1-。"><a href="#假设链表……—A–B–C–D…-，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O-n-。删除节点的实质为更改后驱指针指向。-这里，复制C的内容至B-此时B，C同时指向D-，删除节点C，即达到间接删除节点B的目的。-倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O-1-。" class="headerlink" title="假设链表……—A–B–C–D….，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O(n)。删除节点的实质为更改后驱指针指向。 这里，复制C的内容至B(此时B，C同时指向D)，删除节点C，即达到间接删除节点B的目的。 倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O(1)。"></a>假设链表……—A–B–C–D….，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O(n)。删除节点的实质为更改后驱指针指向。 这里，复制C的内容至B(此时B，C同时指向D)，删除节点C，即达到间接删除节点B的目的。 倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O(1)。</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> ListNode &#123;</div><div class="line">    <span class="keyword">int</span> m_nKey;</div><div class="line">    ListNode *m_pNext;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteNode</span><span class="params">(ListNode* pListHead, ListNode* pToBeDeleted)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!pListHead || !pToBeDeleted) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (pListHead == pToBeDeleted)&#123;</div><div class="line">        <span class="keyword">delete</span> pListHead;</div><div class="line">        pListHead = <span class="literal">NULL</span>;</div><div class="line">        pToBeDeleted = <span class="literal">NULL</span>;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (pToBeDeleted-&gt;m_pNext != <span class="literal">NULL</span>) &#123;</div><div class="line">        ListNode *pNext = pToBeDeleted-&gt;m_pNext;</div><div class="line">        pToBeDeleted-&gt;m_nKey = pNext-&gt;m_nKey;</div><div class="line">        pToBeDeleted-&gt;m_pNext = pNext-&gt;m_pNext;</div><div class="line">        <span class="keyword">delete</span> pNext;</div><div class="line">        pNext = <span class="literal">NULL</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        ListNode* pNode = pListHead;</div><div class="line">        <span class="keyword">while</span>(pNode-&gt;m_pNext != pToBeDeleted) &#123;</div><div class="line">            pNode = pNode-&gt;m_pNext;</div><div class="line">        &#125;</div><div class="line">        pNode-&gt;m_pNext = <span class="literal">NULL</span>;</div><div class="line">        <span class="keyword">delete</span> pToBeDeleted;</div><div class="line">        pToBeDeleted = <span class="literal">NULL</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><a href="https://github.com/SanfenR/EveryDayC" target="_blank" rel="external">源码github</a></p>
+        <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p><a href="http://greenrobot.org/greendao/" target="_blank" rel="external">官网地址</a></p>
+<p><a href="https://github.com/greenrobot/greenDAO" target="_blank" rel="external">GreenDao github</a></p>
+<h1 id="GreenDao-优点"><a href="#GreenDao-优点" class="headerlink" title="GreenDao 优点"></a>GreenDao 优点</h1><ol>
+<li>性能高，号称Android最快的关系型数据库</li>
+<li>内存占用小</li>
+<li>库文件比较小，小于100K，编译时间低，而且可以避免65K方法限制</li>
+<li>支持数据库加密  greendao支持SQLCipher进行数据库加密 有关SQLCipher可以参考这篇博客Android数据存储之Sqlite采用SQLCipher数据库加密实战</li>
+<li>简洁易用的API</li>
+</ol>
+<h1 id="GreenDao-3-0基本使用"><a href="#GreenDao-3-0基本使用" class="headerlink" title="GreenDao 3.0基本使用"></a>GreenDao 3.0基本使用</h1><h2 id="在-gradle添加依赖"><a href="#在-gradle添加依赖" class="headerlink" title="在.gradle添加依赖"></a>在.gradle添加依赖</h2><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">buildscript &#123;</div><div class="line">    repositories &#123;</div><div class="line">        mavenCentral()</div><div class="line">    &#125;</div><div class="line">    dependencies &#123;</div><div class="line">        classpath <span class="string">'org.greenrobot:greendao-gradle-plugin:3.2.1'</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">apply <span class="string">plugin:</span> <span class="string">'org.greenrobot.greendao'</span></div><div class="line"></div><div class="line">dependencies &#123;</div><div class="line">    compile <span class="string">'org.greenrobot:greendao:3.2.0'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>需要配置数据库的基本属性</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">greendao &#123;</div><div class="line">    schemaVersion <span class="number">1</span></div><div class="line">    targetGenDir <span class="string">'src/main/java'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>schemaVersion：数据库版本号</li>
+<li>daoPackage：设置DaoMaster, DaoSession, Dao包名</li>
+<li>targetGenDir: 设置DaoMaster, DaoSession, Dao目录</li>
+<li>targetGenDirTest: 设置生成单元测试目录</li>
+<li>generateTests 设置自动生成单元测试用例</li>
+</ul>
+<h2 id="创建实体"><a href="#创建实体" class="headerlink" title="创建实体"></a>创建实体</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Entity</span>()</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Id</span></div><div class="line">    <span class="keyword">private</span> Long id;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</div><div class="line">    <span class="comment">//省去了get/set方法</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>实体@Entity注解:</p>
+<ul>
+<li>schema：表示GreenDao当前实体属于哪个schema</li>
+<li>active: 标记一个实体处于活动状态，活动实体有更新，删除和刷新方法</li>
+<li>nameInDb: 在数据中使用的别名，默认使用的是实名的类别</li>
+<li>indexes: 定义索引，可以跨越多个列</li>
+<li>createInDb: 标记创建数据库表</li>
+</ul>
+<p>基础属性注解:</p>
+<ul>
+<li>@Id: 主键 Long型，可以通过@Id(autoincrement = true)设置自增长</li>
+<li>@Property: 设置一个非默认关系映射所对应的列名，默认是的使用字段名 举例：@Property (nameInDb=”name”)</li>
+<li>@NotNul：设置数据库表当前列不能为空</li>
+<li>@Transient ：添加次标记之后不会生成数据库表的列</li>
+</ul>
+<p>索引注解:</p>
+<ul>
+<li>@Index：使用@Index作为一个属性来创建一个索引，通过name设置索引别名，也可以通过unique给索引添加约束</li>
+<li>@Unique：向数据库列添加了一个唯一的约束</li>
+</ul>
+<p>关系注解:</p>
+<ul>
+<li>@ToOne：定义与另一个实体（一个实体对象）的关系</li>
+<li>@ToMany：定义与多个实体对象的关系</li>
+</ul>
+<h2 id="编译生成DaoMaster-DaoSession-Dao"><a href="#编译生成DaoMaster-DaoSession-Dao" class="headerlink" title="编译生成DaoMaster, DaoSession, Dao"></a>编译生成DaoMaster, DaoSession, Dao</h2><p><img src="http://ohqvqufyf.bkt.clouddn.com/greendao.png" alt="image"></p>
+<ul>
+<li><p>创建一个数据库管理者单例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DBManager</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> String dbName = <span class="string">"test_db"</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> DBManager mInstance;</div><div class="line">    <span class="keyword">private</span> DaoMaster.DevOpenHelper openHelper;</div><div class="line">    <span class="keyword">private</span> Context context;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DBManager</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.context = context;</div><div class="line">        openHelper = <span class="keyword">new</span> DaoMaster.DevOpenHelper(context, dbName, <span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 获取单例引用</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> context</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> DBManager <span class="title">getInstance</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (mInstance == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">synchronized</span> (DBManager.class) &#123;</div><div class="line">                <span class="keyword">if</span> (mInstance == <span class="keyword">null</span>) &#123;</div><div class="line">                    mInstance = <span class="keyword">new</span> DBManager(context);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> mInstance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取可读可写数据库</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 获取可读数据库</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">private</span> SQLiteDatabase <span class="title">getReadableDatabase</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (openHelper == <span class="keyword">null</span>) &#123;</div><div class="line">        openHelper = <span class="keyword">new</span> DaoMaster.DevOpenHelper(context, dbName, <span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> openHelper.getReadableDatabase();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 获取可写数据库</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">private</span> SQLiteDatabase <span class="title">getWritableDatabase</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (openHelper == <span class="keyword">null</span>) &#123;</div><div class="line">        openHelper = <span class="keyword">new</span> DaoMaster.DevOpenHelper(context, dbName, <span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> openHelper.getWritableDatabase();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 插入一条记录</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> user</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertUser</span><span class="params">(User user)</span> </span>&#123;</div><div class="line">    DaoMaster daoMaster = <span class="keyword">new</span> DaoMaster(getWritableDatabase());</div><div class="line">    DaoSession daoSession = daoMaster.newSession();</div><div class="line">    UserDao userDao = daoSession.getUserDao();</div><div class="line">    userDao.insert(user);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 插入用户集合</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> users</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertUserList</span><span class="params">(List&lt;User&gt; users)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (users == <span class="keyword">null</span> || users.isEmpty()) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    DaoMaster daoMaster = <span class="keyword">new</span> DaoMaster(getWritableDatabase());</div><div class="line">    DaoSession daoSession = daoMaster.newSession();</div><div class="line">    UserDao userDao = daoSession.getUserDao();</div><div class="line">    userDao.insertInTx(users);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 删除一条记录</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> user</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteUser</span><span class="params">(User user)</span> </span>&#123;</div><div class="line">    DaoMaster daoMaster = <span class="keyword">new</span> DaoMaster(getWritableDatabase());</div><div class="line">    DaoSession daoSession = daoMaster.newSession();</div><div class="line">    UserDao userDao = daoSession.getUserDao();</div><div class="line">    userDao.delete(user);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 更新一条记录</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> user</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateUser</span><span class="params">(User user)</span> </span>&#123;</div><div class="line">    DaoMaster daoMaster = <span class="keyword">new</span> DaoMaster(getWritableDatabase());</div><div class="line">    DaoSession daoSession = daoMaster.newSession();</div><div class="line">    UserDao userDao = daoSession.getUserDao();</div><div class="line">    userDao.update(user);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 查询用户列表</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">queryUserList</span><span class="params">()</span> </span>&#123;</div><div class="line">    DaoMaster daoMaster = <span class="keyword">new</span> DaoMaster(getReadableDatabase());</div><div class="line">    DaoSession daoSession = daoMaster.newSession();</div><div class="line">    UserDao userDao = daoSession.getUserDao();</div><div class="line">    QueryBuilder&lt;User&gt; qb = userDao.queryBuilder();</div><div class="line">    <span class="keyword">return</span> qb.list();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 查询用户列表</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">queryUserList</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</div><div class="line">    DaoMaster daoMaster = <span class="keyword">new</span> DaoMaster(getReadableDatabase());</div><div class="line">    DaoSession daoSession = daoMaster.newSession();</div><div class="line">    UserDao userDao = daoSession.getUserDao();</div><div class="line">    QueryBuilder&lt;User&gt; qb = userDao.queryBuilder();</div><div class="line">    qb.where(UserDao.Properties.Age.gt(age)).orderAsc(UserDao.Properties.Age);</div><div class="line">    <span class="keyword">return</span> qb.list();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="外键使用-ToOne-ToMany"><a href="#外键使用-ToOne-ToMany" class="headerlink" title="外键使用(@ToOne, @ToMany)"></a>外键使用(@ToOne, @ToMany)</h1><p><a href="https://github.com/SanfenR/AndroidDemo/tree/master/greendaodemo" target="_blank" rel="external">github源码</a></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="http://www.jianshu.com/p/252555228b72" target="_blank" rel="external">GreenDao 3.0使用</a></p>
+<p><a href="https://www.cnblogs.com/whoislcj/p/5651396.html" target="_blank" rel="external">Android数据存储之GreenDao 3.0 详解</a></p>
+<p><a href="http://www.cnblogs.com/dsxniubility/p/5699543.html" target="_blank" rel="external">GreenDao3.0新特性解析（配置、注解、加密</a></p>
+<p><a href="http://www.jianshu.com/p/d61983df2341" target="_blank" rel="external">史上最高效的ORM方案——GreenDao3.0高级用法</a></p>
 
       
 
@@ -165,14 +222,14 @@
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
 	</div>
 
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/14/everydayc/day3/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/12/16/GreenDao使用基础/">展开全文 >></a>
         </p>
       
 
@@ -193,12 +250,26 @@
     <article id="post-java-exectors" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/14/java-exectors/">java线程池源码分析</a>
+    </h1>
+  
+
+        <a href="/2016/12/14/java-exectors/" class="archive-article-date">
+  	<time datetime="2016-12-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-14</time>
+</a>
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="在什么情况下使用线程池"><a href="#在什么情况下使用线程池" class="headerlink" title="在什么情况下使用线程池"></a>在什么情况下使用线程池</h3><ol>
 <li>单个任务处理的时间比较短</li>
 <li>将需处理的任务的数量大</li>
 </ol>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">greendao &#123;</div><div class="line">    schemaVersion <span class="number">1</span></div><div class="line">    targetGenDir <span class="string">'src/main/java'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="使用线程池的好处"><a href="#使用线程池的好处" class="headerlink" title="使用线程池的好处"></a>使用线程池的好处</h3><ol>
 <li>减少在创建和销毁线程上所花的时间以及系统资源的开销</li>
 <li>如不使用线程池，有可能造成系统创建大量线程而导致消耗完系统内存以及”过度切换”</li>
@@ -237,9 +308,9 @@
 <h4 id="newFixedThreadPool"><a href="#newFixedThreadPool" class="headerlink" title="newFixedThreadPool"></a>newFixedThreadPool</h4><p>初始化一个指定线程数的线程池，其中corePoolSize == maximumPoolSize，使用LinkedBlockingQuene作为阻塞队列，不过当线程池没有可执行任务时，也不会释放线程。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">    * Creates a thread pool that reuses a fixed number of threads</div><div class="line">    * operating off a shared unbounded queue.  At any point, at most</div><div class="line">    * &#123;<span class="doctag">@code</span> nThreads&#125; threads will be active processing tasks.</div><div class="line">    * If additional tasks are submitted when all threads are active,</div><div class="line">    * they will wait in the queue until a thread is available.</div><div class="line">    * If any thread terminates due to a failure during execution</div><div class="line">    * prior to shutdown, a new one will take its place if needed to</div><div class="line">    * execute subsequent tasks.  The threads in the pool will exist</div><div class="line">    * until it is explicitly &#123;<span class="doctag">@link</span> ExecutorService#shutdown shutdown&#125;.</div><div class="line">    *</div><div class="line">    * <span class="doctag">@param</span> nThreads the number of threads in the pool</div><div class="line">    * <span class="doctag">@return</span> the newly created thread pool</div><div class="line">    * <span class="doctag">@throws</span> IllegalArgumentException if &#123;<span class="doctag">@code</span> nThreads &lt;= 0&#125;</div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newFixedThreadPool</span><span class="params">(<span class="keyword">int</span> nThreads)</span> </span>&#123;</div><div class="line">       <span class="keyword">return</span> <span class="keyword">new</span> ThreadPoolExecutor(nThreads, nThreads,</div><div class="line">                                     <span class="number">0L</span>, TimeUnit.MILLISECONDS,</div><div class="line">                                     <span class="keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;());</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
 <h4 id="newCachedThreadPool"><a href="#newCachedThreadPool" class="headerlink" title="newCachedThreadPool"></a>newCachedThreadPool</h4><ol>
 <li>初始化一个可以缓存线程的线程池，默认缓存60s，线程池的线程数可达到Integer.MAX_VALUE，即2147483647，内部使用SynchronousQueue作为阻塞队列；</li>
-<li>和newFixedThreadPool创建的线程池不同，newCachedThreadPool在没有任务执行时，当线程的空闲时间超过keepAliveTime，会自动释放线程资源，当提交新任务时，如果没有空闲线程，则创建新线程执行任务，会导致一定的系统开销;<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">  * Creates a thread pool that creates new threads as needed, but</div><div class="line">  * will reuse previously constructed threads when they are</div><div class="line">  * available.  These pools will typically improve the performance</div><div class="line">  * of programs that execute many short-lived asynchronous tasks.</div><div class="line">  * Calls to &#123;<span class="doctag">@code</span> execute&#125; will reuse previously constructed</div><div class="line">  * threads if available. If no existing thread is available, a new</div><div class="line">  * thread will be created and added to the pool. Threads that have</div><div class="line">  * not been used for sixty seconds are terminated and removed from</div><div class="line">  * the cache. Thus, a pool that remains idle for long enough will</div><div class="line">  * not consume any resources. Note that pools with similar</div><div class="line">  * properties but different details (for example, timeout parameters)</div><div class="line">  * may be created using &#123;<span class="doctag">@link</span> ThreadPoolExecutor&#125; constructors.</div><div class="line">  *</div><div class="line">  * <span class="doctag">@return</span> the newly created thread pool</div><div class="line">  */</div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newCachedThreadPool</span><span class="params">()</span> </span>&#123;</div><div class="line">     <span class="keyword">return</span> <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">0</span>, Integer.MAX_VALUE,</div><div class="line">                                   <span class="number">60L</span>, TimeUnit.SECONDS,</div><div class="line">                                   <span class="keyword">new</span> SynchronousQueue&lt;Runnable&gt;());</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-</li>
+<li>和newFixedThreadPool创建的线程池不同，newCachedThreadPool在没有任务执行时，当线程的空闲时间超过keepAliveTime，会自动释放线程资源，当提交新任务时，如果没有空闲线程，则创建新线程执行任务，会导致一定的系统开销;</li>
 </ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">  * Creates a thread pool that creates new threads as needed, but</div><div class="line">  * will reuse previously constructed threads when they are</div><div class="line">  * available.  These pools will typically improve the performance</div><div class="line">  * of programs that execute many short-lived asynchronous tasks.</div><div class="line">  * Calls to &#123;<span class="doctag">@code</span> execute&#125; will reuse previously constructed</div><div class="line">  * threads if available. If no existing thread is available, a new</div><div class="line">  * thread will be created and added to the pool. Threads that have</div><div class="line">  * not been used for sixty seconds are terminated and removed from</div><div class="line">  * the cache. Thus, a pool that remains idle for long enough will</div><div class="line">  * not consume any resources. Note that pools with similar</div><div class="line">  * properties but different details (for example, timeout parameters)</div><div class="line">  * may be created using &#123;<span class="doctag">@link</span> ThreadPoolExecutor&#125; constructors.</div><div class="line">  *</div><div class="line">  * <span class="doctag">@return</span> the newly created thread pool</div><div class="line">  */</div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newCachedThreadPool</span><span class="params">()</span> </span>&#123;</div><div class="line">     <span class="keyword">return</span> <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">0</span>, Integer.MAX_VALUE,</div><div class="line">                                   <span class="number">60L</span>, TimeUnit.SECONDS,</div><div class="line">                                   <span class="keyword">new</span> SynchronousQueue&lt;Runnable&gt;());</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
 <p><a href="http://www.jianshu.com/p/18b39a5f1868" target="_blank" rel="external">Java线程池的原理及几类线程池的介绍</a></p>
 <p><a href="http://www.jianshu.com/p/87bff5cc8d8c" target="_blank" rel="external">深入分析java线程池的实现原理</a></p>
 
@@ -250,11 +321,71 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/13/java-exectors/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/12/14/java-exectors/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-everydayc/day3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/14/everydayc/day3/">链表删除(day1)</a>
+    </h1>
+  
+
+        <a href="/2016/12/14/everydayc/day3/" class="archive-article-date">
+  	<time datetime="2016-12-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-14</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="假设链表……—A–B–C–D…-，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O-n-。删除节点的实质为更改后驱指针指向。-这里，复制C的内容至B-此时B，C同时指向D-，删除节点C，即达到间接删除节点B的目的。-倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O-1-。"><a href="#假设链表……—A–B–C–D…-，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O-n-。删除节点的实质为更改后驱指针指向。-这里，复制C的内容至B-此时B，C同时指向D-，删除节点C，即达到间接删除节点B的目的。-倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O-1-。" class="headerlink" title="假设链表……—A–B–C–D….，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O(n)。删除节点的实质为更改后驱指针指向。 这里，复制C的内容至B(此时B，C同时指向D)，删除节点C，即达到间接删除节点B的目的。 倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O(1)。"></a>假设链表……—A–B–C–D….，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O(n)。删除节点的实质为更改后驱指针指向。 这里，复制C的内容至B(此时B，C同时指向D)，删除节点C，即达到间接删除节点B的目的。 倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O(1)。</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> ListNode &#123;</div><div class="line">    <span class="keyword">int</span> m_nKey;</div><div class="line">    ListNode *m_pNext;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteNode</span><span class="params">(ListNode* pListHead, ListNode* pToBeDeleted)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!pListHead || !pToBeDeleted) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (pListHead == pToBeDeleted)&#123;</div><div class="line">        <span class="keyword">delete</span> pListHead;</div><div class="line">        pListHead = <span class="literal">NULL</span>;</div><div class="line">        pToBeDeleted = <span class="literal">NULL</span>;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (pToBeDeleted-&gt;m_pNext != <span class="literal">NULL</span>) &#123;</div><div class="line">        ListNode *pNext = pToBeDeleted-&gt;m_pNext;</div><div class="line">        pToBeDeleted-&gt;m_nKey = pNext-&gt;m_nKey;</div><div class="line">        pToBeDeleted-&gt;m_pNext = pNext-&gt;m_pNext;</div><div class="line">        <span class="keyword">delete</span> pNext;</div><div class="line">        pNext = <span class="literal">NULL</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        ListNode* pNode = pListHead;</div><div class="line">        <span class="keyword">while</span>(pNode-&gt;m_pNext != pToBeDeleted) &#123;</div><div class="line">            pNode = pNode-&gt;m_pNext;</div><div class="line">        &#125;</div><div class="line">        pNode-&gt;m_pNext = <span class="literal">NULL</span>;</div><div class="line">        <span class="keyword">delete</span> pToBeDeleted;</div><div class="line">        pToBeDeleted = <span class="literal">NULL</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><a href="https://github.com/SanfenR/EveryDayC" target="_blank" rel="external">源码github</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/12/14/everydayc/day3/">展开全文 >></a>
         </p>
       
 
@@ -764,6 +895,96 @@
 
 
   
+    <article id="post-java-annotation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/10/java-annotation/">Android Annotation使用</a>
+    </h1>
+  
+
+        <a href="/2016/11/10/java-annotation/" class="archive-article-date">
+  	<time datetime="2016-11-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-10</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>要深入学习注解，我们就必须能定义自己的注解，并使用注解，在定义自己的注解之前，我们就必须要了解Java为我们提供的元注解和相关定义注解的语法。</p>
+</blockquote>
+<h1 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h1><blockquote>
+<p>元注解的作用就是负责注解其他注解。Java5.0定义了4个标准的meta-annotation类型，它们被用来提供对其它 annotation类型作说明。Java5.0定义的元注解：</p>
+</blockquote>
+<ol>
+<li>@Target</li>
+<li>@Retention</li>
+<li>@Documented</li>
+<li>@Inherited</li>
+</ol>
+<p><strong>这些类型和它们所支持的类在java.lang.annotation包中可以找到。下面我们看一下每个元注解的作用和相应分参数的使用说明。</strong></p>
+<h2 id="Target"><a href="#Target" class="headerlink" title="@Target:"></a>@Target:</h2><blockquote>
+<p>@Target说明了Annotation所修饰的对象范围：Annotation可被用于 packages、types（类、接口、枚举、Annotation类型）、类型成员（方法、构造方法、成员变量、枚举值）、方法参数和本地变量（如循环变量、catch参数）。在Annotation类型的声明中使用了target可更加明晰其修饰的目标。</p>
+</blockquote>
+<p> <strong>作用：用于描述注解的使用范围（即：被描述的注解可以用在什么地方）</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** Class, interface (including annotation type), or enum declaration */</span></div><div class="line">TYPE,</div><div class="line"><span class="comment">/** Field declaration (includes enum constants) */</span></div><div class="line">FIELD,</div><div class="line"><span class="comment">/** Method declaration */</span></div><div class="line">METHOD,</div><div class="line"><span class="comment">/** Formal parameter declaration */</span></div><div class="line">PARAMETER,</div><div class="line"><span class="comment">/** Constructor declaration */</span></div><div class="line">CONSTRUCTOR,</div><div class="line"><span class="comment">/** Local variable declaration */</span></div><div class="line">LOCAL_VARIABLE,</div><div class="line"><span class="comment">/** Annotation type declaration */</span></div><div class="line">ANNOTATION_TYPE,</div><div class="line"><span class="comment">/** Package declaration */</span></div><div class="line">PACKAGE,</div><div class="line"><span class="comment">/**</span></div><div class="line"> * Type parameter declaration</div><div class="line"> *</div><div class="line"> * <span class="doctag">@since</span> 1.8</div><div class="line"> */</div><div class="line">TYPE_PARAMETER,</div><div class="line"><span class="comment">/**</span></div><div class="line"> * Use of a type</div><div class="line"> *</div><div class="line"> * <span class="doctag">@since</span> 1.8</div><div class="line"> */</div><div class="line">TYPE_USE</div></pre></td></tr></table></figure>
+<p><strong>取值(ElementType)有：</strong></p>
+<ol>
+<li>CONSTRUCTOR:用于描述构造器</li>
+<li>FIELD:用于描述域</li>
+<li>LOCAL_VARIABLE:用于描述局部变量</li>
+<li>METHOD:用于描述方法</li>
+<li>PACKAGE:用于描述包</li>
+<li>PARAMETER:用于描述参数</li>
+<li>TYPE:用于描述类、接口(包括注解类型) 或enum声明</li>
+</ol>
+<p><strong>使用实例:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Target</span>(ElementType.TYPE)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Table &#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 数据表名称注解，默认值为类名称</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">tableName</span><span class="params">()</span> <span class="keyword">default</span> "className"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注解Table 可以用于注解类、接口(包括注解类型) 或enum声明,而注解NoDBColumn仅可用于注解类的成员变量。</p>
+</blockquote>
+<hr>
+<h2 id="Retention："><a href="#Retention：" class="headerlink" title="@Retention："></a>@Retention：</h2><blockquote>
+<p>　　@Retention定义了该Annotation被保留的时间长短：某些Annotation仅出现在源代码中，而被编译器丢弃；而另一些却被编译在class文件中；编译在class文件中的Annotation可能会被虚拟机忽略，而另一些在class被装载时将被读取（请注意并不影响class的执行，因为Annotation与class在使用上是被分离的）。使用这个meta-Annotation可以对 Annotation的“生命周期”限制。<br>M</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/11/10/java-annotation/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
   
 
 
@@ -842,6 +1063,10 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">MarkDowm</a>
               </li>
              
@@ -851,6 +1076,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Android</a>
               </li>
             
             <div class="clearfix"></div>

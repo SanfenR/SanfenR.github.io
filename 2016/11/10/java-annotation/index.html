@@ -6,18 +6,42 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>链表删除(day1) | SanfenR的博客</title>
+  <title>Android Annotation使用 | SanfenR的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="假设链表……—A–B–C–D….，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O(n)。删除节点的实质为更改后驱指针指向。 这里，复制C的内容至B(此时B，C同时指向D)，删除节点C，即达到间接删除节点B的目的。 倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O(1)。123456789101112131415161718192021222324252627">
+  <meta name="description" content="要深入学习注解，我们就必须能定义自己的注解，并使用注解，在定义自己的注解之前，我们就必须要了解Java为我们提供的元注解和相关定义注解的语法。
+
+元注解
+元注解的作用就是负责注解其他注解。Java5.0定义了4个标准的meta-annotation类型，它们被用来提供对其它 annotation类型作说明。Java5.0定义的元注解：
+
+
+@Target
+@Retention
+@Document">
 <meta property="og:type" content="article">
-<meta property="og:title" content="链表删除(day1)">
-<meta property="og:url" content="http://yoursite.com/2016/12/14/everydayc/day3/index.html">
+<meta property="og:title" content="Android Annotation使用">
+<meta property="og:url" content="http://yoursite.com/2016/11/10/java-annotation/index.html">
 <meta property="og:site_name" content="SanfenR的博客">
-<meta property="og:description" content="假设链表……—A–B–C–D….，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O(n)。删除节点的实质为更改后驱指针指向。 这里，复制C的内容至B(此时B，C同时指向D)，删除节点C，即达到间接删除节点B的目的。 倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O(1)。123456789101112131415161718192021222324252627">
-<meta property="og:updated_time" content="2016-12-14T05:53:37.000Z">
+<meta property="og:description" content="要深入学习注解，我们就必须能定义自己的注解，并使用注解，在定义自己的注解之前，我们就必须要了解Java为我们提供的元注解和相关定义注解的语法。
+
+元注解
+元注解的作用就是负责注解其他注解。Java5.0定义了4个标准的meta-annotation类型，它们被用来提供对其它 annotation类型作说明。Java5.0定义的元注解：
+
+
+@Target
+@Retention
+@Document">
+<meta property="og:updated_time" content="2016-12-16T11:45:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="链表删除(day1)">
-<meta name="twitter:description" content="假设链表……—A–B–C–D….，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O(n)。删除节点的实质为更改后驱指针指向。 这里，复制C的内容至B(此时B，C同时指向D)，删除节点C，即达到间接删除节点B的目的。 倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O(1)。123456789101112131415161718192021222324252627">
+<meta name="twitter:title" content="Android Annotation使用">
+<meta name="twitter:description" content="要深入学习注解，我们就必须能定义自己的注解，并使用注解，在定义自己的注解之前，我们就必须要了解Java为我们提供的元注解和相关定义注解的语法。
+
+元注解
+元注解的作用就是负责注解其他注解。Java5.0定义了4个标准的meta-annotation类型，它们被用来提供对其它 annotation类型作说明。Java5.0定义的元注解：
+
+
+@Target
+@Retention
+@Document">
   
     <link rel="alternative" href="/atom.xml" title="SanfenR的博客" type="application/atom+xml">
   
@@ -137,26 +161,61 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-everydayc/day3" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-java-annotation" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      链表删除(day1)
+      Android Annotation使用
     </h1>
   
 
-        <a href="/2016/12/14/everydayc/day3/" class="archive-article-date">
-  	<time datetime="2016-12-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-14</time>
+        <a href="/2016/11/10/java-annotation/" class="archive-article-date">
+  	<time datetime="2016-11-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-10</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="假设链表……—A–B–C–D…-，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O-n-。删除节点的实质为更改后驱指针指向。-这里，复制C的内容至B-此时B，C同时指向D-，删除节点C，即达到间接删除节点B的目的。-倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O-1-。"><a href="#假设链表……—A–B–C–D…-，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O-n-。删除节点的实质为更改后驱指针指向。-这里，复制C的内容至B-此时B，C同时指向D-，删除节点C，即达到间接删除节点B的目的。-倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O-1-。" class="headerlink" title="假设链表……—A–B–C–D….，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O(n)。删除节点的实质为更改后驱指针指向。 这里，复制C的内容至B(此时B，C同时指向D)，删除节点C，即达到间接删除节点B的目的。 倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O(1)。"></a>假设链表……—A–B–C–D….，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O(n)。删除节点的实质为更改后驱指针指向。 这里，复制C的内容至B(此时B，C同时指向D)，删除节点C，即达到间接删除节点B的目的。 倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O(1)。</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> ListNode &#123;</div><div class="line">    <span class="keyword">int</span> m_nKey;</div><div class="line">    ListNode *m_pNext;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteNode</span><span class="params">(ListNode* pListHead, ListNode* pToBeDeleted)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!pListHead || !pToBeDeleted) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (pListHead == pToBeDeleted)&#123;</div><div class="line">        <span class="keyword">delete</span> pListHead;</div><div class="line">        pListHead = <span class="literal">NULL</span>;</div><div class="line">        pToBeDeleted = <span class="literal">NULL</span>;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (pToBeDeleted-&gt;m_pNext != <span class="literal">NULL</span>) &#123;</div><div class="line">        ListNode *pNext = pToBeDeleted-&gt;m_pNext;</div><div class="line">        pToBeDeleted-&gt;m_nKey = pNext-&gt;m_nKey;</div><div class="line">        pToBeDeleted-&gt;m_pNext = pNext-&gt;m_pNext;</div><div class="line">        <span class="keyword">delete</span> pNext;</div><div class="line">        pNext = <span class="literal">NULL</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        ListNode* pNode = pListHead;</div><div class="line">        <span class="keyword">while</span>(pNode-&gt;m_pNext != pToBeDeleted) &#123;</div><div class="line">            pNode = pNode-&gt;m_pNext;</div><div class="line">        &#125;</div><div class="line">        pNode-&gt;m_pNext = <span class="literal">NULL</span>;</div><div class="line">        <span class="keyword">delete</span> pToBeDeleted;</div><div class="line">        pToBeDeleted = <span class="literal">NULL</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><a href="https://github.com/SanfenR/EveryDayC" target="_blank" rel="external">源码github</a></p>
+        <blockquote>
+<p>要深入学习注解，我们就必须能定义自己的注解，并使用注解，在定义自己的注解之前，我们就必须要了解Java为我们提供的元注解和相关定义注解的语法。</p>
+</blockquote>
+<h1 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h1><blockquote>
+<p>元注解的作用就是负责注解其他注解。Java5.0定义了4个标准的meta-annotation类型，它们被用来提供对其它 annotation类型作说明。Java5.0定义的元注解：</p>
+</blockquote>
+<ol>
+<li>@Target</li>
+<li>@Retention</li>
+<li>@Documented</li>
+<li>@Inherited</li>
+</ol>
+<p><strong>这些类型和它们所支持的类在java.lang.annotation包中可以找到。下面我们看一下每个元注解的作用和相应分参数的使用说明。</strong></p>
+<h2 id="Target"><a href="#Target" class="headerlink" title="@Target:"></a>@Target:</h2><blockquote>
+<p>@Target说明了Annotation所修饰的对象范围：Annotation可被用于 packages、types（类、接口、枚举、Annotation类型）、类型成员（方法、构造方法、成员变量、枚举值）、方法参数和本地变量（如循环变量、catch参数）。在Annotation类型的声明中使用了target可更加明晰其修饰的目标。</p>
+</blockquote>
+<p> <strong>作用：用于描述注解的使用范围（即：被描述的注解可以用在什么地方）</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** Class, interface (including annotation type), or enum declaration */</span></div><div class="line">TYPE,</div><div class="line"><span class="comment">/** Field declaration (includes enum constants) */</span></div><div class="line">FIELD,</div><div class="line"><span class="comment">/** Method declaration */</span></div><div class="line">METHOD,</div><div class="line"><span class="comment">/** Formal parameter declaration */</span></div><div class="line">PARAMETER,</div><div class="line"><span class="comment">/** Constructor declaration */</span></div><div class="line">CONSTRUCTOR,</div><div class="line"><span class="comment">/** Local variable declaration */</span></div><div class="line">LOCAL_VARIABLE,</div><div class="line"><span class="comment">/** Annotation type declaration */</span></div><div class="line">ANNOTATION_TYPE,</div><div class="line"><span class="comment">/** Package declaration */</span></div><div class="line">PACKAGE,</div><div class="line"><span class="comment">/**</span></div><div class="line"> * Type parameter declaration</div><div class="line"> *</div><div class="line"> * <span class="doctag">@since</span> 1.8</div><div class="line"> */</div><div class="line">TYPE_PARAMETER,</div><div class="line"><span class="comment">/**</span></div><div class="line"> * Use of a type</div><div class="line"> *</div><div class="line"> * <span class="doctag">@since</span> 1.8</div><div class="line"> */</div><div class="line">TYPE_USE</div></pre></td></tr></table></figure>
+<p><strong>取值(ElementType)有：</strong></p>
+<ol>
+<li>CONSTRUCTOR:用于描述构造器</li>
+<li>FIELD:用于描述域</li>
+<li>LOCAL_VARIABLE:用于描述局部变量</li>
+<li>METHOD:用于描述方法</li>
+<li>PACKAGE:用于描述包</li>
+<li>PARAMETER:用于描述参数</li>
+<li>TYPE:用于描述类、接口(包括注解类型) 或enum声明</li>
+</ol>
+<p><strong>使用实例:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Target</span>(ElementType.TYPE)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Table &#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 数据表名称注解，默认值为类名称</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">tableName</span><span class="params">()</span> <span class="keyword">default</span> "className"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注解Table 可以用于注解类、接口(包括注解类型) 或enum声明,而注解NoDBColumn仅可用于注解类的成员变量。</p>
+</blockquote>
+<hr>
+<h2 id="Retention："><a href="#Retention：" class="headerlink" title="@Retention："></a>@Retention：</h2><blockquote>
+<p>　　@Retention定义了该Annotation被保留的时间长短：某些Annotation仅出现在源代码中，而被编译器丢弃；而另一些却被编译在class文件中；编译在class文件中的Annotation可能会被虚拟机忽略，而另一些在class被装载时将被读取（请注意并不影响class的执行，因为Annotation与class在使用上是被分离的）。使用这个meta-Annotation可以对 Annotation的“生命周期”限制。<br>M</p>
+</blockquote>
 
       
 
@@ -198,7 +257,7 @@
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
 	</div>
 
       
@@ -251,7 +310,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/12/14/everydayc/day3/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/11/10/java-annotation/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -265,20 +324,15 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/12/14/java-exectors/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/12/06/vim-command/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          java线程池源码分析
+          Vim-command
         
       </div>
     </a>
   
-  
-    <a href="/2016/12/12/everydayc/day2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">位运算计数(day2)</div>
-      <i class="icon-circle-right"></i>
-    </a>
   
 </nav>
 
@@ -289,7 +343,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="everydayc/day3" data-title="链表删除(day1)" data-url="http://yoursite.com/2016/12/14/everydayc/day3/"></div>
+	<div class="ds-thread" data-thread-key="java-annotation" data-title="Android Annotation使用" data-url="http://yoursite.com/2016/11/10/java-annotation/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
