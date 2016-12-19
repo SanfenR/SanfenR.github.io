@@ -349,6 +349,61 @@
 
 
   
+    <article id="post-everydayc/day3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/14/everydayc/day3/">链表删除(day1)</a>
+    </h1>
+  
+
+        <a href="/2016/12/14/everydayc/day3/" class="archive-article-date">
+  	<time datetime="2016-12-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-14</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="假设链表……—A–B–C–D…-，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O-n-。删除节点的实质为更改后驱指针指向。-这里，复制C的内容至B-此时B，C同时指向D-，删除节点C，即达到间接删除节点B的目的。-倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O-1-。"><a href="#假设链表……—A–B–C–D…-，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O-n-。删除节点的实质为更改后驱指针指向。-这里，复制C的内容至B-此时B，C同时指向D-，删除节点C，即达到间接删除节点B的目的。-倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O-1-。" class="headerlink" title="假设链表……—A–B–C–D….，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O(n)。删除节点的实质为更改后驱指针指向。 这里，复制C的内容至B(此时B，C同时指向D)，删除节点C，即达到间接删除节点B的目的。 倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O(1)。"></a>假设链表……—A–B–C–D….，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O(n)。删除节点的实质为更改后驱指针指向。 这里，复制C的内容至B(此时B，C同时指向D)，删除节点C，即达到间接删除节点B的目的。 倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O(1)。</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> ListNode &#123;</div><div class="line">    <span class="keyword">int</span> m_nKey;</div><div class="line">    ListNode *m_pNext;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteNode</span><span class="params">(ListNode* pListHead, ListNode* pToBeDeleted)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!pListHead || !pToBeDeleted) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (pListHead == pToBeDeleted)&#123;</div><div class="line">        <span class="keyword">delete</span> pListHead;</div><div class="line">        pListHead = <span class="literal">NULL</span>;</div><div class="line">        pToBeDeleted = <span class="literal">NULL</span>;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (pToBeDeleted-&gt;m_pNext != <span class="literal">NULL</span>) &#123;</div><div class="line">        ListNode *pNext = pToBeDeleted-&gt;m_pNext;</div><div class="line">        pToBeDeleted-&gt;m_nKey = pNext-&gt;m_nKey;</div><div class="line">        pToBeDeleted-&gt;m_pNext = pNext-&gt;m_pNext;</div><div class="line">        <span class="keyword">delete</span> pNext;</div><div class="line">        pNext = <span class="literal">NULL</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        ListNode* pNode = pListHead;</div><div class="line">        <span class="keyword">while</span>(pNode-&gt;m_pNext != pToBeDeleted) &#123;</div><div class="line">            pNode = pNode-&gt;m_pNext;</div><div class="line">        &#125;</div><div class="line">        pNode-&gt;m_pNext = <span class="literal">NULL</span>;</div><div class="line">        <span class="keyword">delete</span> pToBeDeleted;</div><div class="line">        pToBeDeleted = <span class="literal">NULL</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><a href="https://github.com/SanfenR/EveryDayC" target="_blank" rel="external">源码github</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/12/14/everydayc/day3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-java-exectors" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -433,61 +488,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2016/12/14/java-exectors/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-everydayc/day3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/14/everydayc/day3/">链表删除(day1)</a>
-    </h1>
-  
-
-        <a href="/2016/12/14/everydayc/day3/" class="archive-article-date">
-  	<time datetime="2016-12-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-14</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="假设链表……—A–B–C–D…-，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O-n-。删除节点的实质为更改后驱指针指向。-这里，复制C的内容至B-此时B，C同时指向D-，删除节点C，即达到间接删除节点B的目的。-倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O-1-。"><a href="#假设链表……—A–B–C–D…-，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O-n-。删除节点的实质为更改后驱指针指向。-这里，复制C的内容至B-此时B，C同时指向D-，删除节点C，即达到间接删除节点B的目的。-倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O-1-。" class="headerlink" title="假设链表……—A–B–C–D….，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O(n)。删除节点的实质为更改后驱指针指向。 这里，复制C的内容至B(此时B，C同时指向D)，删除节点C，即达到间接删除节点B的目的。 倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O(1)。"></a>假设链表……—A–B–C–D….，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O(n)。删除节点的实质为更改后驱指针指向。 这里，复制C的内容至B(此时B，C同时指向D)，删除节点C，即达到间接删除节点B的目的。 倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O(1)。</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> ListNode &#123;</div><div class="line">    <span class="keyword">int</span> m_nKey;</div><div class="line">    ListNode *m_pNext;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteNode</span><span class="params">(ListNode* pListHead, ListNode* pToBeDeleted)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!pListHead || !pToBeDeleted) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (pListHead == pToBeDeleted)&#123;</div><div class="line">        <span class="keyword">delete</span> pListHead;</div><div class="line">        pListHead = <span class="literal">NULL</span>;</div><div class="line">        pToBeDeleted = <span class="literal">NULL</span>;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (pToBeDeleted-&gt;m_pNext != <span class="literal">NULL</span>) &#123;</div><div class="line">        ListNode *pNext = pToBeDeleted-&gt;m_pNext;</div><div class="line">        pToBeDeleted-&gt;m_nKey = pNext-&gt;m_nKey;</div><div class="line">        pToBeDeleted-&gt;m_pNext = pNext-&gt;m_pNext;</div><div class="line">        <span class="keyword">delete</span> pNext;</div><div class="line">        pNext = <span class="literal">NULL</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        ListNode* pNode = pListHead;</div><div class="line">        <span class="keyword">while</span>(pNode-&gt;m_pNext != pToBeDeleted) &#123;</div><div class="line">            pNode = pNode-&gt;m_pNext;</div><div class="line">        &#125;</div><div class="line">        pNode-&gt;m_pNext = <span class="literal">NULL</span>;</div><div class="line">        <span class="keyword">delete</span> pToBeDeleted;</div><div class="line">        pToBeDeleted = <span class="literal">NULL</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><a href="https://github.com/SanfenR/EveryDayC" target="_blank" rel="external">源码github</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/14/everydayc/day3/">展开全文 >></a>
         </p>
       
 
@@ -1169,10 +1169,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">MarkDowm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">git</a>
               </li>
              
@@ -1186,6 +1182,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">MarkDowm</a>
               </li>
              
               <li class="article-tag-list-item">
