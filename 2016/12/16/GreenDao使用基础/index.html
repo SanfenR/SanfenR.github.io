@@ -6,7 +6,7 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>GreenDao使用 | SanfenR的博客</title>
+  <title>SanfenR的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="介绍官网地址
 GreenDao github
@@ -17,7 +17,7 @@ GreenDao 优点
 支持数据库加密  greendao支持SQLCipher进行数据库加密 有关SQLCipher可以参考这篇博客Android数据存储之Sqlite采用SQLCipher数据库加密实战
 简洁易用的API">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GreenDao使用">
+<meta property="og:title" content="SanfenR的博客">
 <meta property="og:url" content="http://yoursite.com/2016/12/16/GreenDao使用基础/index.html">
 <meta property="og:site_name" content="SanfenR的博客">
 <meta property="og:description" content="介绍官网地址
@@ -29,9 +29,9 @@ GreenDao 优点
 支持数据库加密  greendao支持SQLCipher进行数据库加密 有关SQLCipher可以参考这篇博客Android数据存储之Sqlite采用SQLCipher数据库加密实战
 简洁易用的API">
 <meta property="og:image" content="http://ohqvqufyf.bkt.clouddn.com/greendao.png">
-<meta property="og:updated_time" content="2016-12-16T11:44:59.000Z">
+<meta property="og:updated_time" content="2016-12-19T07:49:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GreenDao使用">
+<meta name="twitter:title" content="SanfenR的博客">
 <meta name="twitter:description" content="介绍官网地址
 GreenDao github
 GreenDao 优点
@@ -163,19 +163,6 @@ GreenDao 优点
             <article id="post-GreenDao使用基础" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      GreenDao使用
-    </h1>
-  
-
-        <a href="/2016/12/16/GreenDao使用基础/" class="archive-article-date">
-  	<time datetime="2016-12-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-16</time>
-</a>
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p><a href="http://greenrobot.org/greendao/" target="_blank" rel="external">官网地址</a></p>
@@ -232,7 +219,11 @@ GreenDao 优点
 </li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 获取可读数据库</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">private</span> SQLiteDatabase <span class="title">getReadableDatabase</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (openHelper == <span class="keyword">null</span>) &#123;</div><div class="line">        openHelper = <span class="keyword">new</span> DaoMaster.DevOpenHelper(context, dbName, <span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> openHelper.getReadableDatabase();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 获取可写数据库</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">private</span> SQLiteDatabase <span class="title">getWritableDatabase</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (openHelper == <span class="keyword">null</span>) &#123;</div><div class="line">        openHelper = <span class="keyword">new</span> DaoMaster.DevOpenHelper(context, dbName, <span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> openHelper.getWritableDatabase();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 插入一条记录</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> user</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertUser</span><span class="params">(User user)</span> </span>&#123;</div><div class="line">    DaoMaster daoMaster = <span class="keyword">new</span> DaoMaster(getWritableDatabase());</div><div class="line">    DaoSession daoSession = daoMaster.newSession();</div><div class="line">    UserDao userDao = daoSession.getUserDao();</div><div class="line">    userDao.insert(user);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 插入用户集合</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> users</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertUserList</span><span class="params">(List&lt;User&gt; users)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (users == <span class="keyword">null</span> || users.isEmpty()) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    DaoMaster daoMaster = <span class="keyword">new</span> DaoMaster(getWritableDatabase());</div><div class="line">    DaoSession daoSession = daoMaster.newSession();</div><div class="line">    UserDao userDao = daoSession.getUserDao();</div><div class="line">    userDao.insertInTx(users);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 删除一条记录</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> user</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteUser</span><span class="params">(User user)</span> </span>&#123;</div><div class="line">    DaoMaster daoMaster = <span class="keyword">new</span> DaoMaster(getWritableDatabase());</div><div class="line">    DaoSession daoSession = daoMaster.newSession();</div><div class="line">    UserDao userDao = daoSession.getUserDao();</div><div class="line">    userDao.delete(user);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 更新一条记录</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> user</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateUser</span><span class="params">(User user)</span> </span>&#123;</div><div class="line">    DaoMaster daoMaster = <span class="keyword">new</span> DaoMaster(getWritableDatabase());</div><div class="line">    DaoSession daoSession = daoMaster.newSession();</div><div class="line">    UserDao userDao = daoSession.getUserDao();</div><div class="line">    userDao.update(user);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 查询用户列表</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">queryUserList</span><span class="params">()</span> </span>&#123;</div><div class="line">    DaoMaster daoMaster = <span class="keyword">new</span> DaoMaster(getReadableDatabase());</div><div class="line">    DaoSession daoSession = daoMaster.newSession();</div><div class="line">    UserDao userDao = daoSession.getUserDao();</div><div class="line">    QueryBuilder&lt;User&gt; qb = userDao.queryBuilder();</div><div class="line">    <span class="keyword">return</span> qb.list();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 查询用户列表</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">queryUserList</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</div><div class="line">    DaoMaster daoMaster = <span class="keyword">new</span> DaoMaster(getReadableDatabase());</div><div class="line">    DaoSession daoSession = daoMaster.newSession();</div><div class="line">    UserDao userDao = daoSession.getUserDao();</div><div class="line">    QueryBuilder&lt;User&gt; qb = userDao.queryBuilder();</div><div class="line">    qb.where(UserDao.Properties.Age.gt(age)).orderAsc(UserDao.Properties.Age);</div><div class="line">    <span class="keyword">return</span> qb.list();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="外键使用-ToOne-ToMany"><a href="#外键使用-ToOne-ToMany" class="headerlink" title="外键使用(@ToOne, @ToMany)"></a>外键使用(@ToOne, @ToMany)</h1><p><a href="https://github.com/SanfenR/AndroidDemo/tree/master/greendaodemo" target="_blank" rel="external">github源码</a></p>
+<h1 id="外键使用-ToOne-ToMany"><a href="#外键使用-ToOne-ToMany" class="headerlink" title="外键使用(@ToOne, @ToMany)"></a>外键使用(@ToOne, @ToMany)</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Entity</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</div><div class="line">    <span class="meta">@Id</span>(autoincrement = <span class="keyword">true</span>)</div><div class="line">    <span class="keyword">private</span> Long id;</div><div class="line"></div><div class="line">    <span class="meta">@NotNull</span></div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Long blogId;</div><div class="line"></div><div class="line">    <span class="meta">@ToOne</span>(joinProperty = <span class="string">"blogId"</span>)</div><div class="line">    <span class="keyword">private</span> Blog blog;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>joinProperties这个参数是referencedJoinProperty 参数的升级版。在referencedJoinProperty参数中我们发现俩个实体关联的外键是CustomerId与id，但是如果我们的需求是外键不能通过id来定义，需要用自己自定义属性来定义，第一种方法就没法用了，而joinProperties就是为了解决这个需求的。</li>
+</ul>
+<p><a href="https://github.com/SanfenR/AndroidDemo/tree/master/greendaodemo" target="_blank" rel="external">github源码</a></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="http://www.jianshu.com/p/252555228b72" target="_blank" rel="external">GreenDao 3.0使用</a></p>
 <p><a href="https://www.cnblogs.com/whoislcj/p/5651396.html" target="_blank" rel="external">Android数据存储之GreenDao 3.0 详解</a></p>
 <p><a href="http://www.cnblogs.com/dsxniubility/p/5699543.html" target="_blank" rel="external">GreenDao3.0新特性解析（配置、注解、加密</a></p>
@@ -276,11 +267,6 @@ GreenDao 优点
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-	</div>
-
       
 
       
@@ -369,7 +355,7 @@ GreenDao 优点
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="GreenDao使用基础" data-title="GreenDao使用" data-url="http://yoursite.com/2016/12/16/GreenDao使用基础/"></div>
+	<div class="ds-thread" data-thread-key="GreenDao使用基础" data-title="" data-url="http://yoursite.com/2016/12/16/GreenDao使用基础/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -465,15 +451,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Android</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">MarkDowm</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Android</a>
               </li>
              
               <li class="article-tag-list-item">

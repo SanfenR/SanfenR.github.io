@@ -135,6 +135,58 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-http通信" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Http简介"><a href="#Http简介" class="headerlink" title="Http简介"></a>Http简介</h1><blockquote>
+<p>超文本传输协议（HTTP，HyperText Transfer Protocol)是互联网上应用最为广泛的一种网络协议。所有的WWW文件都必须遵守这个标准。设计HTTP最初的目的是为了提供一种发布和接收HTML页面的方法。</p>
+</blockquote>
+<h2 id="http的工作流程"><a href="#http的工作流程" class="headerlink" title="http的工作流程"></a>http的工作流程</h2><ol>
+<li>浏览器分析连接所指向的页面URL。</li>
+<li>浏览器向DNS请求解析URL的IP地址。</li>
+<li>浏览器解析出服务器的IP地址。</li>
+<li>浏览器与服务器建立TCP连接。</li>
+<li>服务器给出相应的响应。</li>
+<li>释放TCP连接。</li>
+</ol>
+<h2 id="http的三次握手"><a href="#http的三次握手" class="headerlink" title="http的三次握手"></a>http的三次握手</h2><ol>
+<li>主机A发送位码syn=1,随机产生seq_number=1234567的数据包到服务器,主机B由syn=1指知道，A要求进行联机。</li>
+<li>主机B收到请求后要确认联机信息xiang向A发送ack_number=(主机A的seq_number+1),syn=1,ack=1,随机产生seq=7654321.</li>
+<li>主机A收到后检查ack_number是否正确，即第一次发送的seq_number+1,以及位码ack=1是否为1，若正确，主机A会再发送ack_number=(主机B的seq+1),ack=1, 主机B收到后确认seq值与ack=1则建立连接成功。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">客户端-&gt;&gt;服务器: syn J</div><div class="line">服务器-&gt;&gt;客户端: syn K ack J+1</div><div class="line">客户端-&gt;&gt;服务器: ack K+1</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/12/19/http通信/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-everydayc/day4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -202,19 +254,6 @@
     <article id="post-GreenDao使用基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/16/GreenDao使用基础/">GreenDao使用</a>
-    </h1>
-  
-
-        <a href="/2016/12/16/GreenDao使用基础/" class="archive-article-date">
-  	<time datetime="2016-12-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-16</time>
-</a>
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p><a href="http://greenrobot.org/greendao/" target="_blank" rel="external">官网地址</a></p>
@@ -271,7 +310,11 @@
 </li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 获取可读数据库</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">private</span> SQLiteDatabase <span class="title">getReadableDatabase</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (openHelper == <span class="keyword">null</span>) &#123;</div><div class="line">        openHelper = <span class="keyword">new</span> DaoMaster.DevOpenHelper(context, dbName, <span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> openHelper.getReadableDatabase();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 获取可写数据库</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">private</span> SQLiteDatabase <span class="title">getWritableDatabase</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (openHelper == <span class="keyword">null</span>) &#123;</div><div class="line">        openHelper = <span class="keyword">new</span> DaoMaster.DevOpenHelper(context, dbName, <span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> openHelper.getWritableDatabase();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 插入一条记录</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> user</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertUser</span><span class="params">(User user)</span> </span>&#123;</div><div class="line">    DaoMaster daoMaster = <span class="keyword">new</span> DaoMaster(getWritableDatabase());</div><div class="line">    DaoSession daoSession = daoMaster.newSession();</div><div class="line">    UserDao userDao = daoSession.getUserDao();</div><div class="line">    userDao.insert(user);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 插入用户集合</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> users</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertUserList</span><span class="params">(List&lt;User&gt; users)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (users == <span class="keyword">null</span> || users.isEmpty()) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    DaoMaster daoMaster = <span class="keyword">new</span> DaoMaster(getWritableDatabase());</div><div class="line">    DaoSession daoSession = daoMaster.newSession();</div><div class="line">    UserDao userDao = daoSession.getUserDao();</div><div class="line">    userDao.insertInTx(users);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 删除一条记录</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> user</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteUser</span><span class="params">(User user)</span> </span>&#123;</div><div class="line">    DaoMaster daoMaster = <span class="keyword">new</span> DaoMaster(getWritableDatabase());</div><div class="line">    DaoSession daoSession = daoMaster.newSession();</div><div class="line">    UserDao userDao = daoSession.getUserDao();</div><div class="line">    userDao.delete(user);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 更新一条记录</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> user</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateUser</span><span class="params">(User user)</span> </span>&#123;</div><div class="line">    DaoMaster daoMaster = <span class="keyword">new</span> DaoMaster(getWritableDatabase());</div><div class="line">    DaoSession daoSession = daoMaster.newSession();</div><div class="line">    UserDao userDao = daoSession.getUserDao();</div><div class="line">    userDao.update(user);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 查询用户列表</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">queryUserList</span><span class="params">()</span> </span>&#123;</div><div class="line">    DaoMaster daoMaster = <span class="keyword">new</span> DaoMaster(getReadableDatabase());</div><div class="line">    DaoSession daoSession = daoMaster.newSession();</div><div class="line">    UserDao userDao = daoSession.getUserDao();</div><div class="line">    QueryBuilder&lt;User&gt; qb = userDao.queryBuilder();</div><div class="line">    <span class="keyword">return</span> qb.list();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 查询用户列表</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">queryUserList</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</div><div class="line">    DaoMaster daoMaster = <span class="keyword">new</span> DaoMaster(getReadableDatabase());</div><div class="line">    DaoSession daoSession = daoMaster.newSession();</div><div class="line">    UserDao userDao = daoSession.getUserDao();</div><div class="line">    QueryBuilder&lt;User&gt; qb = userDao.queryBuilder();</div><div class="line">    qb.where(UserDao.Properties.Age.gt(age)).orderAsc(UserDao.Properties.Age);</div><div class="line">    <span class="keyword">return</span> qb.list();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="外键使用-ToOne-ToMany"><a href="#外键使用-ToOne-ToMany" class="headerlink" title="外键使用(@ToOne, @ToMany)"></a>外键使用(@ToOne, @ToMany)</h1><p><a href="https://github.com/SanfenR/AndroidDemo/tree/master/greendaodemo" target="_blank" rel="external">github源码</a></p>
+<h1 id="外键使用-ToOne-ToMany"><a href="#外键使用-ToOne-ToMany" class="headerlink" title="外键使用(@ToOne, @ToMany)"></a>外键使用(@ToOne, @ToMany)</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Entity</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</div><div class="line">    <span class="meta">@Id</span>(autoincrement = <span class="keyword">true</span>)</div><div class="line">    <span class="keyword">private</span> Long id;</div><div class="line"></div><div class="line">    <span class="meta">@NotNull</span></div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Long blogId;</div><div class="line"></div><div class="line">    <span class="meta">@ToOne</span>(joinProperty = <span class="string">"blogId"</span>)</div><div class="line">    <span class="keyword">private</span> Blog blog;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>joinProperties这个参数是referencedJoinProperty 参数的升级版。在referencedJoinProperty参数中我们发现俩个实体关联的外键是CustomerId与id，但是如果我们的需求是外键不能通过id来定义，需要用自己自定义属性来定义，第一种方法就没法用了，而joinProperties就是为了解决这个需求的。</li>
+</ul>
+<p><a href="https://github.com/SanfenR/AndroidDemo/tree/master/greendaodemo" target="_blank" rel="external">github源码</a></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="http://www.jianshu.com/p/252555228b72" target="_blank" rel="external">GreenDao 3.0使用</a></p>
 <p><a href="https://www.cnblogs.com/whoislcj/p/5651396.html" target="_blank" rel="external">Android数据存储之GreenDao 3.0 详解</a></p>
 <p><a href="http://www.cnblogs.com/dsxniubility/p/5699543.html" target="_blank" rel="external">GreenDao3.0新特性解析（配置、注解、加密</a></p>
@@ -284,11 +327,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-	</div>
-
       
 
       
@@ -1049,62 +1087,10 @@
 
 
   
-    <article id="post-github上传问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/20/github上传问题/">GitHub不允许上传大于100M文件问题</a>
-    </h1>
-  
-
-        <a href="/2016/05/20/github上传问题/" class="archive-article-date">
-  	<time datetime="2016-05-19T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-20</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">自己的项目的版本控制用的是Git，代码仓库在github托管。项目里用到了百度导航SDK，由于百度导航SDK有了新版本，于是就更新到了新版本，更新好了之后想把代码push到github上，结果出错了，被拒绝，具体信息是：Total 3007 (delta 664), reused 0 (delta 0)</div><div class="line">remote: error: GH001: Large files detected.</div><div class="line">remote: error: Trace: 7b7de6b9372ee392e0f3961b05ea6f33</div><div class="line">remote: error: See http://git.io/iEPt8g for more information.</div><div class="line">remote: error: File  XXX/XXX/BaiduNaviSDK/libbaiduNaviSDK.a is 102.68 MB; this exceeds GitHub&apos;s file size limit of 100.00 MB</div><div class="line">To https://github.com/XXX/XXXX.git。意思是有大文件，更多信息可到http://git.io/iEPt8g查看，文件libbaiduNaviSDK.a的大小超过了GitHub限制的100M大小。想要push，必须把这个文件移除，可是要怎么移除呢？</div></pre></td></tr></table></figure>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><h6 id="第一种解决方案"><a href="#第一种解决方案" class="headerlink" title="第一种解决方案"></a>第一种解决方案</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">如果这个文件是最近一次commit的，并且你还没有push到github，那么</div><div class="line">第一步输入命令 cd /Users/Dora/Desktop/XXX</div><div class="line">（cd后面的这个路径要换成你自己项目的路径），</div><div class="line">然后第二步输入命令 git rm --cached /Users/Dora/Desktop/XXX/XXX/libbaiduNaviSDK.a（加下划线部分是你自己的要移除的文件的路径），</div><div class="line">第三步输入命令 git commit --amend -CHEAD，</div><div class="line">执行完这步后，这个大文件将会从你的commit记录里移除，并且以后commit都将不会再把它commit了，这时候就可以git push把本地代码push到github上了。</div></pre></td></tr></table></figure>
-<h3 id="第二种解决方案"><a href="#第二种解决方案" class="headerlink" title="第二种解决方案"></a>第二种解决方案</h3><h5 id="用到一个叫BFG的工具。我们要到-https-rtyley-github-io-bfg-repo-cleaner-download-这个网站去下载并学习如何使用这个工具"><a href="#用到一个叫BFG的工具。我们要到-https-rtyley-github-io-bfg-repo-cleaner-download-这个网站去下载并学习如何使用这个工具" class="headerlink" title="用到一个叫BFG的工具。我们要到[https://rtyley.github.io/bfg-repo-cleaner/#download]这个网站去下载并学习如何使用这个工具"></a>用到一个叫BFG的工具。我们要到[<a href="https://rtyley.github.io/bfg-repo-cleaner/#download]这个网站去下载并学习如何使用这个工具" target="_blank" rel="external">https://rtyley.github.io/bfg-repo-cleaner/#download]这个网站去下载并学习如何使用这个工具</a></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">我们要cd进BFG文件所在目录，第一步输入命令</div><div class="line">java -jar bfg.jar --no-blob-protection --strip-blobs-bigger-than 50M my-repo.git</div><div class="line"></div><div class="line">（红色部分是你下载下来的文件的名字,蓝色部分是你需要移除的文件大小，橙色部分是你自己.git文件的路径），</div><div class="line">第二步cd my-repo.git ，</div><div class="line">第三步 git reflog expire --expire=now --all &amp;&amp; git gc --prune=now --aggressive，</div><div class="line">第四步 git push，</div><div class="line">到此大功告成。你的commit历史里所有大于50M的文件的commit全部被清除，这样你就可以push到github上了。这里只是记录了怎么处理遇到的问题，</div><div class="line">如果想要知道原理，则需要好好好去学习学习。</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/20/github上传问题/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
@@ -1183,15 +1169,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Android</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">MarkDowm</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Android</a>
               </li>
              
               <li class="article-tag-list-item">
