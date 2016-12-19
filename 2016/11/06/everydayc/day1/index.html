@@ -6,39 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>移位查找（day4） | SanfenR的博客</title>
+  <title>递归加法(day1) | SanfenR的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目
-一个整型数组里除了两个数字之外，其他的数字都出现了两次。// 请写程序找出这两个只出现一次的数字。要求时间复杂度是O(n)，空间复杂度是O(1)。
-
-思路
-全部元素异或，结果一定不为0，且结果为只出现1次的元素的异或。
-以第结果的第一个非0位(假设第N位)来看，所有元素在该位置的0,1都出现了奇数次。
-以N为基准，为0的分为一组，为1的分为一组。则这两个数分别分到2组。
-这两组分别异或，结果">
+  <meta name="description" content="题目：求1+2+…+n，要求不能使用乘除法、for、while、if、else、switch、case等关键字以及条件判断语句（A?B:C).使用函数指针1234567891011121314151617//-----&amp;gt;fun1 start//使用函数指针 递归加法typedef int (*fun)(int);int func1(int n) &amp;#123;    return 0;&amp;#12">
 <meta property="og:type" content="article">
-<meta property="og:title" content="移位查找（day4）">
-<meta property="og:url" content="http://yoursite.com/2016/12/18/everydayc/day4/index.html">
+<meta property="og:title" content="递归加法(day1)">
+<meta property="og:url" content="http://yoursite.com/2016/11/06/everydayc/day1/index.html">
 <meta property="og:site_name" content="SanfenR的博客">
-<meta property="og:description" content="题目
-一个整型数组里除了两个数字之外，其他的数字都出现了两次。// 请写程序找出这两个只出现一次的数字。要求时间复杂度是O(n)，空间复杂度是O(1)。
-
-思路
-全部元素异或，结果一定不为0，且结果为只出现1次的元素的异或。
-以第结果的第一个非0位(假设第N位)来看，所有元素在该位置的0,1都出现了奇数次。
-以N为基准，为0的分为一组，为1的分为一组。则这两个数分别分到2组。
-这两组分别异或，结果">
-<meta property="og:updated_time" content="2016-12-19T06:00:03.000Z">
+<meta property="og:description" content="题目：求1+2+…+n，要求不能使用乘除法、for、while、if、else、switch、case等关键字以及条件判断语句（A?B:C).使用函数指针1234567891011121314151617//-----&amp;gt;fun1 start//使用函数指针 递归加法typedef int (*fun)(int);int func1(int n) &amp;#123;    return 0;&amp;#12">
+<meta property="og:updated_time" content="2016-12-19T08:09:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="移位查找（day4）">
-<meta name="twitter:description" content="题目
-一个整型数组里除了两个数字之外，其他的数字都出现了两次。// 请写程序找出这两个只出现一次的数字。要求时间复杂度是O(n)，空间复杂度是O(1)。
-
-思路
-全部元素异或，结果一定不为0，且结果为只出现1次的元素的异或。
-以第结果的第一个非0位(假设第N位)来看，所有元素在该位置的0,1都出现了奇数次。
-以N为基准，为0的分为一组，为1的分为一组。则这两个数分别分到2组。
-这两组分别异或，结果">
+<meta name="twitter:title" content="递归加法(day1)">
+<meta name="twitter:description" content="题目：求1+2+…+n，要求不能使用乘除法、for、while、if、else、switch、case等关键字以及条件判断语句（A?B:C).使用函数指针1234567891011121314151617//-----&amp;gt;fun1 start//使用函数指针 递归加法typedef int (*fun)(int);int func1(int n) &amp;#123;    return 0;&amp;#12">
   
     <link rel="alternative" href="/atom.xml" title="SanfenR的博客" type="application/atom+xml">
   
@@ -158,34 +137,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-everydayc/day4" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-everydayc/day1" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      移位查找（day4）
+      递归加法(day1)
     </h1>
   
 
-        <a href="/2016/12/18/everydayc/day4/" class="archive-article-date">
-  	<time datetime="2016-12-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-18</time>
+        <a href="/2016/11/06/everydayc/day1/" class="archive-article-date">
+  	<time datetime="2016-11-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-06</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><ul>
-<li>一个整型数组里除了两个数字之外，其他的数字都出现了两次。<br>// 请写程序找出这两个只出现一次的数字。要求时间复杂度是O(n)，空间复杂度是O(1)。</li>
-</ul>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
-<li>全部元素异或，结果一定不为0，且结果为只出现1次的元素的异或。</li>
-<li>以第结果的第一个非0位(假设第N位)来看，所有元素在该位置的0,1都出现了奇数次。</li>
-<li>以N为基准，为0的分为一组，为1的分为一组。则这两个数分别分到2组。</li>
-<li>这两组分别异或，结果即为所求。</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//函数功能 ： 找出数组中两个只出现一次的数字</span></div><div class="line"><span class="comment">//函数参数 ： arr为源数组，len为数组元素个数，result用来存放结果</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">function1</span><span class="params">(<span class="keyword">int</span> *arr, <span class="keyword">int</span> len, <span class="keyword">int</span> *result)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> i, all = <span class="number">0</span>, flag = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i) &#123; <span class="comment">//所有数异或</span></div><div class="line">        all ^= arr[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">while</span> (!all &amp; flag) &#123;</div><div class="line">        flag &lt;&lt;= <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    result[<span class="number">0</span>] = result[<span class="number">1</span>] = <span class="number">0</span>;</div><div class="line">    <span class="comment">//利用过滤位区分</span></div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++) &#123;</div><div class="line">        <span class="keyword">if</span> (flag &amp; arr[i])</div><div class="line">            result[<span class="number">0</span>] ^= arr[i];</div><div class="line">        <span class="keyword">else</span></div><div class="line">            result[<span class="number">1</span>] ^= arr[i];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <h3 id="题目：求1-2-…-n，要求不能使用乘除法、for、while、if、else、switch、case等关键字以及条件判断语句（A-B-C"><a href="#题目：求1-2-…-n，要求不能使用乘除法、for、while、if、else、switch、case等关键字以及条件判断语句（A-B-C" class="headerlink" title="题目：求1+2+…+n，要求不能使用乘除法、for、while、if、else、switch、case等关键字以及条件判断语句（A?B:C)."></a>题目：求1+2+…+n，要求不能使用乘除法、for、while、if、else、switch、case等关键字以及条件判断语句（A?B:C).</h3><h4 id="使用函数指针"><a href="#使用函数指针" class="headerlink" title="使用函数指针"></a>使用函数指针</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//-----&gt;fun1 start</span></div><div class="line"><span class="comment">//使用函数指针 递归加法</span></div><div class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(*fun)</span><span class="params">(<span class="keyword">int</span>)</span></span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">func1</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">func2</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    fun f[<span class="number">2</span>] = &#123;func1, func2&#125;;</div><div class="line">    <span class="keyword">return</span> n + f[(n != <span class="number">0</span>)](n - <span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">function1</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; func2(<span class="number">10</span>) &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">//-----&gt;fun2 end</span></div></pre></td></tr></table></figure>
+<h4 id="使用静态变量"><a href="#使用静态变量" class="headerlink" title="使用静态变量"></a>使用静态变量</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//-----&gt;fun2 start</span></div><div class="line"><span class="comment">//使用静态变量</span></div><div class="line"><span class="keyword">class</span> test &#123;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">int</span> N;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">int</span> sum;</div><div class="line"><span class="keyword">public</span> :</div><div class="line">    test() &#123;</div><div class="line">        sum += ++N;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">reset</span><span class="params">()</span> </span>&#123;</div><div class="line">        N = sum = <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getSum</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> sum;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">int</span> test::N = <span class="number">0</span>;</div><div class="line"><span class="keyword">int</span> test::sum = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">function2</span><span class="params">()</span> </span>&#123;</div><div class="line">    test::reset();</div><div class="line">    test *p = <span class="keyword">new</span> test[<span class="number">10</span>];</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; test::getSum() &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">delete</span>[]p;</div><div class="line">&#125;</div><div class="line"><span class="comment">//---&gt;fun2 end</span></div></pre></td></tr></table></figure>
+<h4 id="使用虚函数的编译多态性"><a href="#使用虚函数的编译多态性" class="headerlink" title="使用虚函数的编译多态性"></a>使用虚函数的编译多态性</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//-----&gt;fun3 start</span></div><div class="line"><span class="comment">//使用虚函数的编译多态性</span></div><div class="line"></div><div class="line"><span class="keyword">class</span> A &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123; <span class="keyword">return</span> <span class="number">0</span>; &#125;;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">class</span> B : <span class="keyword">public</span> A &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        A a;</div><div class="line">        B b;</div><div class="line">        A *p[<span class="number">2</span>] = &#123;&amp;a, &amp;b&#125;;</div><div class="line">        <span class="keyword">return</span> n + p[(n - <span class="number">1</span> != <span class="number">0</span>)]-&gt;sum(n - <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">function3</span><span class="params">()</span> </span>&#123;</div><div class="line">    B b;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; b.sum(<span class="number">10</span>) &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//-----&gt;fun3 end</span></div></pre></td></tr></table></figure>
 <p><a href="https://github.com/SanfenR/EveryDayC" target="_blank" rel="external">源码github</a></p>
 
       
@@ -281,7 +253,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/12/18/everydayc/day4/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/11/06/everydayc/day1/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -295,18 +267,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/12/19/http通信/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/11/10/java-annotation/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Http通讯
+          Android Annotation使用
         
       </div>
     </a>
   
   
-    <a href="/2016/12/14/java-exectors/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">java线程池源码分析</div>
+    <a href="/2016/10/20/GreenDao使用基础/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">GreenDao使用详解</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -319,7 +291,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="everydayc/day4" data-title="移位查找（day4）" data-url="http://yoursite.com/2016/12/18/everydayc/day4/"></div>
+	<div class="ds-thread" data-thread-key="everydayc/day1" data-title="递归加法(day1)" data-url="http://yoursite.com/2016/11/06/everydayc/day1/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

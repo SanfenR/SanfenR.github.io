@@ -6,39 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>移位查找（day4） | SanfenR的博客</title>
+  <title>位运算计数(day2) | SanfenR的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目
-一个整型数组里除了两个数字之外，其他的数字都出现了两次。// 请写程序找出这两个只出现一次的数字。要求时间复杂度是O(n)，空间复杂度是O(1)。
-
-思路
-全部元素异或，结果一定不为0，且结果为只出现1次的元素的异或。
-以第结果的第一个非0位(假设第N位)来看，所有元素在该位置的0,1都出现了奇数次。
-以N为基准，为0的分为一组，为1的分为一组。则这两个数分别分到2组。
-这两组分别异或，结果">
+  <meta name="description" content="题目: 求整数的2进制表示中1的个数整数 右移 相与123456789int function1(int i) &amp;#123;    int count = 0;    while(i) &amp;#123;        if(i &amp;amp; 1)            count ++;        i = i &amp;gt;&amp;gt; 1;    &amp;#125;    return count;&amp;#125;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="移位查找（day4）">
-<meta property="og:url" content="http://yoursite.com/2016/12/18/everydayc/day4/index.html">
+<meta property="og:title" content="位运算计数(day2)">
+<meta property="og:url" content="http://yoursite.com/2016/11/20/everydayc/day2/index.html">
 <meta property="og:site_name" content="SanfenR的博客">
-<meta property="og:description" content="题目
-一个整型数组里除了两个数字之外，其他的数字都出现了两次。// 请写程序找出这两个只出现一次的数字。要求时间复杂度是O(n)，空间复杂度是O(1)。
-
-思路
-全部元素异或，结果一定不为0，且结果为只出现1次的元素的异或。
-以第结果的第一个非0位(假设第N位)来看，所有元素在该位置的0,1都出现了奇数次。
-以N为基准，为0的分为一组，为1的分为一组。则这两个数分别分到2组。
-这两组分别异或，结果">
-<meta property="og:updated_time" content="2016-12-19T06:00:03.000Z">
+<meta property="og:description" content="题目: 求整数的2进制表示中1的个数整数 右移 相与123456789int function1(int i) &amp;#123;    int count = 0;    while(i) &amp;#123;        if(i &amp;amp; 1)            count ++;        i = i &amp;gt;&amp;gt; 1;    &amp;#125;    return count;&amp;#125;">
+<meta property="og:updated_time" content="2016-12-19T08:09:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="移位查找（day4）">
-<meta name="twitter:description" content="题目
-一个整型数组里除了两个数字之外，其他的数字都出现了两次。// 请写程序找出这两个只出现一次的数字。要求时间复杂度是O(n)，空间复杂度是O(1)。
-
-思路
-全部元素异或，结果一定不为0，且结果为只出现1次的元素的异或。
-以第结果的第一个非0位(假设第N位)来看，所有元素在该位置的0,1都出现了奇数次。
-以N为基准，为0的分为一组，为1的分为一组。则这两个数分别分到2组。
-这两组分别异或，结果">
+<meta name="twitter:title" content="位运算计数(day2)">
+<meta name="twitter:description" content="题目: 求整数的2进制表示中1的个数整数 右移 相与123456789int function1(int i) &amp;#123;    int count = 0;    while(i) &amp;#123;        if(i &amp;amp; 1)            count ++;        i = i &amp;gt;&amp;gt; 1;    &amp;#125;    return count;&amp;#125;">
   
     <link rel="alternative" href="/atom.xml" title="SanfenR的博客" type="application/atom+xml">
   
@@ -158,34 +137,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-everydayc/day4" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-everydayc/day2" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      移位查找（day4）
+      位运算计数(day2)
     </h1>
   
 
-        <a href="/2016/12/18/everydayc/day4/" class="archive-article-date">
-  	<time datetime="2016-12-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-18</time>
+        <a href="/2016/11/20/everydayc/day2/" class="archive-article-date">
+  	<time datetime="2016-11-19T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-20</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><ul>
-<li>一个整型数组里除了两个数字之外，其他的数字都出现了两次。<br>// 请写程序找出这两个只出现一次的数字。要求时间复杂度是O(n)，空间复杂度是O(1)。</li>
-</ul>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
-<li>全部元素异或，结果一定不为0，且结果为只出现1次的元素的异或。</li>
-<li>以第结果的第一个非0位(假设第N位)来看，所有元素在该位置的0,1都出现了奇数次。</li>
-<li>以N为基准，为0的分为一组，为1的分为一组。则这两个数分别分到2组。</li>
-<li>这两组分别异或，结果即为所求。</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//函数功能 ： 找出数组中两个只出现一次的数字</span></div><div class="line"><span class="comment">//函数参数 ： arr为源数组，len为数组元素个数，result用来存放结果</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">function1</span><span class="params">(<span class="keyword">int</span> *arr, <span class="keyword">int</span> len, <span class="keyword">int</span> *result)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> i, all = <span class="number">0</span>, flag = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i) &#123; <span class="comment">//所有数异或</span></div><div class="line">        all ^= arr[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">while</span> (!all &amp; flag) &#123;</div><div class="line">        flag &lt;&lt;= <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    result[<span class="number">0</span>] = result[<span class="number">1</span>] = <span class="number">0</span>;</div><div class="line">    <span class="comment">//利用过滤位区分</span></div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++) &#123;</div><div class="line">        <span class="keyword">if</span> (flag &amp; arr[i])</div><div class="line">            result[<span class="number">0</span>] ^= arr[i];</div><div class="line">        <span class="keyword">else</span></div><div class="line">            result[<span class="number">1</span>] ^= arr[i];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <h3 id="题目-求整数的2进制表示中1的个数"><a href="#题目-求整数的2进制表示中1的个数" class="headerlink" title="题目: 求整数的2进制表示中1的个数"></a>题目: 求整数的2进制表示中1的个数</h3><h4 id="整数-右移-相与"><a href="#整数-右移-相与" class="headerlink" title="整数 右移 相与"></a>整数 右移 相与</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">function1</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(i) &#123;</div><div class="line">        <span class="keyword">if</span>(i &amp; <span class="number">1</span>)</div><div class="line">            count ++;</div><div class="line">        i = i &gt;&gt; <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> count;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="flag-左移-相与"><a href="#flag-左移-相与" class="headerlink" title="flag 左移 相与"></a>flag 左移 相与</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">function2</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> flag = <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(flag)&#123;</div><div class="line">        <span class="keyword">if</span>(i &amp; flag)&#123;</div><div class="line">            count ++;</div><div class="line">        &#125;</div><div class="line">        flag = flag &lt;&lt; <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> count;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="减一相与"><a href="#减一相与" class="headerlink" title="减一相与"></a>减一相与</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">function3</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (i) &#123;</div><div class="line">        ++ count;</div><div class="line">        i = (i - <span class="number">1</span>) &amp; i;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> count;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><a href="https://github.com/SanfenR/EveryDayC" target="_blank" rel="external">源码github</a></p>
 
       
@@ -281,7 +253,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/12/18/everydayc/day4/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/11/20/everydayc/day2/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -295,18 +267,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/12/19/http通信/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/12/05/everydayc/day3/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Http通讯
+          链表删除(day3)
         
       </div>
     </a>
   
   
-    <a href="/2016/12/14/java-exectors/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">java线程池源码分析</div>
+    <a href="/2016/11/10/java-annotation/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android Annotation使用</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -319,7 +291,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="everydayc/day4" data-title="移位查找（day4）" data-url="http://yoursite.com/2016/12/18/everydayc/day4/"></div>
+	<div class="ds-thread" data-thread-key="everydayc/day2" data-title="位运算计数(day2)" data-url="http://yoursite.com/2016/11/20/everydayc/day2/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
