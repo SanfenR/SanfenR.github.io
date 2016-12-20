@@ -6,14 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: Vim | SanfenR的博客</title>
+  <title>字符串剔除(day5) | SanfenR的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="SanfenR的博客">
-<meta property="og:url" content="http://yoursite.com/tags/Vim/index.html">
+  <meta name="description" content="题目
+输入两个字符串，从第一字符串中删除第二个字符串中所有的字符。例如，输入”They are students.”和”aeiou”，则删除之后的第一个字符串变成”Thy r stdnts.”。
+
+思路最简单的。设source长n，key长m(n&amp;gt;&amp;gt;m)，则使用简单的遍历查找需要n*m次(n个字符，查找m次)，且每次删除对应元素需要O(1)时间(元素移动)。时间复杂度为O(n.^2);">
+<meta property="og:type" content="article">
+<meta property="og:title" content="字符串剔除(day5)">
+<meta property="og:url" content="http://yoursite.com/2016/12/19/everydayc/day5/index.html">
 <meta property="og:site_name" content="SanfenR的博客">
+<meta property="og:description" content="题目
+输入两个字符串，从第一字符串中删除第二个字符串中所有的字符。例如，输入”They are students.”和”aeiou”，则删除之后的第一个字符串变成”Thy r stdnts.”。
+
+思路最简单的。设source长n，key长m(n&amp;gt;&amp;gt;m)，则使用简单的遍历查找需要n*m次(n个字符，查找m次)，且每次删除对应元素需要O(1)时间(元素移动)。时间复杂度为O(n.^2);">
+<meta property="og:updated_time" content="2016-12-20T02:52:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SanfenR的博客">
+<meta name="twitter:title" content="字符串剔除(day5)">
+<meta name="twitter:description" content="题目
+输入两个字符串，从第一字符串中删除第二个字符串中所有的字符。例如，输入”They are students.”和”aeiou”，则删除之后的第一个字符串变成”Thy r stdnts.”。
+
+思路最简单的。设source长n，key长m(n&amp;gt;&amp;gt;m)，则使用简单的遍历查找需要n*m次(n个字符，查找m次)，且每次删除对应元素需要O(1)时间(元素移动)。时间复杂度为O(n.^2);">
   
     <link rel="alternative" href="/atom.xml" title="SanfenR的博客" type="application/atom+xml">
   
@@ -133,54 +146,182 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-everydayc/day5" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/05/vim-command/" class="archive-article-date">
-  	<time datetime="2016-12-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-05</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/05/vim-command/">Vim-command</a>
+    <h1 class="article-title" itemprop="name">
+      字符串剔除(day5)
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        <a href="/2016/12/19/everydayc/day5/" class="archive-article-date">
+  	<time datetime="2016-12-18T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-19</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><ul>
+<li>输入两个字符串，从第一字符串中删除第二个字符串中所有的字符。例如，输入”They are students.”和”aeiou”，则删除之后的第一个字符串变成”Thy r stdnts.”。</li>
+</ul>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>最简单的。设source长n，key长m(n&gt;&gt;m)，则使用简单的遍历查找需要n*m次(n个字符，查找m次)，且每次删除对应元素需要O(1)时间(元素移动)。时间复杂度为O(n.^2);</p>
+<p>以下思路。查找时间复杂度为O(n),删除时间复杂度为O(n)。即O(n)的时间内完成。</p>
+<ol>
+<li>建立长度为256(char元素总数)的hash数组(类似基排序)，遍历key。即需要在source中删除的字符在hashtable上不为0。复杂度O(m)。</li>
+<li>设定指针 temp和needDelete，初始化指向source.</li>
+<li>temp用来遍历source，任何时候指向不需要删除的字符。needDelete指向当前需要删除的第一个字符。</li>
+<li>使用间接删除法。即将temp的值赋给source。</li>
+<li>任何一轮循环。needDelete–temp-1的字符都可以被删除(即替代)。temp之前不需要删除的字符，都已经挪到needDelete之前。</li>
+<li>以temp为空位结束条件。最后给needDelete赋空。</li>
+</ol>
+<p>整体思路,从第一个删除的位置开始，依次把后面不需要删除的字符向前赋值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">char</span> *<span class="title">deleteStr</span><span class="params">(<span class="keyword">char</span> *source, <span class="keyword">const</span> <span class="keyword">char</span> *key)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!source || !key)</div><div class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *temp = key;</div><div class="line">    <span class="comment">//static int hashTable[256];</span></div><div class="line">    <span class="keyword">int</span> *hashTable = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">256</span>];</div><div class="line">    <span class="built_in">memset</span>(hashTable, <span class="number">0</span>, <span class="number">256</span> * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (*temp)</div><div class="line">        hashTable[*temp++]++;</div><div class="line">    temp = source;</div><div class="line">    <span class="keyword">char</span> *needDelete = source;</div><div class="line">    <span class="keyword">while</span> (*temp) &#123;</div><div class="line">        <span class="keyword">if</span> (!hashTable[*temp]) &#123;<span class="comment">//不需要删除的字符，前移赋值</span></div><div class="line">            *needDelete = *temp;</div><div class="line">            needDelete++;</div><div class="line">        &#125;</div><div class="line">        temp++;</div><div class="line">    &#125;</div><div class="line">    *needDelete = <span class="string">'\0'</span>;</div><div class="line">    <span class="keyword">delete</span>[]hashTable;</div><div class="line">    <span class="keyword">return</span> source;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><a href="https://github.com/SanfenR/EveryDayC" target="_blank" rel="external">源码github</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://ohqvqufyf.bkt.clouddn.com/zhifbao.PNG">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://ohqvqufyf.bkt.clouddn.com/wxpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vim/">Vim</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/12/19/everydayc/day5/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-  
-    </div></section>
-  
 
-    
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2016/12/19/http通信/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Http通讯</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="everydayc/day5" data-title="字符串剔除(day5)" data-url="http://yoursite.com/2016/12/19/everydayc/day5/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"sanfenr"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 
           </div>
@@ -206,9 +347,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
