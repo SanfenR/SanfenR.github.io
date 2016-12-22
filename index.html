@@ -282,6 +282,148 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/21/everydayc/day7/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="SanfenR">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ohqvqufyf.bkt.clouddn.com/head.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="SanfenR的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="SanfenR的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/21/everydayc/day7/" itemprop="url">
+                  二叉树中找出和为某一值的所有路径(day6)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-21T00:00:00+08:00">
+                2016-12-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/12/21/everydayc/day7/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/21/everydayc/day7/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><ul>
+<li>题目：输入一个整数和一棵二元树。从树的根结点开始往下访问一直到叶结点所经过的所有结点形成一条路径。打印出和与输入整数相等的所有路径。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"> 例如输入整数22 和如下二元树</div><div class="line"></div><div class="line">      10</div><div class="line">     /  \</div><div class="line">    5   12</div><div class="line">   / \</div><div class="line">  4   7</div><div class="line"></div><div class="line">则打印出两条路径：10, 12 和10, 5, 7。</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
+<li>使用递归和栈结构。将当前路径保留在vector中。</li>
+</ul>
+<ol>
+<li>对于空节点，返回false；</li>
+<li>对于叶子节点，判断当前和是否为给定值，是则遍历输出栈中保存路径且返回true，否则返回false。</li>
+<li>对于非叶子节点，将当前根节点入栈，先后递归左、右子树。且递归完后，要弹出栈中保存的当前路径。</li>
+</ol>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> Node &#123;</div><div class="line">    <span class="keyword">int</span> value;</div><div class="line">    Node* left;</div><div class="line">    Node* right;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">decision</span><span class="params">(Node * head, <span class="keyword">int</span> sum, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;v)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(!head)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!head-&gt;left &amp;&amp; !head-&gt;right)&#123;</div><div class="line">        sum -= head-&gt;value;</div><div class="line">        <span class="keyword">if</span>(sum == <span class="number">0</span>)&#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v.size(); i++) &#123;</div><div class="line">                <span class="built_in">cout</span> &lt;&lt; v[i] &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="built_in">cout</span> &lt;&lt; head-&gt;value &lt;&lt; <span class="string">"\n"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        v.push_back(head-&gt;value);</div><div class="line">        sum -= head-&gt;value;</div><div class="line">        <span class="keyword">bool</span> left = decision(head-&gt;left, sum, v);</div><div class="line">        <span class="keyword">bool</span> right = decision(head-&gt;right, sum, v);</div><div class="line">        v.pop_back();</div><div class="line">        <span class="keyword">if</span> (left || right)&#123;</div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    Node n4=&#123;<span class="number">4</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>&#125;;</div><div class="line">    Node n5=&#123;<span class="number">7</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>&#125;;</div><div class="line">    Node n3=&#123;<span class="number">12</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>&#125;;</div><div class="line">    Node n2=&#123;<span class="number">5</span>,&amp;n4,&amp;n5&#125;;</div><div class="line">    Node n1=&#123;<span class="number">10</span>,&amp;n2,&amp;n3&#125;;</div><div class="line"></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v;</div><div class="line">    decision(&amp;n1,<span class="number">22</span>,v);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><a href="https://github.com/SanfenR/EveryDayC" target="_blank" rel="external">源码github</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/20/everydayc/day6/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1802,171 +1944,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/10/java-annotation/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="SanfenR">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ohqvqufyf.bkt.clouddn.com/head.jpeg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="SanfenR的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="SanfenR的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/10/java-annotation/" itemprop="url">
-                  Android Annotation使用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-10T00:00:00+08:00">
-                2016-11-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/11/10/java-annotation/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/10/java-annotation/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>要深入学习注解，我们就必须能定义自己的注解，并使用注解，在定义自己的注解之前，我们就必须要了解Java为我们提供的元注解和相关定义注解的语法。</p>
-</blockquote>
-<h1 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h1><blockquote>
-<p>元注解的作用就是负责注解其他注解。Java5.0定义了4个标准的meta-annotation类型，它们被用来提供对其它 annotation类型作说明。Java5.0定义的元注解：</p>
-</blockquote>
-<ol>
-<li>@Target</li>
-<li>@Retention</li>
-<li>@Documented</li>
-<li>@Inherited</li>
-</ol>
-<p><strong>这些类型和它们所支持的类在java.lang.annotation包中可以找到。下面我们看一下每个元注解的作用和相应分参数的使用说明。</strong></p>
-<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><blockquote>
-<p>@Target说明了Annotation所修饰的对象范围：Annotation可被用于 packages、types（类、接口、枚举、Annotation类型）、类型成员（方法、构造方法、成员变量、枚举值）、方法参数和本地变量（如循环变量、catch参数）。在Annotation类型的声明中使用了target可更加明晰其修饰的目标。</p>
-</blockquote>
-<p> <strong>作用：用于描述注解的使用范围（即：被描述的注解可以用在什么地方）</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** Class, interface (including annotation type), or enum declaration */</span></div><div class="line">TYPE,</div><div class="line"><span class="comment">/** Field declaration (includes enum constants) */</span></div><div class="line">FIELD,</div><div class="line"><span class="comment">/** Method declaration */</span></div><div class="line">METHOD,</div><div class="line"><span class="comment">/** Formal parameter declaration */</span></div><div class="line">PARAMETER,</div><div class="line"><span class="comment">/** Constructor declaration */</span></div><div class="line">CONSTRUCTOR,</div><div class="line"><span class="comment">/** Local variable declaration */</span></div><div class="line">LOCAL_VARIABLE,</div><div class="line"><span class="comment">/** Annotation type declaration */</span></div><div class="line">ANNOTATION_TYPE,</div><div class="line"><span class="comment">/** Package declaration */</span></div><div class="line">PACKAGE,</div><div class="line"><span class="comment">/**</span></div><div class="line"> * Type parameter declaration</div><div class="line"> *</div><div class="line"> * <span class="doctag">@since</span> 1.8</div><div class="line"> */</div><div class="line">TYPE_PARAMETER,</div><div class="line"><span class="comment">/**</span></div><div class="line"> * Use of a type</div><div class="line"> *</div><div class="line"> * <span class="doctag">@since</span> 1.8</div><div class="line"> */</div><div class="line">TYPE_USE</div></pre></td></tr></table></figure>
-<p><strong>取值(ElementType)有：</strong></p>
-<ol>
-<li>CONSTRUCTOR:用于描述构造器</li>
-<li>FIELD:用于描述域</li>
-<li>LOCAL_VARIABLE:用于描述局部变量</li>
-<li>METHOD:用于描述方法</li>
-<li>PACKAGE:用于描述包</li>
-<li>PARAMETER:用于描述参数</li>
-<li>TYPE:用于描述类、接口(包括注解类型) 或enum声明</li>
-</ol>
-<p><strong>使用实例:</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Target</span>(ElementType.TYPE)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Table &#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 数据表名称注解，默认值为类名称</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">tableName</span><span class="params">()</span> <span class="keyword">default</span> "className"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>注解Table 可以用于注解类、接口(包括注解类型) 或enum声明,而注解NoDBColumn仅可用于注解类的成员变量。</p>
-</blockquote>
-<hr>
-<h2 id="Retention："><a href="#Retention：" class="headerlink" title="Retention："></a>Retention：</h2><blockquote>
-<p>@Retention定义了该Annotation被保留的时间长短：某些Annotation仅出现在源代码中，而被编译器丢弃；而另一些却被编译在class文件中；编译在class文件中的Annotation可能会被虚拟机忽略，而另一些在class被装载时将被读取（请注意并不影响class的执行，因为Annotation与class在使用上是被分离的）。使用这个meta-Annotation可以对 Annotation的“生命周期”限制。<br>M</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2014,7 +1991,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
