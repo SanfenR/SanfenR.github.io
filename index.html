@@ -740,289 +740,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/19/everydayc/day5/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="SanfenR">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ohqvqufyf.bkt.clouddn.com/head.jpeg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="SanfenR的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="SanfenR的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/19/everydayc/day5/" itemprop="url">
-                  字符串剔除(day5)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-19T00:00:00+08:00">
-                2016-12-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/12/19/everydayc/day5/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/19/everydayc/day5/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><ul>
-<li>输入两个字符串，从第一字符串中删除第二个字符串中所有的字符。例如，输入”They are students.”和”aeiou”，则删除之后的第一个字符串变成”Thy r stdnts.”。</li>
-</ul>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>最简单的。设source长n，key长m(n&gt;&gt;m)，则使用简单的遍历查找需要n*m次(n个字符，查找m次)，且每次删除对应元素需要O(1)时间(元素移动)。时间复杂度为O(n.^2);</p>
-<p>以下思路。查找时间复杂度为O(n),删除时间复杂度为O(n)。即O(n)的时间内完成。</p>
-<ol>
-<li>建立长度为256(char元素总数)的hash数组(类似基排序)，遍历key。即需要在source中删除的字符在hashtable上不为0。复杂度O(m)。</li>
-<li>设定指针 temp和needDelete，初始化指向source.</li>
-<li>temp用来遍历source，任何时候指向不需要删除的字符。needDelete指向当前需要删除的第一个字符。</li>
-<li>使用间接删除法。即将temp的值赋给source。</li>
-<li>任何一轮循环。needDelete–temp-1的字符都可以被删除(即替代)。temp之前不需要删除的字符，都已经挪到needDelete之前。</li>
-<li>以temp为空位结束条件。最后给needDelete赋空。</li>
-</ol>
-<p>整体思路,从第一个删除的位置开始，依次把后面不需要删除的字符向前赋值。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">char</span> *<span class="title">deleteStr</span><span class="params">(<span class="keyword">char</span> *source, <span class="keyword">const</span> <span class="keyword">char</span> *key)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!source || !key)</div><div class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *temp = key;</div><div class="line">    <span class="comment">//static int hashTable[256];</span></div><div class="line">    <span class="keyword">int</span> *hashTable = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">256</span>];</div><div class="line">    <span class="built_in">memset</span>(hashTable, <span class="number">0</span>, <span class="number">256</span> * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (*temp)</div><div class="line">        hashTable[*temp++]++;</div><div class="line">    temp = source;</div><div class="line">    <span class="keyword">char</span> *needDelete = source;</div><div class="line">    <span class="keyword">while</span> (*temp) &#123;</div><div class="line">        <span class="keyword">if</span> (!hashTable[*temp]) &#123;<span class="comment">//不需要删除的字符，前移赋值</span></div><div class="line">            *needDelete = *temp;</div><div class="line">            needDelete++;</div><div class="line">        &#125;</div><div class="line">        temp++;</div><div class="line">    &#125;</div><div class="line">    *needDelete = <span class="string">'\0'</span>;</div><div class="line">    <span class="keyword">delete</span>[]hashTable;</div><div class="line">    <span class="keyword">return</span> source;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><a href="https://github.com/SanfenR/EveryDayC" target="_blank" rel="external">源码github</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/18/everydayc/day4/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="SanfenR">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ohqvqufyf.bkt.clouddn.com/head.jpeg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="SanfenR的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="SanfenR的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/18/everydayc/day4/" itemprop="url">
-                  移位查找（day4）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-18T00:00:00+08:00">
-                2016-12-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/12/18/everydayc/day4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/18/everydayc/day4/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><ul>
-<li>一个整型数组里除了两个数字之外，其他的数字都出现了两次。<br>// 请写程序找出这两个只出现一次的数字。要求时间复杂度是O(n)，空间复杂度是O(1)。</li>
-</ul>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
-<li>全部元素异或，结果一定不为0，且结果为只出现1次的元素的异或。</li>
-<li>以第结果的第一个非0位(假设第N位)来看，所有元素在该位置的0,1都出现了奇数次。</li>
-<li>以N为基准，为0的分为一组，为1的分为一组。则这两个数分别分到2组。</li>
-<li>这两组分别异或，结果即为所求。</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//函数功能 ： 找出数组中两个只出现一次的数字</span></div><div class="line"><span class="comment">//函数参数 ： arr为源数组，len为数组元素个数，result用来存放结果</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">function1</span><span class="params">(<span class="keyword">int</span> *arr, <span class="keyword">int</span> len, <span class="keyword">int</span> *result)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> i, all = <span class="number">0</span>, flag = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i) &#123; <span class="comment">//所有数异或</span></div><div class="line">        all ^= arr[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">while</span> (!all &amp; flag) &#123;</div><div class="line">        flag &lt;&lt;= <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    result[<span class="number">0</span>] = result[<span class="number">1</span>] = <span class="number">0</span>;</div><div class="line">    <span class="comment">//利用过滤位区分</span></div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++) &#123;</div><div class="line">        <span class="keyword">if</span> (flag &amp; arr[i])</div><div class="line">            result[<span class="number">0</span>] ^= arr[i];</div><div class="line">        <span class="keyword">else</span></div><div class="line">            result[<span class="number">1</span>] ^= arr[i];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><a href="https://github.com/SanfenR/EveryDayC" target="_blank" rel="external">源码github</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/14/java-exectors/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1347,268 +1064,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/05/everydayc/day3/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="SanfenR">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ohqvqufyf.bkt.clouddn.com/head.jpeg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="SanfenR的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="SanfenR的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/05/everydayc/day3/" itemprop="url">
-                  链表删除(day3)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-05T00:00:00+08:00">
-                2016-12-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/12/05/everydayc/day3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/05/everydayc/day3/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="假设链表……—A–B–C–D…-，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O-n-。删除节点的实质为更改后驱指针指向。-这里，复制C的内容至B-此时B，C同时指向D-，删除节点C，即达到间接删除节点B的目的。-倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O-1-。"><a href="#假设链表……—A–B–C–D…-，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O-n-。删除节点的实质为更改后驱指针指向。-这里，复制C的内容至B-此时B，C同时指向D-，删除节点C，即达到间接删除节点B的目的。-倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O-1-。" class="headerlink" title="假设链表……—A–B–C–D….，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O(n)。删除节点的实质为更改后驱指针指向。 这里，复制C的内容至B(此时B，C同时指向D)，删除节点C，即达到间接删除节点B的目的。 倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O(1)。"></a>假设链表……—A–B–C–D….，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O(n)。删除节点的实质为更改后驱指针指向。 这里，复制C的内容至B(此时B，C同时指向D)，删除节点C，即达到间接删除节点B的目的。 倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O(1)。</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> ListNode &#123;</div><div class="line">    <span class="keyword">int</span> m_nKey;</div><div class="line">    ListNode *m_pNext;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteNode</span><span class="params">(ListNode* pListHead, ListNode* pToBeDeleted)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!pListHead || !pToBeDeleted) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (pListHead == pToBeDeleted)&#123;</div><div class="line">        <span class="keyword">delete</span> pListHead;</div><div class="line">        pListHead = <span class="literal">NULL</span>;</div><div class="line">        pToBeDeleted = <span class="literal">NULL</span>;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (pToBeDeleted-&gt;m_pNext != <span class="literal">NULL</span>) &#123;</div><div class="line">        ListNode *pNext = pToBeDeleted-&gt;m_pNext;</div><div class="line">        pToBeDeleted-&gt;m_nKey = pNext-&gt;m_nKey;</div><div class="line">        pToBeDeleted-&gt;m_pNext = pNext-&gt;m_pNext;</div><div class="line">        <span class="keyword">delete</span> pNext;</div><div class="line">        pNext = <span class="literal">NULL</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        ListNode* pNode = pListHead;</div><div class="line">        <span class="keyword">while</span>(pNode-&gt;m_pNext != pToBeDeleted) &#123;</div><div class="line">            pNode = pNode-&gt;m_pNext;</div><div class="line">        &#125;</div><div class="line">        pNode-&gt;m_pNext = <span class="literal">NULL</span>;</div><div class="line">        <span class="keyword">delete</span> pToBeDeleted;</div><div class="line">        pToBeDeleted = <span class="literal">NULL</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><a href="https://github.com/SanfenR/EveryDayC" target="_blank" rel="external">源码github</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/20/everydayc/day2/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="SanfenR">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ohqvqufyf.bkt.clouddn.com/head.jpeg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="SanfenR的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="SanfenR的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/20/everydayc/day2/" itemprop="url">
-                  位运算计数(day2)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-20T00:00:00+08:00">
-                2016-11-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/11/20/everydayc/day2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/20/everydayc/day2/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="题目-求整数的2进制表示中1的个数"><a href="#题目-求整数的2进制表示中1的个数" class="headerlink" title="题目: 求整数的2进制表示中1的个数"></a>题目: 求整数的2进制表示中1的个数</h3><h4 id="整数-右移-相与"><a href="#整数-右移-相与" class="headerlink" title="整数 右移 相与"></a>整数 右移 相与</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">function1</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(i) &#123;</div><div class="line">        <span class="keyword">if</span>(i &amp; <span class="number">1</span>)</div><div class="line">            count ++;</div><div class="line">        i = i &gt;&gt; <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> count;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="flag-左移-相与"><a href="#flag-左移-相与" class="headerlink" title="flag 左移 相与"></a>flag 左移 相与</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">function2</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> flag = <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(flag)&#123;</div><div class="line">        <span class="keyword">if</span>(i &amp; flag)&#123;</div><div class="line">            count ++;</div><div class="line">        &#125;</div><div class="line">        flag = flag &lt;&lt; <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> count;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="减一相与"><a href="#减一相与" class="headerlink" title="减一相与"></a>减一相与</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">function3</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (i) &#123;</div><div class="line">        ++ count;</div><div class="line">        i = (i - <span class="number">1</span>) &amp; i;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> count;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><a href="https://github.com/SanfenR/EveryDayC" target="_blank" rel="external">源码github</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/20/everydayc/day6/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1705,6 +1160,898 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">将</div><div class="line">     10</div><div class="line">     / \</div><div class="line">    6   14</div><div class="line">  / \  /  \</div><div class="line"> 4  8 12  16</div><div class="line"></div><div class="line"> 转换成双向链表4=6=8=10=12=14=16</div></pre></td></tr></table></figure>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> Node &#123;</div><div class="line">    <span class="keyword">int</span> value;</div><div class="line">    Node* left;</div><div class="line">    Node* right;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">createList</span><span class="params">(Node* head, Node* &amp;left, Node* &amp;right)</span></span>&#123;</div><div class="line">    left = head;</div><div class="line">    right = head;</div><div class="line">    <span class="keyword">if</span>(!head)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        Node *l1, *r1, *l2, *r2;</div><div class="line">        l1 = <span class="literal">NULL</span>;</div><div class="line">        r1 = <span class="literal">NULL</span>;</div><div class="line">        l2 = <span class="literal">NULL</span>;</div><div class="line">        r2 = <span class="literal">NULL</span>;</div><div class="line">        <span class="keyword">if</span>(createList(head-&gt;left, l1, r1))&#123;</div><div class="line">            head-&gt;left = r1;</div><div class="line">            r1-&gt;right = head;</div><div class="line">            left = l1;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(createList(head-&gt;right, l2, r2))&#123;</div><div class="line">            head-&gt;right=l2;</div><div class="line">            l2-&gt;left=head;</div><div class="line">            right = r2;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    Node n4=&#123;<span class="number">4</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>&#125;;</div><div class="line">    Node n5=&#123;<span class="number">8</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>&#125;;</div><div class="line">    Node n6=&#123;<span class="number">12</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>&#125;;</div><div class="line">    Node n7=&#123;<span class="number">16</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>&#125;;</div><div class="line">    Node n2=&#123;<span class="number">6</span>,&amp;n4,&amp;n5&#125;;</div><div class="line">    Node n3=&#123;<span class="number">14</span>,&amp;n6,&amp;n7&#125;;</div><div class="line">    Node n1=&#123;<span class="number">10</span>,&amp;n2,&amp;n3&#125;;</div><div class="line"></div><div class="line">    Node*Left=<span class="literal">NULL</span>;</div><div class="line">    Node*Right=<span class="literal">NULL</span>;</div><div class="line"></div><div class="line">    createList(&amp;n1,Left,Right);</div><div class="line"></div><div class="line">    <span class="keyword">while</span>(Left)&#123;</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;Left-&gt;value&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">        Left=Left-&gt;right;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><a href="https://github.com/SanfenR/EveryDayC" target="_blank" rel="external">源码github</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/10/java-annotation/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="SanfenR">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ohqvqufyf.bkt.clouddn.com/head.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="SanfenR的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="SanfenR的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/10/java-annotation/" itemprop="url">
+                  Android Annotation使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-10T00:00:00+08:00">
+                2016-11-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/11/10/java-annotation/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/10/java-annotation/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>要深入学习注解，我们就必须能定义自己的注解，并使用注解，在定义自己的注解之前，我们就必须要了解Java为我们提供的元注解和相关定义注解的语法。</p>
+</blockquote>
+<h1 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h1><blockquote>
+<p>元注解的作用就是负责注解其他注解。Java5.0定义了4个标准的meta-annotation类型，它们被用来提供对其它 annotation类型作说明。Java5.0定义的元注解：</p>
+</blockquote>
+<ol>
+<li>@Target</li>
+<li>@Retention</li>
+<li>@Documented</li>
+<li>@Inherited</li>
+</ol>
+<p><strong>这些类型和它们所支持的类在java.lang.annotation包中可以找到。下面我们看一下每个元注解的作用和相应分参数的使用说明。</strong></p>
+<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><blockquote>
+<p>@Target说明了Annotation所修饰的对象范围：Annotation可被用于 packages、types（类、接口、枚举、Annotation类型）、类型成员（方法、构造方法、成员变量、枚举值）、方法参数和本地变量（如循环变量、catch参数）。在Annotation类型的声明中使用了target可更加明晰其修饰的目标。</p>
+</blockquote>
+<p> <strong>作用：用于描述注解的使用范围（即：被描述的注解可以用在什么地方）</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** Class, interface (including annotation type), or enum declaration */</span></div><div class="line">TYPE,</div><div class="line"><span class="comment">/** Field declaration (includes enum constants) */</span></div><div class="line">FIELD,</div><div class="line"><span class="comment">/** Method declaration */</span></div><div class="line">METHOD,</div><div class="line"><span class="comment">/** Formal parameter declaration */</span></div><div class="line">PARAMETER,</div><div class="line"><span class="comment">/** Constructor declaration */</span></div><div class="line">CONSTRUCTOR,</div><div class="line"><span class="comment">/** Local variable declaration */</span></div><div class="line">LOCAL_VARIABLE,</div><div class="line"><span class="comment">/** Annotation type declaration */</span></div><div class="line">ANNOTATION_TYPE,</div><div class="line"><span class="comment">/** Package declaration */</span></div><div class="line">PACKAGE,</div><div class="line"><span class="comment">/**</span></div><div class="line"> * Type parameter declaration</div><div class="line"> *</div><div class="line"> * <span class="doctag">@since</span> 1.8</div><div class="line"> */</div><div class="line">TYPE_PARAMETER,</div><div class="line"><span class="comment">/**</span></div><div class="line"> * Use of a type</div><div class="line"> *</div><div class="line"> * <span class="doctag">@since</span> 1.8</div><div class="line"> */</div><div class="line">TYPE_USE</div></pre></td></tr></table></figure>
+<p><strong>取值(ElementType)有：</strong></p>
+<ol>
+<li>CONSTRUCTOR:用于描述构造器</li>
+<li>FIELD:用于描述域</li>
+<li>LOCAL_VARIABLE:用于描述局部变量</li>
+<li>METHOD:用于描述方法</li>
+<li>PACKAGE:用于描述包</li>
+<li>PARAMETER:用于描述参数</li>
+<li>TYPE:用于描述类、接口(包括注解类型) 或enum声明</li>
+</ol>
+<p><strong>使用实例:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Target</span>(ElementType.TYPE)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Table &#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 数据表名称注解，默认值为类名称</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">tableName</span><span class="params">()</span> <span class="keyword">default</span> "className"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注解Table 可以用于注解类、接口(包括注解类型) 或enum声明,而注解NoDBColumn仅可用于注解类的成员变量。</p>
+</blockquote>
+<hr>
+<h2 id="Retention："><a href="#Retention：" class="headerlink" title="Retention："></a>Retention：</h2><blockquote>
+<p>@Retention定义了该Annotation被保留的时间长短：某些Annotation仅出现在源代码中，而被编译器丢弃；而另一些却被编译在class文件中；编译在class文件中的Annotation可能会被虚拟机忽略，而另一些在class被装载时将被读取（请注意并不影响class的执行，因为Annotation与class在使用上是被分离的）。使用这个meta-Annotation可以对 Annotation的“生命周期”限制。<br>M</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/05/vim-command/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="SanfenR">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ohqvqufyf.bkt.clouddn.com/head.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="SanfenR的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="SanfenR的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/05/vim-command/" itemprop="url">
+                  Vim-command
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-05T00:00:00+08:00">
+                2016-11-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/11/05/vim-command/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/05/vim-command/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="光标移动"><a href="#光标移动" class="headerlink" title="光标移动"></a>光标移动</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>h,j,k,l</td>
+<td>左 下 右 上</td>
+</tr>
+<tr>
+<td>Ctrl+f</td>
+<td>上一页</td>
+</tr>
+<tr>
+<td>Ctrl+b</td>
+<td>下一页</td>
+</tr>
+<tr>
+<td>w,e,W,E</td>
+<td>调到单词后面，小写包括标点</td>
+</tr>
+<tr>
+<td>O</td>
+<td>开启新的一行</td>
+</tr>
+<tr>
+<td>^</td>
+<td>一行的开始</td>
+</tr>
+<tr>
+<td>gg</td>
+<td>文档的结尾</td>
+</tr>
+<tr>
+<td>[N]G</td>
+<td>文档的第N行或者最后一行</td>
+</tr>
+</tbody>
+</table>
+<h2 id="插入模式"><a href="#插入模式" class="headerlink" title="插入模式"></a>插入模式</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>i</td>
+<td>插入到光标前面</td>
+</tr>
+<tr>
+<td>I</td>
+<td>插入到行的开始位置</td>
+</tr>
+<tr>
+<td>a</td>
+<td>插入到光标的后面</td>
+</tr>
+<tr>
+<td>A</td>
+<td>插入到行的最后位置</td>
+</tr>
+<tr>
+<td>o,O</td>
+<td>新开一行</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>关闭插入模式</td>
+</tr>
+</tbody>
+</table>
+<h2 id="编辑"><a href="#编辑" class="headerlink" title="编辑"></a>编辑</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>r</td>
+<td>在插入模式替换光标所在的一个字符</td>
+</tr>
+<tr>
+<td>J</td>
+<td>合并下一行到上一行</td>
+</tr>
+<tr>
+<td>s</td>
+<td>删除光标所在的一个字符，光标还在当行</td>
+</tr>
+<tr>
+<td>S</td>
+<td>删除光标所在的一行, 光标还在当行，不同于dd</td>
+</tr>
+<tr>
+<td>u</td>
+<td>撤销上一步操作</td>
+</tr>
+<tr>
+<td>ctrl+r</td>
+<td>恢复上一步操作</td>
+</tr>
+<tr>
+<td>.</td>
+<td>重复最后一个命令</td>
+</tr>
+<tr>
+<td>~</td>
+<td>变换为大写</td>
+</tr>
+<tr>
+<td>[N]&gt;&gt;</td>
+<td>一行或N行往右移动一个tab</td>
+</tr>
+<tr>
+<td>[N]&lt;&lt;</td>
+<td>一行或N行往左移动一个tab</td>
+</tr>
+</tbody>
+</table>
+<h2 id="关闭"><a href="#关闭" class="headerlink" title="关闭"></a>关闭</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>:q</td>
+<td>保存</td>
+</tr>
+<tr>
+<td>:wq, :x</td>
+<td>保存并关闭</td>
+</tr>
+<tr>
+<td>:q</td>
+<td>关闭</td>
+</tr>
+<tr>
+<td>:q!</td>
+<td>强制关闭</td>
+</tr>
+</tbody>
+</table>
+<h2 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/pattern</td>
+<td>搜索(非插入模式)</td>
+</tr>
+<tr>
+<td>?pattern</td>
+<td>向后搜索</td>
+</tr>
+<tr>
+<td>n</td>
+<td>光标到达搜索结果的前一个目标</td>
+</tr>
+<tr>
+<td>N</td>
+<td>光标到达搜索结果的后一个目标</td>
+</tr>
+</tbody>
+</table>
+<h2 id="视觉模式"><a href="#视觉模式" class="headerlink" title="视觉模式"></a>视觉模式</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v</td>
+<td>选中一个或多个字符</td>
+</tr>
+<tr>
+<td>V</td>
+<td>选中一行</td>
+</tr>
+</tbody>
+</table>
+<h2 id="剪切和复制"><a href="#剪切和复制" class="headerlink" title="剪切和复制"></a>剪切和复制</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dd</td>
+<td>删除一行</td>
+</tr>
+<tr>
+<td>dw</td>
+<td>删除一个单词</td>
+</tr>
+<tr>
+<td>x</td>
+<td>删除后一个字符</td>
+</tr>
+<tr>
+<td>X</td>
+<td>删除前一个字符</td>
+</tr>
+<tr>
+<td>D</td>
+<td>删除一行最后一个字符</td>
+</tr>
+<tr>
+<td>[N]yy</td>
+<td>复制一行或者N行</td>
+</tr>
+<tr>
+<td>yw</td>
+<td>复制一个单词</td>
+</tr>
+<tr>
+<td>p</td>
+<td>粘贴</td>
+</tr>
+</tbody>
+</table>
+<h2 id="窗口命令"><a href="#窗口命令" class="headerlink" title="窗口命令"></a>窗口命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>: split</td>
+<td>水平分割出一个窗口</td>
+</tr>
+<tr>
+<td>:vsplit</td>
+<td>垂直分割出一个窗口</td>
+</tr>
+<tr>
+<td>:close</td>
+<td>关闭窗口</td>
+</tr>
+<tr>
+<td>ctrl+w</td>
+<td>切换窗口  h,j,k,l 左下上右</td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/24/everydayc/day5/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="SanfenR">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ohqvqufyf.bkt.clouddn.com/head.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="SanfenR的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="SanfenR的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/24/everydayc/day5/" itemprop="url">
+                  字符串剔除(day5)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-24T00:00:00+08:00">
+                2016-10-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/10/24/everydayc/day5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/24/everydayc/day5/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><ul>
+<li>输入两个字符串，从第一字符串中删除第二个字符串中所有的字符。例如，输入”They are students.”和”aeiou”，则删除之后的第一个字符串变成”Thy r stdnts.”。</li>
+</ul>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>最简单的。设source长n，key长m(n&gt;&gt;m)，则使用简单的遍历查找需要n*m次(n个字符，查找m次)，且每次删除对应元素需要O(1)时间(元素移动)。时间复杂度为O(n.^2);</p>
+<p>以下思路。查找时间复杂度为O(n),删除时间复杂度为O(n)。即O(n)的时间内完成。</p>
+<ol>
+<li>建立长度为256(char元素总数)的hash数组(类似基排序)，遍历key。即需要在source中删除的字符在hashtable上不为0。复杂度O(m)。</li>
+<li>设定指针 temp和needDelete，初始化指向source.</li>
+<li>temp用来遍历source，任何时候指向不需要删除的字符。needDelete指向当前需要删除的第一个字符。</li>
+<li>使用间接删除法。即将temp的值赋给source。</li>
+<li>任何一轮循环。needDelete–temp-1的字符都可以被删除(即替代)。temp之前不需要删除的字符，都已经挪到needDelete之前。</li>
+<li>以temp为空位结束条件。最后给needDelete赋空。</li>
+</ol>
+<p>整体思路,从第一个删除的位置开始，依次把后面不需要删除的字符向前赋值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">char</span> *<span class="title">deleteStr</span><span class="params">(<span class="keyword">char</span> *source, <span class="keyword">const</span> <span class="keyword">char</span> *key)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!source || !key)</div><div class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *temp = key;</div><div class="line">    <span class="comment">//static int hashTable[256];</span></div><div class="line">    <span class="keyword">int</span> *hashTable = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">256</span>];</div><div class="line">    <span class="built_in">memset</span>(hashTable, <span class="number">0</span>, <span class="number">256</span> * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (*temp)</div><div class="line">        hashTable[*temp++]++;</div><div class="line">    temp = source;</div><div class="line">    <span class="keyword">char</span> *needDelete = source;</div><div class="line">    <span class="keyword">while</span> (*temp) &#123;</div><div class="line">        <span class="keyword">if</span> (!hashTable[*temp]) &#123;<span class="comment">//不需要删除的字符，前移赋值</span></div><div class="line">            *needDelete = *temp;</div><div class="line">            needDelete++;</div><div class="line">        &#125;</div><div class="line">        temp++;</div><div class="line">    &#125;</div><div class="line">    *needDelete = <span class="string">'\0'</span>;</div><div class="line">    <span class="keyword">delete</span>[]hashTable;</div><div class="line">    <span class="keyword">return</span> source;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><a href="https://github.com/SanfenR/EveryDayC" target="_blank" rel="external">源码github</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/20/GreenDao使用基础/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="SanfenR">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ohqvqufyf.bkt.clouddn.com/head.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="SanfenR的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="SanfenR的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/20/GreenDao使用基础/" itemprop="url">
+                  GreenDao使用详解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-20T00:00:00+08:00">
+                2016-10-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/10/20/GreenDao使用基础/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/20/GreenDao使用基础/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p><a href="http://greenrobot.org/greendao/" target="_blank" rel="external">官网地址</a></p>
+<p><a href="https://github.com/greenrobot/greenDAO" target="_blank" rel="external">GreenDao github</a></p>
+<h1 id="GreenDao-优点"><a href="#GreenDao-优点" class="headerlink" title="GreenDao 优点"></a>GreenDao 优点</h1><ol>
+<li>性能高，号称Android最快的关系型数据库</li>
+<li>内存占用小</li>
+<li>库文件比较小，小于100K，编译时间低，而且可以避免65K方法限制</li>
+<li>支持数据库加密  greendao支持SQLCipher进行数据库加密 有关SQLCipher可以参考这篇博客Android数据存储之Sqlite采用SQLCipher数据库加密实战</li>
+<li>简洁易用的API</li>
+</ol>
+<h1 id="GreenDao-3-0基本使用"><a href="#GreenDao-3-0基本使用" class="headerlink" title="GreenDao 3.0基本使用"></a>GreenDao 3.0基本使用</h1><h2 id="在-gradle添加依赖"><a href="#在-gradle添加依赖" class="headerlink" title="在.gradle添加依赖"></a>在.gradle添加依赖</h2><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">buildscript &#123;</div><div class="line">    repositories &#123;</div><div class="line">        mavenCentral()</div><div class="line">    &#125;</div><div class="line">    dependencies &#123;</div><div class="line">        classpath <span class="string">'org.greenrobot:greendao-gradle-plugin:3.2.1'</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">apply <span class="string">plugin:</span> <span class="string">'org.greenrobot.greendao'</span></div><div class="line"></div><div class="line">dependencies &#123;</div><div class="line">    compile <span class="string">'org.greenrobot:greendao:3.2.0'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>需要配置数据库的基本属性</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">greendao &#123;</div><div class="line">    schemaVersion <span class="number">1</span></div><div class="line">    targetGenDir <span class="string">'src/main/java'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>schemaVersion：数据库版本号</li>
+<li>daoPackage：设置DaoMaster, DaoSession, Dao包名</li>
+<li>targetGenDir: 设置DaoMaster, DaoSession, Dao目录</li>
+<li>targetGenDirTest: 设置生成单元测试目录</li>
+<li>generateTests 设置自动生成单元测试用例</li>
+</ul>
+<h2 id="创建实体"><a href="#创建实体" class="headerlink" title="创建实体"></a>创建实体</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Entity</span>()</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Id</span></div><div class="line">    <span class="keyword">private</span> Long id;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</div><div class="line">    <span class="comment">//省去了get/set方法</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>实体@Entity注解:</p>
+<ul>
+<li>schema：表示GreenDao当前实体属于哪个schema</li>
+<li>active: 标记一个实体处于活动状态，活动实体有更新，删除和刷新方法</li>
+<li>nameInDb: 在数据中使用的别名，默认使用的是实名的类别</li>
+<li>indexes: 定义索引，可以跨越多个列</li>
+<li>createInDb: 标记创建数据库表</li>
+</ul>
+<p>基础属性注解:</p>
+<ul>
+<li>@Id: 主键 Long型，可以通过@Id(autoincrement = true)设置自增长</li>
+<li>@Property: 设置一个非默认关系映射所对应的列名，默认是的使用字段名 举例：@Property (nameInDb=”name”)</li>
+<li>@NotNul：设置数据库表当前列不能为空</li>
+<li>@Transient ：添加次标记之后不会生成数据库表的列</li>
+</ul>
+<p>索引注解:</p>
+<ul>
+<li>@Index：使用@Index作为一个属性来创建一个索引，通过name设置索引别名，也可以通过unique给索引添加约束</li>
+<li>@Unique：向数据库列添加了一个唯一的约束</li>
+</ul>
+<p>关系注解:</p>
+<ul>
+<li>@ToOne：定义与另一个实体（一个实体对象）的关系</li>
+<li>@ToMany：定义与多个实体对象的关系</li>
+</ul>
+<h2 id="编译生成DaoMaster-DaoSession-Dao"><a href="#编译生成DaoMaster-DaoSession-Dao" class="headerlink" title="编译生成DaoMaster, DaoSession, Dao"></a>编译生成DaoMaster, DaoSession, Dao</h2><p><img src="http://ohqvqufyf.bkt.clouddn.com/greendao.png" alt="image"></p>
+<ul>
+<li><p>创建一个数据库管理者单例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DBManager</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> String dbName = <span class="string">"test_db"</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> DBManager mInstance;</div><div class="line">    <span class="keyword">private</span> DaoMaster.DevOpenHelper openHelper;</div><div class="line">    <span class="keyword">private</span> Context context;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DBManager</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.context = context;</div><div class="line">        openHelper = <span class="keyword">new</span> DaoMaster.DevOpenHelper(context, dbName, <span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 获取单例引用</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> context</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> DBManager <span class="title">getInstance</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (mInstance == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">synchronized</span> (DBManager.class) &#123;</div><div class="line">                <span class="keyword">if</span> (mInstance == <span class="keyword">null</span>) &#123;</div><div class="line">                    mInstance = <span class="keyword">new</span> DBManager(context);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> mInstance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取可读可写数据库</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 获取可读数据库</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">private</span> SQLiteDatabase <span class="title">getReadableDatabase</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (openHelper == <span class="keyword">null</span>) &#123;</div><div class="line">        openHelper = <span class="keyword">new</span> DaoMaster.DevOpenHelper(context, dbName, <span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> openHelper.getReadableDatabase();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 获取可写数据库</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">private</span> SQLiteDatabase <span class="title">getWritableDatabase</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (openHelper == <span class="keyword">null</span>) &#123;</div><div class="line">        openHelper = <span class="keyword">new</span> DaoMaster.DevOpenHelper(context, dbName, <span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> openHelper.getWritableDatabase();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 插入一条记录</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> user</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertUser</span><span class="params">(User user)</span> </span>&#123;</div><div class="line">    DaoMaster daoMaster = <span class="keyword">new</span> DaoMaster(getWritableDatabase());</div><div class="line">    DaoSession daoSession = daoMaster.newSession();</div><div class="line">    UserDao userDao = daoSession.getUserDao();</div><div class="line">    userDao.insert(user);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 插入用户集合</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> users</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertUserList</span><span class="params">(List&lt;User&gt; users)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (users == <span class="keyword">null</span> || users.isEmpty()) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    DaoMaster daoMaster = <span class="keyword">new</span> DaoMaster(getWritableDatabase());</div><div class="line">    DaoSession daoSession = daoMaster.newSession();</div><div class="line">    UserDao userDao = daoSession.getUserDao();</div><div class="line">    userDao.insertInTx(users);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 删除一条记录</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> user</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteUser</span><span class="params">(User user)</span> </span>&#123;</div><div class="line">    DaoMaster daoMaster = <span class="keyword">new</span> DaoMaster(getWritableDatabase());</div><div class="line">    DaoSession daoSession = daoMaster.newSession();</div><div class="line">    UserDao userDao = daoSession.getUserDao();</div><div class="line">    userDao.delete(user);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 更新一条记录</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> user</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateUser</span><span class="params">(User user)</span> </span>&#123;</div><div class="line">    DaoMaster daoMaster = <span class="keyword">new</span> DaoMaster(getWritableDatabase());</div><div class="line">    DaoSession daoSession = daoMaster.newSession();</div><div class="line">    UserDao userDao = daoSession.getUserDao();</div><div class="line">    userDao.update(user);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 查询用户列表</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">queryUserList</span><span class="params">()</span> </span>&#123;</div><div class="line">    DaoMaster daoMaster = <span class="keyword">new</span> DaoMaster(getReadableDatabase());</div><div class="line">    DaoSession daoSession = daoMaster.newSession();</div><div class="line">    UserDao userDao = daoSession.getUserDao();</div><div class="line">    QueryBuilder&lt;User&gt; qb = userDao.queryBuilder();</div><div class="line">    <span class="keyword">return</span> qb.list();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 查询用户列表</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">queryUserList</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</div><div class="line">    DaoMaster daoMaster = <span class="keyword">new</span> DaoMaster(getReadableDatabase());</div><div class="line">    DaoSession daoSession = daoMaster.newSession();</div><div class="line">    UserDao userDao = daoSession.getUserDao();</div><div class="line">    QueryBuilder&lt;User&gt; qb = userDao.queryBuilder();</div><div class="line">    qb.where(UserDao.Properties.Age.gt(age)).orderAsc(UserDao.Properties.Age);</div><div class="line">    <span class="keyword">return</span> qb.list();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="外键使用-ToOne-ToMany"><a href="#外键使用-ToOne-ToMany" class="headerlink" title="外键使用(@ToOne, @ToMany)"></a>外键使用(@ToOne, @ToMany)</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Entity</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</div><div class="line">    <span class="meta">@Id</span>(autoincrement = <span class="keyword">true</span>)</div><div class="line">    <span class="keyword">private</span> Long id;</div><div class="line"></div><div class="line">    <span class="meta">@NotNull</span></div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Long blogId;</div><div class="line"></div><div class="line">    <span class="meta">@ToOne</span>(joinProperty = <span class="string">"blogId"</span>)</div><div class="line">    <span class="keyword">private</span> Blog blog;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>joinProperties这个参数是referencedJoinProperty 参数的升级版。在referencedJoinProperty参数中我们发现俩个实体关联的外键是CustomerId与id，但是如果我们的需求是外键不能通过id来定义，需要用自己自定义属性来定义，第一种方法就没法用了，而joinProperties就是为了解决这个需求的。</li>
+</ul>
+<p><a href="https://github.com/SanfenR/AndroidDemo/tree/master/greendaodemo" target="_blank" rel="external">github源码</a></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="http://www.jianshu.com/p/252555228b72" target="_blank" rel="external">GreenDao 3.0使用</a></p>
+<p><a href="https://www.cnblogs.com/whoislcj/p/5651396.html" target="_blank" rel="external">Android数据存储之GreenDao 3.0 详解</a></p>
+<p><a href="http://www.cnblogs.com/dsxniubility/p/5699543.html" target="_blank" rel="external">GreenDao3.0新特性解析（配置、注解、加密</a></p>
+<p><a href="http://www.jianshu.com/p/d61983df2341" target="_blank" rel="external">史上最高效的ORM方案——GreenDao3.0高级用法</a></p>
 
           
         
