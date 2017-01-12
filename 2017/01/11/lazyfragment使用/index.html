@@ -102,40 +102,25 @@
 
 
 
-<meta name="description" content="要深入学习注解，我们就必须能定义自己的注解，并使用注解，在定义自己的注解之前，我们就必须要了解Java为我们提供的元注解和相关定义注解的语法。
+<meta name="description" content="ViewPager的预加载在项目中，经常会遇到ViewPager+TabLayout实现对多个fragment的管理。但是由于ViewPager的预加载(默认的预加载为1)，viewpager会调用fragment的onCreateView()进行fragmemt的初始化:
 
-元注解
-元注解的作用就是负责注解其他注解。Java5.0定义了4个标准的meta-annotation类型，它们被用来提供对其它 annotation类型作说明。Java5.0定义的元注解：
-
-
-@Target
-@Retention
-@Document">
+而在Android中当fragment的onCreateView()会将整个xml文件中的UI控件实例到内存，而且数据的请">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android Annotation使用">
-<meta property="og:url" content="http://yoursite.com/2016/11/10/java-annotation/index.html">
+<meta property="og:title" content="Android-Fragment懒加载">
+<meta property="og:url" content="http://yoursite.com/2017/01/11/lazyfragment使用/index.html">
 <meta property="og:site_name" content="SanfenR的博客">
-<meta property="og:description" content="要深入学习注解，我们就必须能定义自己的注解，并使用注解，在定义自己的注解之前，我们就必须要了解Java为我们提供的元注解和相关定义注解的语法。
+<meta property="og:description" content="ViewPager的预加载在项目中，经常会遇到ViewPager+TabLayout实现对多个fragment的管理。但是由于ViewPager的预加载(默认的预加载为1)，viewpager会调用fragment的onCreateView()进行fragmemt的初始化:
 
-元注解
-元注解的作用就是负责注解其他注解。Java5.0定义了4个标准的meta-annotation类型，它们被用来提供对其它 annotation类型作说明。Java5.0定义的元注解：
-
-
-@Target
-@Retention
-@Document">
-<meta property="og:updated_time" content="2016-12-21T06:50:48.000Z">
+而在Android中当fragment的onCreateView()会将整个xml文件中的UI控件实例到内存，而且数据的请">
+<meta property="og:image" content="http://ohqvqufyf.bkt.clouddn.com/fragment.png">
+<meta property="og:image" content="http://ohqvqufyf.bkt.clouddn.com/load.png">
+<meta property="og:updated_time" content="2017-01-12T09:56:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android Annotation使用">
-<meta name="twitter:description" content="要深入学习注解，我们就必须能定义自己的注解，并使用注解，在定义自己的注解之前，我们就必须要了解Java为我们提供的元注解和相关定义注解的语法。
+<meta name="twitter:title" content="Android-Fragment懒加载">
+<meta name="twitter:description" content="ViewPager的预加载在项目中，经常会遇到ViewPager+TabLayout实现对多个fragment的管理。但是由于ViewPager的预加载(默认的预加载为1)，viewpager会调用fragment的onCreateView()进行fragmemt的初始化:
 
-元注解
-元注解的作用就是负责注解其他注解。Java5.0定义了4个标准的meta-annotation类型，它们被用来提供对其它 annotation类型作说明。Java5.0定义的元注解：
-
-
-@Target
-@Retention
-@Document">
+而在Android中当fragment的onCreateView()会将整个xml文件中的UI控件实例到内存，而且数据的请">
+<meta name="twitter:image" content="http://ohqvqufyf.bkt.clouddn.com/fragment.png">
 
 
 
@@ -163,13 +148,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/10/java-annotation/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/01/11/lazyfragment使用/"/>
 
 
 
 
 
-  <title> Android Annotation使用 | SanfenR的博客 </title>
+  <title> Android-Fragment懒加载 | SanfenR的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -305,7 +290,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/10/java-annotation/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/11/lazyfragment使用/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="SanfenR">
@@ -329,7 +314,7 @@
             
             
               
-                Android Annotation使用
+                Android-Fragment懒加载
               
             
           </h1>
@@ -344,8 +329,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-10T00:00:00+08:00">
-                2016-11-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-11T00:00:00+08:00">
+                2017-01-11
               </time>
             
 
@@ -363,8 +348,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/11/10/java-annotation/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/10/java-annotation/" itemprop="commentCount"></span>
+                <a href="/2017/01/11/lazyfragment使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/11/lazyfragment使用/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -390,43 +375,25 @@
       
 
       
-        <blockquote>
-<p>要深入学习注解，我们就必须能定义自己的注解，并使用注解，在定义自己的注解之前，我们就必须要了解Java为我们提供的元注解和相关定义注解的语法。</p>
-</blockquote>
-<h1 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h1><blockquote>
-<p>元注解的作用就是负责注解其他注解。Java5.0定义了4个标准的meta-annotation类型，它们被用来提供对其它 annotation类型作说明。Java5.0定义的元注解：</p>
-</blockquote>
-<ol>
-<li>@Target</li>
-<li>@Retention</li>
-<li>@Documented</li>
-<li>@Inherited</li>
+        <h2 id="ViewPager的预加载"><a href="#ViewPager的预加载" class="headerlink" title="ViewPager的预加载"></a>ViewPager的预加载</h2><p>在项目中，经常会遇到ViewPager+TabLayout实现对多个fragment的管理。但是由于ViewPager的预加载(默认的预加载为1)，viewpager会调用fragment的onCreateView()进行fragmemt的初始化:</p>
+<p><img src="http://ohqvqufyf.bkt.clouddn.com/fragment.png" alt="fragment"></p>
+<p>而在Android中当fragment的onCreateView()会将整个xml文件中的UI控件实例到内存，而且数据的请求初始化基本也是在onCreateView()中进行。导致App启动的时候加载的数据过多。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>解决这个问题有两种方式，一种是禁止ViewPager的预加载，重写ViewPager,但是该方法会出现左右滑动时会出现卡顿现象，带来不好的用户体验。而另外一种就是我们接下来要讲的通过Fragment的懒加载来实现。当用户切换到某个fragment时再加载。</p>
+<h3 id="setUserVisibleHint-方法"><a href="#setUserVisibleHint-方法" class="headerlink" title="setUserVisibleHint()方法"></a>setUserVisibleHint()方法</h3><p>懒加载主要使用到fragment中的setUserVisibleHint()，这个方法是当fragment的UI显示状态变化时会被调用。源码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Set a hint to the system about whether this fragment's UI is currently visible</div><div class="line"> * to the user. This hint defaults to true and is persistent across fragment instance</div><div class="line"> * state save and restore.</div><div class="line"> *</div><div class="line"> * &lt;p&gt;An app may set this to false to indicate that the fragment's UI is</div><div class="line"> * scrolled out of visibility or is otherwise not directly visible to the user.</div><div class="line"> * This may be used by the system to prioritize operations such as fragment lifecycle updates</div><div class="line"> * or loader ordering behavior.&lt;/p&gt;</div><div class="line"> *</div><div class="line"> * &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; This method may be called outside of the fragment lifecycle.</div><div class="line"> * and thus has no ordering guarantees with regard to fragment lifecycle method calls.&lt;/p&gt;</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> isVisibleToUser true if this fragment's UI is currently visible to the user (default),</div><div class="line"> *                        false if it is not.</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserVisibleHint</span><span class="params">(<span class="keyword">boolean</span> isVisibleToUser)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!mUserVisibleHint &amp;&amp; isVisibleToUser &amp;&amp; mState &lt; STARTED</div><div class="line">            &amp;&amp; mFragmentManager != <span class="keyword">null</span> &amp;&amp; isAdded()) &#123;</div><div class="line">        mFragmentManager.performPendingDeferredStart(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">    mUserVisibleHint = isVisibleToUser;</div><div class="line">    mDeferStart = mState &lt; STARTED &amp;&amp; !isVisibleToUser;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><ol>
+<li>因为fragment的onCreateView()方法会将xml中的控件加载到内存中，所以我们定义一个空的FragmentLayout。</li>
 </ol>
-<p><strong>这些类型和它们所支持的类在java.lang.annotation包中可以找到。下面我们看一下每个元注解的作用和相应分参数的使用说明。</strong></p>
-<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><blockquote>
-<p>@Target说明了Annotation所修饰的对象范围：Annotation可被用于 packages、types（类、接口、枚举、Annotation类型）、类型成员（方法、构造方法、成员变量、枚举值）、方法参数和本地变量（如循环变量、catch参数）。在Annotation类型的声明中使用了target可更加明晰其修饰的目标。</p>
-</blockquote>
-<p> <strong>作用：用于描述注解的使用范围（即：被描述的注解可以用在什么地方）</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** Class, interface (including annotation type), or enum declaration */</span></div><div class="line">TYPE,</div><div class="line"><span class="comment">/** Field declaration (includes enum constants) */</span></div><div class="line">FIELD,</div><div class="line"><span class="comment">/** Method declaration */</span></div><div class="line">METHOD,</div><div class="line"><span class="comment">/** Formal parameter declaration */</span></div><div class="line">PARAMETER,</div><div class="line"><span class="comment">/** Constructor declaration */</span></div><div class="line">CONSTRUCTOR,</div><div class="line"><span class="comment">/** Local variable declaration */</span></div><div class="line">LOCAL_VARIABLE,</div><div class="line"><span class="comment">/** Annotation type declaration */</span></div><div class="line">ANNOTATION_TYPE,</div><div class="line"><span class="comment">/** Package declaration */</span></div><div class="line">PACKAGE,</div><div class="line"><span class="comment">/**</span></div><div class="line"> * Type parameter declaration</div><div class="line"> *</div><div class="line"> * <span class="doctag">@since</span> 1.8</div><div class="line"> */</div><div class="line">TYPE_PARAMETER,</div><div class="line"><span class="comment">/**</span></div><div class="line"> * Use of a type</div><div class="line"> *</div><div class="line"> * <span class="doctag">@since</span> 1.8</div><div class="line"> */</div><div class="line">TYPE_USE</div></pre></td></tr></table></figure>
-<p><strong>取值(ElementType)有：</strong></p>
+<p>创建一个空的容器作为预加载界面<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">FrameLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/other_frame"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">tools:context</span>=<span class="string">"com.mz.sanfen.lazyfragment.OtherFragment"</span>&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">FrameLayout</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>并在onCreateView()中初始化这个布局</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Nullable</span></div><div class="line"> <span class="meta">@Override</span></div><div class="line"> <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">     <span class="comment">// Inflate the layout for this fragment</span></div><div class="line">     View inflate = inflater.inflate(R.layout.fragment_other, container, <span class="keyword">false</span>);</div><div class="line">     frameLayout = (FrameLayout) inflate.findViewById(R.id.one_frame);</div><div class="line">     Log.e(TAG, <span class="string">"onCreateView: "</span> + frameLayout );</div><div class="line">     <span class="keyword">return</span> inflate;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
 <ol>
-<li>CONSTRUCTOR:用于描述构造器</li>
-<li>FIELD:用于描述域</li>
-<li>LOCAL_VARIABLE:用于描述局部变量</li>
-<li>METHOD:用于描述方法</li>
-<li>PACKAGE:用于描述包</li>
-<li>PARAMETER:用于描述参数</li>
-<li>TYPE:用于描述类、接口(包括注解类型) 或enum声明</li>
+<li>将具体的内容的UI定义到一个子xml中，并在setUserVisibleHint()方法中进行初始化控件和数据加载，并将这个xml放入外部的容器中。</li>
 </ol>
-<p><strong>使用实例:</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Target</span>(ElementType.TYPE)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Table &#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 数据表名称注解，默认值为类名称</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">tableName</span><span class="params">()</span> <span class="keyword">default</span> "className"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>注解Table 可以用于注解类、接口(包括注解类型) 或enum声明,而注解NoDBColumn仅可用于注解类的成员变量。</p>
-</blockquote>
-<hr>
-<h2 id="Retention："><a href="#Retention：" class="headerlink" title="Retention："></a>Retention：</h2><blockquote>
-<p>@Retention定义了该Annotation被保留的时间长短：某些Annotation仅出现在源代码中，而被编译器丢弃；而另一些却被编译在class文件中；编译在class文件中的Annotation可能会被虚拟机忽略，而另一些在class被装载时将被读取（请注意并不影响class的执行，因为Annotation与class在使用上是被分离的）。使用这个meta-Annotation可以对 Annotation的“生命周期”限制。<br>M</p>
-</blockquote>
+<p>重新创建一个子布局<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/other_text"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"@string/hello_blank_fragment"</span> /&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>并在setUserVisibleHint()中进行初始化<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserVisibleHint</span><span class="params">(<span class="keyword">boolean</span> isVisibleToUser)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.setUserVisibleHint(isVisibleToUser);</div><div class="line"><span class="comment">//        Log.e(TAG, "setUserVisibleHint: " + isVisibleToUser );</span></div><div class="line">        <span class="keyword">if</span> (isVisibleToUser) &#123;</div><div class="line">            <span class="keyword">if</span> (contentView == <span class="keyword">null</span> ) &#123;</div><div class="line">                contentView = LayoutInflater.from(getActivity()).inflate(R.layout.content_other, frameLayout, <span class="keyword">true</span>);</div><div class="line">                textView = (TextView) contentView.findViewById(R.id.other_text);</div><div class="line">                textView.setText(<span class="string">"load other fragment"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>ViewPager在预加载fragment的时候是先调用setUserVisibleHint(), 然后再是调用onCreateView()方法。</p>
+<p><img src="http://ohqvqufyf.bkt.clouddn.com/load.png" alt="image"></p>
+<p><a href="https://github.com/SanfenR/AndroidSenior/tree/master/lazyfragment" target="_blank" rel="external">源码传送门</a></p>
 
       
     </div>
@@ -480,8 +447,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/05/vim-command/" rel="next" title="Vim-command">
-                <i class="fa fa-chevron-left"></i> Vim-command
+              <a href="/2017/01/07/Android动态修改icon/" rel="next" title="Android动态修改icon">
+                <i class="fa fa-chevron-left"></i> Android动态修改icon
               </a>
             
           </div>
@@ -489,10 +456,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/20/everydayc/day6/" rel="prev" title="二叉树转换成双向链表(day6)">
-                二叉树转换成双向链表(day6) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -524,8 +487,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/11/10/java-annotation/"
-           data-title="Android Annotation使用" data-url="http://yoursite.com/2016/11/10/java-annotation/">
+      <div class="ds-thread" data-thread-key="2017/01/11/lazyfragment使用/"
+           data-title="Android-Fragment懒加载" data-url="http://yoursite.com/2017/01/11/lazyfragment使用/">
       </div>
     
   </div>
@@ -629,7 +592,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#元注解"><span class="nav-number">1.</span> <span class="nav-text">元注解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Target"><span class="nav-number">1.1.</span> <span class="nav-text">Target</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Retention："><span class="nav-number">1.2.</span> <span class="nav-text">Retention：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ViewPager的预加载"><span class="nav-number">1.</span> <span class="nav-text">ViewPager的预加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#setUserVisibleHint-方法"><span class="nav-number">2.1.</span> <span class="nav-text">setUserVisibleHint()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-number">2.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-number">3.</span> <span class="nav-text">注意</span></a></li></ol></div>
             
 
           </div>
