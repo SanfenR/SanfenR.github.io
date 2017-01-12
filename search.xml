@@ -5,7 +5,7 @@
     
     <entry>
       <title><![CDATA[Android-Fragment懒加载]]></title>
-      <url>http://yoursite.com/2017/01/11/lazyfragment%E4%BD%BF%E7%94%A8/</url>
+      <url>http://yoursite.com/2017/01/11/android/lazyfragment%E4%BD%BF%E7%94%A8/</url>
       <content type="html"><![CDATA[<h2 id="ViewPager的预加载"><a href="#ViewPager的预加载" class="headerlink" title="ViewPager的预加载"></a>ViewPager的预加载</h2><p>在项目中，经常会遇到ViewPager+TabLayout实现对多个fragment的管理。但是由于ViewPager的预加载(默认的预加载为1)，viewpager会调用fragment的onCreateView()进行fragmemt的初始化:</p>
 <p><img src="http://ohqvqufyf.bkt.clouddn.com/fragment.png" alt="fragment"></p>
 <p>而在Android中当fragment的onCreateView()会将整个xml文件中的UI控件实例到内存，而且数据的请求初始化基本也是在onCreateView()中进行。导致App启动的时候加载的数据过多。</p>
@@ -30,7 +30,7 @@
     
     <entry>
       <title><![CDATA[Android动态修改icon]]></title>
-      <url>http://yoursite.com/2017/01/07/Android%E5%8A%A8%E6%80%81%E4%BF%AE%E6%94%B9icon/</url>
+      <url>http://yoursite.com/2017/01/07/android/Android%E5%8A%A8%E6%80%81%E4%BF%AE%E6%94%B9icon/</url>
       <content type="html"><![CDATA[<h2 id="activity-alias使用"><a href="#activity-alias使用" class="headerlink" title="activity-alias使用"></a>activity-alias使用</h2><ol>
 <li><p>以前装应用的时候有些应用会在桌面上生成两个图标,这两个图标有些是同一个Activity的入口,有些是另外一个Activity的入口,这样的效果是怎么实现的呢?在看Android原生DeskClock程序的时候看到了这个功能的实现.使用的是activity-alias：</p>
  <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;activity-alias android:enabled=["true" | "false"]</div><div class="line">                android:exported=["true" | "false"]</div><div class="line">                android:icon="drawable resource"</div><div class="line">                android:label="string resource"</div><div class="line">                android:name="string"</div><div class="line">                android:permission="string"</div><div class="line">                android:targetActivity="string" &gt;</div><div class="line">    . . .</div><div class="line">&lt;/activity-alias&gt;</div></pre></td></tr></table></figure>
@@ -58,7 +58,7 @@
     
     <entry>
       <title><![CDATA[Java中的阻塞队列]]></title>
-      <url>http://yoursite.com/2017/01/01/BlockingQueue/</url>
+      <url>http://yoursite.com/2017/01/01/java/BlockingQueue/</url>
       <content type="html"><![CDATA[<p><img src="http://ohqvqufyf.bkt.clouddn.com/blockingqueue.png" alt="image"></p>
 <h2 id="JAVA中的几种主要的阻塞队列"><a href="#JAVA中的几种主要的阻塞队列" class="headerlink" title="JAVA中的几种主要的阻塞队列"></a>JAVA中的几种主要的阻塞队列</h2><ol>
 <li>ArrayBlockingQueue: 基于数组实现的一个阻塞队列，在创建ArrayBlockingQueue对象必须指定容量大小。并且可以指定公平性和非公平性，默认情况下为非公平性，即不保存等待时间最长的队列有限能够访问队列。</li>
@@ -105,7 +105,7 @@
     
     <entry>
       <title><![CDATA[Android中Canvas绘图(Shader)]]></title>
-      <url>http://yoursite.com/2016/12/22/Canvas%E4%B8%ADShader%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+      <url>http://yoursite.com/2016/12/22/android/Canvas%E4%B8%ADShader%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
       <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
 <p>Shader就是着色器的意思。我们可以这样理解，Canvas中的各种drawXXX方法定义了图形的形状，画笔中的Shader则定义了图形的着色、外观，二者结合到一起就决定了最终Canvas绘制的被色彩填充的图形的样子。类android.graphics.Shader有五个子类，分别是：BitmapShader、LinearGradient、RadialGradient、SweepGradient和ComposeShader，下面依次对这几个类的使用分别说明。</p>
 </blockquote>
@@ -173,7 +173,7 @@
     
     <entry>
       <title><![CDATA[java线程池源码分析]]></title>
-      <url>http://yoursite.com/2016/12/14/java-exectors/</url>
+      <url>http://yoursite.com/2016/12/14/java/java-exectors/</url>
       <content type="html"><![CDATA[<h2 id="在什么情况下使用线程池"><a href="#在什么情况下使用线程池" class="headerlink" title="在什么情况下使用线程池"></a>在什么情况下使用线程池</h2><ol>
 <li>单个任务处理的时间比较短</li>
 <li>将需处理的任务的数量大</li>
@@ -264,7 +264,7 @@
     
     <entry>
       <title><![CDATA[Android Annotation使用]]></title>
-      <url>http://yoursite.com/2016/11/10/java-annotation/</url>
+      <url>http://yoursite.com/2016/11/10/android/java-annotation/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>要深入学习注解，我们就必须能定义自己的注解，并使用注解，在定义自己的注解之前，我们就必须要了解Java为我们提供的元注解和相关定义注解的语法。</p>
 </blockquote>
@@ -599,7 +599,7 @@
     
     <entry>
       <title><![CDATA[Android面试题整理]]></title>
-      <url>http://yoursite.com/2016/10/22/Android%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/</url>
+      <url>http://yoursite.com/2016/10/22/android/Android%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/</url>
       <content type="html"><![CDATA[<h2 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h2><ol>
 <li><p>GC是什么?为什么要有GC?</p>
 <blockquote>
