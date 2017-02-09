@@ -713,12 +713,12 @@
 </li>
 <li><p>用最有效率的方法算出2*8</p>
 <blockquote>
-<p>将2左移3位, 2 &gt;&gt; 3</p>
+<p>将2左移3位, 2 &lt;&lt; 3</p>
 </blockquote>
 </li>
 <li><p>heap和stack有什么区别。</p>
 <blockquote>
-<p>heap表示堆， stack表示栈， 堆中存放对象，栈中存放引用变量<br>堆是无序的空间， 栈是先进先出的结构。</p>
+<p>heap表示堆， stack表示栈， 堆中存放对象，栈中存放引用变量<br>堆是无序的空间， 栈是先进后出的结构。</p>
 </blockquote>
 </li>
 <li><p>运行时异常与一般异常有何异</p>
@@ -1030,6 +1030,8 @@
 <li>网络存储数据；</li>
 </ol>
 </blockquote>
+</li>
+<li><p>Android的LPC机制<br>四大组件都可以设置为多进程模式，设置process属性，多进程会导致单例失效，存储失效，有效的多进程之间的访问可以使用AILD， sockct, ContentProvider等。</p>
 </li>
 </ol>
 ]]></content>
