@@ -103,27 +103,33 @@
 
 
 <meta name="description" content="题目
-题目：在数组中，数字减去它右边的数字得到一个数对之差。求所有数对之差的最大值。例如在数组{2, 4, 1, 16, 7, 5, 11, 9}中，数对之差的最大值是11，是16 减去5 的结果。
+打印1到最大的n位数。如n=4，打印1-9999。
 
 思路
-Solution1: 将其转换成求最大子数组问题。引入辅助数组diff，长度为n-1。diff[i]=dif[i]-diff[i+1]。求出最大子数组以及位置low,high。则对应最大差为d">
+如果直接使用循环会导致int或者long都不够存储，因此使用string来存储数据，这里涉及到字符串以及字符串的加法。
+
+实现1234567891011121314151617181920212223242526void print(const int &amp;amp;n) &amp;#123;    if (n &amp;lt;= 0) &amp;#123;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="最大数对差(day8)">
-<meta property="og:url" content="http://yoursite.com/2016/12/25/everydayc/day8/index.html">
+<meta property="og:title" content="打印1到最大的n位数(day10)">
+<meta property="og:url" content="http://yoursite.com/2016/01/20/everydayc/day10/index.html">
 <meta property="og:site_name" content="SanfenR的博客">
 <meta property="og:description" content="题目
-题目：在数组中，数字减去它右边的数字得到一个数对之差。求所有数对之差的最大值。例如在数组{2, 4, 1, 16, 7, 5, 11, 9}中，数对之差的最大值是11，是16 减去5 的结果。
+打印1到最大的n位数。如n=4，打印1-9999。
 
 思路
-Solution1: 将其转换成求最大子数组问题。引入辅助数组diff，长度为n-1。diff[i]=dif[i]-diff[i+1]。求出最大子数组以及位置low,high。则对应最大差为d">
-<meta property="og:updated_time" content="2016-12-27T09:49:38.000Z">
+如果直接使用循环会导致int或者long都不够存储，因此使用string来存储数据，这里涉及到字符串以及字符串的加法。
+
+实现1234567891011121314151617181920212223242526void print(const int &amp;amp;n) &amp;#123;    if (n &amp;lt;= 0) &amp;#123;">
+<meta property="og:updated_time" content="2017-02-14T12:16:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="最大数对差(day8)">
+<meta name="twitter:title" content="打印1到最大的n位数(day10)">
 <meta name="twitter:description" content="题目
-题目：在数组中，数字减去它右边的数字得到一个数对之差。求所有数对之差的最大值。例如在数组{2, 4, 1, 16, 7, 5, 11, 9}中，数对之差的最大值是11，是16 减去5 的结果。
+打印1到最大的n位数。如n=4，打印1-9999。
 
 思路
-Solution1: 将其转换成求最大子数组问题。引入辅助数组diff，长度为n-1。diff[i]=dif[i]-diff[i+1]。求出最大子数组以及位置low,high。则对应最大差为d">
+如果直接使用循环会导致int或者long都不够存储，因此使用string来存储数据，这里涉及到字符串以及字符串的加法。
+
+实现1234567891011121314151617181920212223242526void print(const int &amp;amp;n) &amp;#123;    if (n &amp;lt;= 0) &amp;#123;">
 
 
 
@@ -151,13 +157,13 @@ Solution1: 将其转换成求最大子数组问题。引入辅助数组diff，�
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/12/25/everydayc/day8/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/01/20/everydayc/day10/"/>
 
 
 
 
 
-  <title> 最大数对差(day8) | SanfenR的博客 </title>
+  <title> 打印1到最大的n位数(day10) | SanfenR的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -293,7 +299,7 @@ Solution1: 将其转换成求最大子数组问题。引入辅助数组diff，�
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/25/everydayc/day8/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/01/20/everydayc/day10/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="SanfenR">
@@ -317,7 +323,7 @@ Solution1: 将其转换成求最大子数组问题。引入辅助数组diff，�
             
             
               
-                最大数对差(day8)
+                打印1到最大的n位数(day10)
               
             
           </h1>
@@ -332,8 +338,8 @@ Solution1: 将其转换成求最大子数组问题。引入辅助数组diff，�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-25T00:00:00+08:00">
-                2016-12-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-01-20T00:00:00+08:00">
+                2016-01-20
               </time>
             
 
@@ -351,8 +357,8 @@ Solution1: 将其转换成求最大子数组问题。引入辅助数组diff，�
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/12/25/everydayc/day8/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/25/everydayc/day8/" itemprop="commentCount"></span>
+                <a href="/2016/01/20/everydayc/day10/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/20/everydayc/day10/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -379,13 +385,12 @@ Solution1: 将其转换成求最大子数组问题。引入辅助数组diff，�
 
       
         <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><ul>
-<li>题目：在数组中，数字减去它右边的数字得到一个数对之差。求所有数对之差的最大值。<br>例如在数组{2, 4, 1, 16, 7, 5, 11, 9}中，<br>数对之差的最大值是11，是16 减去5 的结果。</li>
+<li>打印1到最大的n位数。如n=4，打印1-9999。</li>
 </ul>
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
-<li>Solution1: 将其转换成求最大子数组问题。引入辅助数组diff，长度为n-1。diff[i]=dif[i]-diff[i+1]。求出最大子数组以及位置low,high。则对应最大差为data[low]-data[high+1]。</li>
-<li>Solution2: 使用动态规划法。假设data[i]减去某个数，其最大的数对差为currentMax。<br>则data[i-1]的最大数对差为data[i-1]-data[i]和data[i-1]-data[i]+currentMax中的较大的那一个。从后往前遍历数组，记录最大的currentMax以及对应的low、high输出即可。<br>时间复杂度O(n),空间复杂度O(1)。</li>
+<li>如果直接使用循环会导致int或者long都不够存储，因此使用string来存储数据，这里涉及到字符串以及字符串的加法。</li>
 </ul>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> data[], <span class="keyword">int</span> size, <span class="keyword">int</span> &amp;low, <span class="keyword">int</span> &amp;high)</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> max = data[size - <span class="number">1</span>] - data[size - <span class="number">2</span>];<span class="comment">//最大的数对差</span></div><div class="line">    <span class="keyword">int</span> currentMax = data[size - <span class="number">1</span>] - data[size - <span class="number">2</span>];<span class="comment">//当前的数对差</span></div><div class="line"></div><div class="line">    <span class="keyword">int</span> l = size - <span class="number">2</span>;</div><div class="line">    <span class="keyword">int</span> h = size - <span class="number">1</span>;</div><div class="line">    low = l;<span class="comment">//被减数位置</span></div><div class="line">    high = h;<span class="comment">//减数位置</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = size - <span class="number">3</span>; i &gt;= <span class="number">0</span>; i--) &#123;</div><div class="line">        <span class="keyword">if</span> (currentMax &gt; <span class="number">0</span>) &#123;</div><div class="line">            currentMax = data[i] - data[i + <span class="number">1</span>] + currentMax;</div><div class="line">            l--;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            currentMax = data[i] - data[i + <span class="number">1</span>];</div><div class="line">            l = i;</div><div class="line">            h = i + <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (currentMax &gt; max) &#123;</div><div class="line">            low = l;</div><div class="line">            high = h;</div><div class="line">            max = currentMax;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> data[] = &#123;<span class="number">2</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">16</span>, <span class="number">7</span>, <span class="number">5</span>, <span class="number">11</span>, <span class="number">9</span>&#125;;</div><div class="line">    <span class="keyword">int</span> low, high;</div><div class="line">    fun(data, <span class="keyword">sizeof</span>(data) / <span class="keyword">sizeof</span>(<span class="keyword">int</span>), low, high);</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"the max is "</span> &lt;&lt; data[low] - data[high] &lt;&lt; <span class="built_in">endl</span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp;n)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (n &lt;= <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">char</span> *number = <span class="keyword">new</span> <span class="keyword">char</span>[n + <span class="number">1</span>];</div><div class="line">    <span class="built_in">memset</span>(number, <span class="string">'0'</span>, (n + <span class="number">1</span>) * <span class="keyword">sizeof</span>(<span class="keyword">char</span>));</div><div class="line">    number[n] = <span class="string">'\0'</span>;</div><div class="line"></div><div class="line">    printMax(number, <span class="number">0</span>, n);</div><div class="line"></div><div class="line">    <span class="keyword">delete</span>[] number;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">printMax</span><span class="params">(<span class="keyword">char</span> *number, <span class="keyword">const</span> <span class="keyword">int</span> index, <span class="keyword">const</span> <span class="keyword">int</span> size)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!number)</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">if</span> (index == size) &#123;<span class="comment">//嵌套截止条件</span></div><div class="line">        <span class="built_in">cout</span> &lt;&lt; number &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</div><div class="line">        number[index] = (<span class="keyword">char</span>) (i + <span class="string">'0'</span>);<span class="comment">//index---当前调整的位数</span></div><div class="line">        printMax(number, index + <span class="number">1</span>, size);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><a href="https://github.com/SanfenR/EveryDayC" target="_blank" rel="external">源码传送门</a></p>
 
       
@@ -440,8 +445,8 @@ Solution1: 将其转换成求最大子数组问题。引入辅助数组diff，�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/22/android/Canvas中Shader的使用/" rel="next" title="Android中Canvas绘图(Shader)">
-                <i class="fa fa-chevron-left"></i> Android中Canvas绘图(Shader)
+              <a href="/2016/01/08/everydayc/day9/" rel="next" title="和为n的连续正数序列(day9)">
+                <i class="fa fa-chevron-left"></i> 和为n的连续正数序列(day9)
               </a>
             
           </div>
@@ -450,8 +455,8 @@ Solution1: 将其转换成求最大子数组问题。引入辅助数组diff，�
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/01/01/java/BlockingQueue/" rel="prev" title="Java中的阻塞队列">
-                Java中的阻塞队列 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/05/20/github上传问题/" rel="prev" title="GitHub不允许上传大于100M文件问题">
+                GitHub不允许上传大于100M文件问题 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -484,8 +489,8 @@ Solution1: 将其转换成求最大子数组问题。引入辅助数组diff，�
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/12/25/everydayc/day8/"
-           data-title="最大数对差(day8)" data-url="http://yoursite.com/2016/12/25/everydayc/day8/">
+      <div class="ds-thread" data-thread-key="2016/01/20/everydayc/day10/"
+           data-title="打印1到最大的n位数(day10)" data-url="http://yoursite.com/2016/01/20/everydayc/day10/">
       </div>
     
   </div>
