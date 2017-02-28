@@ -4,6 +4,12 @@
   
     
     <entry>
+      <title></title>
+      <url>http://yoursite.com/2017/02/28/android/Android%20ActivityManager%20%E6%A3%80%E6%B5%8BService%E4%B8%8EActivity%E6%98%AF%E5%90%A6%E6%AD%A3%E5%9C%A8%E8%BF%90%E8%A1%8C/</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Android-Fragment懒加载]]></title>
       <url>http://yoursite.com/2017/01/11/android/lazyfragment%E4%BD%BF%E7%94%A8/</url>
       <content type="html"><![CDATA[<h2 id="ViewPager的预加载"><a href="#ViewPager的预加载" class="headerlink" title="ViewPager的预加载"></a>ViewPager的预加载</h2><p>在项目中，经常会遇到ViewPager+TabLayout实现对多个fragment的管理。但是由于ViewPager的预加载(默认的预加载为1)，viewpager会调用fragment的onCreateView()进行fragmemt的初始化:</p>
