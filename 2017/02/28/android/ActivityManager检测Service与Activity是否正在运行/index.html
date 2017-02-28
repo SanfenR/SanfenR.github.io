@@ -102,25 +102,22 @@
 
 
 
-<meta name="description" content="ViewPager的预加载在项目中，经常会遇到ViewPager+TabLayout实现对多个fragment的管理。但是由于ViewPager的预加载(默认的预加载为1)，viewpager会调用fragment的onCreateView()进行fragmemt的初始化:
+<meta name="description" content="摘要: 在后台与网络交互中，需要使用Service来和服务器保持连接，因此Service在被进程Kill掉后，主动开启Service是必要的，因此首先的检测Service是否已启动
 
-而在Android中当fragment的onCreateView()会将整个xml文件中的UI控件实例到内存，而且数据的请">
+检测Service是否已启动1234567891011public static boolean isServiceRunning(String serviceClassName)&amp;#123;    final A">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android-Fragment懒加载">
-<meta property="og:url" content="http://yoursite.com/2017/01/11/android/lazyfragment使用/index.html">
+<meta property="og:title" content="ActivityManager判断app运行状态">
+<meta property="og:url" content="http://yoursite.com/2017/02/28/android/ActivityManager检测Service与Activity是否正在运行/index.html">
 <meta property="og:site_name" content="SanfenR的博客">
-<meta property="og:description" content="ViewPager的预加载在项目中，经常会遇到ViewPager+TabLayout实现对多个fragment的管理。但是由于ViewPager的预加载(默认的预加载为1)，viewpager会调用fragment的onCreateView()进行fragmemt的初始化:
+<meta property="og:description" content="摘要: 在后台与网络交互中，需要使用Service来和服务器保持连接，因此Service在被进程Kill掉后，主动开启Service是必要的，因此首先的检测Service是否已启动
 
-而在Android中当fragment的onCreateView()会将整个xml文件中的UI控件实例到内存，而且数据的请">
-<meta property="og:image" content="http://ohqvqufyf.bkt.clouddn.com/fragment.png">
-<meta property="og:image" content="http://ohqvqufyf.bkt.clouddn.com/load.png">
-<meta property="og:updated_time" content="2017-01-12T09:56:56.000Z">
+检测Service是否已启动1234567891011public static boolean isServiceRunning(String serviceClassName)&amp;#123;    final A">
+<meta property="og:updated_time" content="2017-02-28T13:08:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android-Fragment懒加载">
-<meta name="twitter:description" content="ViewPager的预加载在项目中，经常会遇到ViewPager+TabLayout实现对多个fragment的管理。但是由于ViewPager的预加载(默认的预加载为1)，viewpager会调用fragment的onCreateView()进行fragmemt的初始化:
+<meta name="twitter:title" content="ActivityManager判断app运行状态">
+<meta name="twitter:description" content="摘要: 在后台与网络交互中，需要使用Service来和服务器保持连接，因此Service在被进程Kill掉后，主动开启Service是必要的，因此首先的检测Service是否已启动
 
-而在Android中当fragment的onCreateView()会将整个xml文件中的UI控件实例到内存，而且数据的请">
-<meta name="twitter:image" content="http://ohqvqufyf.bkt.clouddn.com/fragment.png">
+检测Service是否已启动1234567891011public static boolean isServiceRunning(String serviceClassName)&amp;#123;    final A">
 
 
 
@@ -148,13 +145,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/01/11/android/lazyfragment使用/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/02/28/android/ActivityManager检测Service与Activity是否正在运行/"/>
 
 
 
 
 
-  <title> Android-Fragment懒加载 | SanfenR的博客 </title>
+  <title> ActivityManager判断app运行状态 | SanfenR的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -290,7 +287,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/11/android/lazyfragment使用/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/28/android/ActivityManager检测Service与Activity是否正在运行/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="SanfenR">
@@ -314,7 +311,7 @@
             
             
               
-                Android-Fragment懒加载
+                ActivityManager判断app运行状态
               
             
           </h1>
@@ -329,8 +326,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-11T00:00:00+08:00">
-                2017-01-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-28T00:00:00+08:00">
+                2017-02-28
               </time>
             
 
@@ -348,8 +345,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/01/11/android/lazyfragment使用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/11/android/lazyfragment使用/" itemprop="commentCount"></span>
+                <a href="/2017/02/28/android/ActivityManager检测Service与Activity是否正在运行/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/28/android/ActivityManager检测Service与Activity是否正在运行/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -375,25 +372,14 @@
       
 
       
-        <h2 id="ViewPager的预加载"><a href="#ViewPager的预加载" class="headerlink" title="ViewPager的预加载"></a>ViewPager的预加载</h2><p>在项目中，经常会遇到ViewPager+TabLayout实现对多个fragment的管理。但是由于ViewPager的预加载(默认的预加载为1)，viewpager会调用fragment的onCreateView()进行fragmemt的初始化:</p>
-<p><img src="http://ohqvqufyf.bkt.clouddn.com/fragment.png" alt="fragment"></p>
-<p>而在Android中当fragment的onCreateView()会将整个xml文件中的UI控件实例到内存，而且数据的请求初始化基本也是在onCreateView()中进行。导致App启动的时候加载的数据过多。</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>解决这个问题有两种方式，一种是禁止ViewPager的预加载，重写ViewPager,但是该方法会出现左右滑动时会出现卡顿现象，带来不好的用户体验。而另外一种就是我们接下来要讲的通过Fragment的懒加载来实现。当用户切换到某个fragment时再加载。</p>
-<h3 id="setUserVisibleHint-方法"><a href="#setUserVisibleHint-方法" class="headerlink" title="setUserVisibleHint()方法"></a>setUserVisibleHint()方法</h3><p>懒加载主要使用到fragment中的setUserVisibleHint()，这个方法是当fragment的UI显示状态变化时会被调用。源码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Set a hint to the system about whether this fragment's UI is currently visible</div><div class="line"> * to the user. This hint defaults to true and is persistent across fragment instance</div><div class="line"> * state save and restore.</div><div class="line"> *</div><div class="line"> * &lt;p&gt;An app may set this to false to indicate that the fragment's UI is</div><div class="line"> * scrolled out of visibility or is otherwise not directly visible to the user.</div><div class="line"> * This may be used by the system to prioritize operations such as fragment lifecycle updates</div><div class="line"> * or loader ordering behavior.&lt;/p&gt;</div><div class="line"> *</div><div class="line"> * &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; This method may be called outside of the fragment lifecycle.</div><div class="line"> * and thus has no ordering guarantees with regard to fragment lifecycle method calls.&lt;/p&gt;</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> isVisibleToUser true if this fragment's UI is currently visible to the user (default),</div><div class="line"> *                        false if it is not.</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserVisibleHint</span><span class="params">(<span class="keyword">boolean</span> isVisibleToUser)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!mUserVisibleHint &amp;&amp; isVisibleToUser &amp;&amp; mState &lt; STARTED</div><div class="line">            &amp;&amp; mFragmentManager != <span class="keyword">null</span> &amp;&amp; isAdded()) &#123;</div><div class="line">        mFragmentManager.performPendingDeferredStart(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">    mUserVisibleHint = isVisibleToUser;</div><div class="line">    mDeferStart = mState &lt; STARTED &amp;&amp; !isVisibleToUser;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><ol>
-<li>因为fragment的onCreateView()方法会将xml中的控件加载到内存中，所以我们定义一个空的FragmentLayout。</li>
-</ol>
-<p>创建一个空的容器作为预加载界面<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">FrameLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/other_frame"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">tools:context</span>=<span class="string">"com.mz.sanfen.lazyfragment.OtherFragment"</span>&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">FrameLayout</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>并在onCreateView()中初始化这个布局</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Nullable</span></div><div class="line"> <span class="meta">@Override</span></div><div class="line"> <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">     <span class="comment">// Inflate the layout for this fragment</span></div><div class="line">     View inflate = inflater.inflate(R.layout.fragment_other, container, <span class="keyword">false</span>);</div><div class="line">     frameLayout = (FrameLayout) inflate.findViewById(R.id.one_frame);</div><div class="line">     Log.e(TAG, <span class="string">"onCreateView: "</span> + frameLayout );</div><div class="line">     <span class="keyword">return</span> inflate;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-<ol>
-<li>将具体的内容的UI定义到一个子xml中，并在setUserVisibleHint()方法中进行初始化控件和数据加载，并将这个xml放入外部的容器中。</li>
-</ol>
-<p>重新创建一个子布局<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/other_text"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"@string/hello_blank_fragment"</span> /&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>并在setUserVisibleHint()中进行初始化<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserVisibleHint</span><span class="params">(<span class="keyword">boolean</span> isVisibleToUser)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.setUserVisibleHint(isVisibleToUser);</div><div class="line"><span class="comment">//        Log.e(TAG, "setUserVisibleHint: " + isVisibleToUser );</span></div><div class="line">        <span class="keyword">if</span> (isVisibleToUser) &#123;</div><div class="line">            <span class="keyword">if</span> (contentView == <span class="keyword">null</span> ) &#123;</div><div class="line">                contentView = LayoutInflater.from(getActivity()).inflate(R.layout.content_other, frameLayout, <span class="keyword">true</span>);</div><div class="line">                textView = (TextView) contentView.findViewById(R.id.other_text);</div><div class="line">                textView.setText(<span class="string">"load other fragment"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>ViewPager在预加载fragment的时候是先调用setUserVisibleHint(), 然后再是调用onCreateView()方法。</p>
-<p><img src="http://ohqvqufyf.bkt.clouddn.com/load.png" alt="image"></p>
-<p><a href="https://github.com/SanfenR/AndroidSenior/tree/master/lazyfragment" target="_blank" rel="external">源码传送门</a></p>
+        <blockquote>
+<p>摘要: 在后台与网络交互中，需要使用Service来和服务器保持连接，因此Service在被进程Kill掉后，主动开启Service是必要的，因此首先的检测Service是否已启动</p>
+</blockquote>
+<h3 id="检测Service是否已启动"><a href="#检测Service是否已启动" class="headerlink" title="检测Service是否已启动"></a>检测Service是否已启动</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isServiceRunning</span><span class="params">(String serviceClassName)</span></span>&#123;</div><div class="line">    <span class="keyword">final</span> ActivityManager activityManager = (ActivityManager)Application.getContext().getSystemService(Context.ACTIVITY_SERVICE);</div><div class="line">    <span class="keyword">final</span> List&lt;RunningServiceInfo&gt; services = activityManager.getRunningServices(Integer.MAX_VALUE);</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (RunningServiceInfo runningServiceInfo : services) &#123;</div><div class="line">        <span class="keyword">if</span> (runningServiceInfo.service.getClassName().equals(serviceClassName))&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<h3 id="检测Activity是否已启动"><a href="#检测Activity是否已启动" class="headerlink" title="检测Activity是否已启动"></a>检测Activity是否已启动</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 权限--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.GET_TASKS"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">ActivityManager am = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);</div><div class="line">List&lt;RunningTaskInfo&gt; list = am.getRunningTasks(<span class="number">100</span>);</div><div class="line"><span class="keyword">boolean</span> isAppRunning = <span class="keyword">false</span>;</div><div class="line">String MY_PKG_NAME = <span class="string">"com.cyberblue.iitag"</span>;</div><div class="line"><span class="keyword">for</span> (RunningTaskInfo info : list) &#123;</div><div class="line">	<span class="keyword">if</span> (info.topActivity.getPackageName().equals(MY_PKG_NAME) || info.baseActivity.getPackageName().equals(MY_PKG_NAME)) &#123;</div><div class="line">		isAppRunning = <span class="keyword">true</span>;</div><div class="line">		Log.i(TAG,info.topActivity.getPackageName() + <span class="string">" info.baseActivity.getPackageName()="</span>+info.baseActivity.getPackageName());</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span>  <span class="keyword">boolean</span> <span class="title">isLauncherRunnig</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">boolean</span> result = <span class="keyword">false</span> ;</div><div class="line">        List&lt;String&gt; names = getAllTheLauncher();</div><div class="line">        ActivityManager mActivityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE) ;</div><div class="line">        List&lt;ActivityManager.RunningAppProcessInfo&gt; appList = mActivityManager.getRunningAppProcesses() ;</div><div class="line">        <span class="keyword">for</span> (RunningAppProcessInfo running : appList) &#123;</div><div class="line">                <span class="keyword">if</span> (running.importance == RunningAppProcessInfo.IMPORTANCE_FOREGROUND) &#123;</div><div class="line">                        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; names.size(); i++) &#123;</div><div class="line">                                <span class="keyword">if</span> (names.get(i).equals(running.processName)) &#123;</div><div class="line">                                        result = <span class="keyword">true</span> ;</div><div class="line">                                        <span class="keyword">break</span>;</div><div class="line">                                &#125;</div><div class="line">                        &#125;</div><div class="line">                &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result ;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="判断App是否运行"><a href="#判断App是否运行" class="headerlink" title="判断App是否运行"></a>判断App是否运行</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">   <span class="comment">/**</span></div><div class="line"> * 判断app是否正在运行</div><div class="line"> * <span class="doctag">@param</span> ctx</div><div class="line"> * <span class="doctag">@param</span> packageName</div><div class="line"> * <span class="doctag">@return</span></div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">appIsRunning</span><span class="params">(Context ctx,String packageName)</span></span></div><div class="line">&#123;</div><div class="line">	ActivityManager am = (ActivityManager) ctx.getSystemService(ACTIVITY_SERVICE);</div><div class="line"></div><div class="line">	List&lt;RunningAppProcessInfo&gt; runningAppProcesses = am.getRunningAppProcesses();</div><div class="line"></div><div class="line">	<span class="keyword">if</span>(runningAppProcesses!=<span class="keyword">null</span>)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">for</span> (RunningAppProcessInfo runningAppProcessInfo : runningAppProcesses) &#123;</div><div class="line"></div><div class="line">			<span class="keyword">if</span>(runningAppProcessInfo.processName.startsWith(packageName))</div><div class="line">			&#123;</div><div class="line">				<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line"> * app 是否在后台运行</div><div class="line"> * <span class="doctag">@param</span> ctx</div><div class="line"> * <span class="doctag">@param</span> packageName</div><div class="line"> * <span class="doctag">@return</span></div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">appIsBackgroundRunning</span><span class="params">(Context ctx,String packageName)</span></span></div><div class="line">&#123;</div><div class="line">	ActivityManager am = (ActivityManager) ctx.getSystemService(ACTIVITY_SERVICE);</div><div class="line"></div><div class="line">	List&lt;RunningAppProcessInfo&gt; runningAppProcesses = am.getRunningAppProcesses();</div><div class="line"></div><div class="line">	<span class="keyword">if</span>(runningAppProcesses!=<span class="keyword">null</span>)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">for</span> (RunningAppProcessInfo runningAppProcessInfo : runningAppProcesses) &#123;</div><div class="line"></div><div class="line">			<span class="keyword">if</span>(runningAppProcessInfo.processName.startsWith(packageName))</div><div class="line">			&#123;</div><div class="line">				<span class="keyword">return</span> runningAppProcessInfo.importance!=RunningAppProcessInfo.IMPORTANCE_FOREGROUND &amp;&amp; runningAppProcessInfo.importance!=RunningAppProcessInfo.IMPORTANCE_VISIBLE; <span class="comment">//排除无界面的app</span></div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -447,8 +433,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/07/android/Android动态修改icon/" rel="next" title="Android动态修改icon">
-                <i class="fa fa-chevron-left"></i> Android动态修改icon
+              <a href="/2017/01/11/android/lazyfragment使用/" rel="next" title="Android-Fragment懒加载">
+                <i class="fa fa-chevron-left"></i> Android-Fragment懒加载
               </a>
             
           </div>
@@ -456,10 +442,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/28/android/ActivityManager检测Service与Activity是否正在运行/" rel="prev" title="ActivityManager判断app运行状态">
-                ActivityManager判断app运行状态 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -491,8 +473,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/01/11/android/lazyfragment使用/"
-           data-title="Android-Fragment懒加载" data-url="http://yoursite.com/2017/01/11/android/lazyfragment使用/">
+      <div class="ds-thread" data-thread-key="2017/02/28/android/ActivityManager检测Service与Activity是否正在运行/"
+           data-title="ActivityManager判断app运行状态" data-url="http://yoursite.com/2017/02/28/android/ActivityManager检测Service与Activity是否正在运行/">
       </div>
     
   </div>
@@ -596,7 +578,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ViewPager的预加载"><span class="nav-number">1.</span> <span class="nav-text">ViewPager的预加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#setUserVisibleHint-方法"><span class="nav-number">2.1.</span> <span class="nav-text">setUserVisibleHint()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-number">2.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-number">3.</span> <span class="nav-text">注意</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#检测Service是否已启动"><span class="nav-number">1.</span> <span class="nav-text">检测Service是否已启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检测Activity是否已启动"><span class="nav-number">2.</span> <span class="nav-text">检测Activity是否已启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断App是否运行"><span class="nav-number">3.</span> <span class="nav-text">判断App是否运行</span></a></li></ol></div>
             
 
           </div>
