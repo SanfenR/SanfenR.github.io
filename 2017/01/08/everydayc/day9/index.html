@@ -103,33 +103,39 @@
 
 
 <meta name="description" content="题目
-打印1到最大的n位数。如n=4，打印1-9999。
+题目：输入一个正数n，输出所有和为n 连续正数序列。例如输入15，由于1+2+3+4+5=4+5+6=7+8=15，所以输出3 个连续序列1-5、4-6 和7-8。
 
 思路
-如果直接使用循环会导致int或者long都不够存储，因此使用string来存储数据，这里涉及到字符串以及字符串的加法。
+对于固定的left.当前sum值小于目标Sum，则right一直后移
+sum==Sum。则输出序列，且将right后移
+对于固定的right.,sum&amp;gt;Sum时，始终将left左移动
 
-实现1234567891011121314151617181920212223242526void print(const int &amp;amp;n) &amp;#123;    if (n &amp;lt;= 0) &amp;#123;">
+实现123456789101">
 <meta property="og:type" content="article">
-<meta property="og:title" content="打印1到最大的n位数(day10)">
-<meta property="og:url" content="http://yoursite.com/2016/01/20/everydayc/day10/index.html">
+<meta property="og:title" content="和为n的连续正数序列(day9)">
+<meta property="og:url" content="http://yoursite.com/2017/01/08/everydayc/day9/index.html">
 <meta property="og:site_name" content="SanfenR的博客">
 <meta property="og:description" content="题目
-打印1到最大的n位数。如n=4，打印1-9999。
+题目：输入一个正数n，输出所有和为n 连续正数序列。例如输入15，由于1+2+3+4+5=4+5+6=7+8=15，所以输出3 个连续序列1-5、4-6 和7-8。
 
 思路
-如果直接使用循环会导致int或者long都不够存储，因此使用string来存储数据，这里涉及到字符串以及字符串的加法。
+对于固定的left.当前sum值小于目标Sum，则right一直后移
+sum==Sum。则输出序列，且将right后移
+对于固定的right.,sum&amp;gt;Sum时，始终将left左移动
 
-实现1234567891011121314151617181920212223242526void print(const int &amp;amp;n) &amp;#123;    if (n &amp;lt;= 0) &amp;#123;">
-<meta property="og:updated_time" content="2017-02-14T12:16:25.000Z">
+实现123456789101">
+<meta property="og:updated_time" content="2017-02-28T13:15:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="打印1到最大的n位数(day10)">
+<meta name="twitter:title" content="和为n的连续正数序列(day9)">
 <meta name="twitter:description" content="题目
-打印1到最大的n位数。如n=4，打印1-9999。
+题目：输入一个正数n，输出所有和为n 连续正数序列。例如输入15，由于1+2+3+4+5=4+5+6=7+8=15，所以输出3 个连续序列1-5、4-6 和7-8。
 
 思路
-如果直接使用循环会导致int或者long都不够存储，因此使用string来存储数据，这里涉及到字符串以及字符串的加法。
+对于固定的left.当前sum值小于目标Sum，则right一直后移
+sum==Sum。则输出序列，且将right后移
+对于固定的right.,sum&amp;gt;Sum时，始终将left左移动
 
-实现1234567891011121314151617181920212223242526void print(const int &amp;amp;n) &amp;#123;    if (n &amp;lt;= 0) &amp;#123;">
+实现123456789101">
 
 
 
@@ -157,13 +163,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/01/20/everydayc/day10/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/01/08/everydayc/day9/"/>
 
 
 
 
 
-  <title> 打印1到最大的n位数(day10) | SanfenR的博客 </title>
+  <title> 和为n的连续正数序列(day9) | SanfenR的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -299,7 +305,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/01/20/everydayc/day10/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/08/everydayc/day9/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="SanfenR">
@@ -323,7 +329,7 @@
             
             
               
-                打印1到最大的n位数(day10)
+                和为n的连续正数序列(day9)
               
             
           </h1>
@@ -338,8 +344,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-01-20T00:00:00+08:00">
-                2016-01-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-08T00:00:00+08:00">
+                2017-01-08
               </time>
             
 
@@ -357,8 +363,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/01/20/everydayc/day10/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/20/everydayc/day10/" itemprop="commentCount"></span>
+                <a href="/2017/01/08/everydayc/day9/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/08/everydayc/day9/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -385,12 +391,19 @@
 
       
         <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><ul>
-<li>打印1到最大的n位数。如n=4，打印1-9999。</li>
+<li>题目：输入一个正数n，输出所有和为n 连续正数序列。<br>例如输入15，由于1+2+3+4+5=4+5+6=7+8=15，<br>所以输出3 个连续序列1-5、4-6 和7-8。</li>
 </ul>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
-<li>如果直接使用循环会导致int或者long都不够存储，因此使用string来存储数据，这里涉及到字符串以及字符串的加法。</li>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
+<li>对于固定的left.当前sum值小于目标Sum，则right一直后移</li>
+<li>sum==Sum。则输出序列，且将right后移</li>
+<li>对于固定的right.,sum&gt;Sum时，始终将left左移动</li>
+</ol>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp;left, <span class="keyword">const</span> <span class="keyword">int</span> &amp;right)</span> </span>&#123;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">int</span> flag = <span class="number">0</span>;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"NO:"</span> &lt;&lt; ++flag &lt;&lt; <span class="string">"--"</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = left; i &lt;= right; ++i) &#123;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">" "</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">findSequence</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp;Sum)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> left = <span class="number">1</span>, right = <span class="number">1</span>, sum = <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span> (left &lt;= Sum / <span class="number">2</span>) &#123;</div><div class="line">        <span class="keyword">if</span> (sum == Sum) &#123;</div><div class="line">            print(left, right);</div><div class="line">            right++;</div><div class="line">            sum += right;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (sum &gt; Sum) &#123;</div><div class="line">            sum -= left;</div><div class="line">            left++;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            right++;</div><div class="line">            sum += right;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>简略写法：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">findSequence</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; Sum)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> left =<span class="number">1</span>, right = <span class="number">1</span>, sum = <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(left &lt;= Sum/<span class="number">2</span>) &#123;</div><div class="line">        <span class="keyword">while</span> (sum &gt; Sum) &#123;</div><div class="line">            sum -= left;</div><div class="line">            left ++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (sum == Sum) &#123;</div><div class="line">            print(left, right);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        right ++;</div><div class="line">        sum += right;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><ul>
+<li>题目：输入两个整数n和m，从数列1,2,3…n中随意取几个数，使其和等于m，要求列出所有的组合。</li>
 </ul>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp;n)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (n &lt;= <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">char</span> *number = <span class="keyword">new</span> <span class="keyword">char</span>[n + <span class="number">1</span>];</div><div class="line">    <span class="built_in">memset</span>(number, <span class="string">'0'</span>, (n + <span class="number">1</span>) * <span class="keyword">sizeof</span>(<span class="keyword">char</span>));</div><div class="line">    number[n] = <span class="string">'\0'</span>;</div><div class="line"></div><div class="line">    printMax(number, <span class="number">0</span>, n);</div><div class="line"></div><div class="line">    <span class="keyword">delete</span>[] number;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">printMax</span><span class="params">(<span class="keyword">char</span> *number, <span class="keyword">const</span> <span class="keyword">int</span> index, <span class="keyword">const</span> <span class="keyword">int</span> size)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!number)</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">if</span> (index == size) &#123;<span class="comment">//嵌套截止条件</span></div><div class="line">        <span class="built_in">cout</span> &lt;&lt; number &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</div><div class="line">        number[index] = (<span class="keyword">char</span>) (i + <span class="string">'0'</span>);<span class="comment">//index---当前调整的位数</span></div><div class="line">        printMax(number, index + <span class="number">1</span>, size);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; list1;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">find_factor</span><span class="params">(<span class="keyword">int</span> sum, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="comment">//递归出口</span></div><div class="line">    <span class="keyword">if</span> (n &lt;= <span class="number">0</span> || sum &lt; <span class="number">0</span>)</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    <span class="comment">//输出找到的数</span></div><div class="line">    <span class="keyword">if</span> (sum == n) &#123;</div><div class="line">        list1.reverse();</div><div class="line">        <span class="keyword">for</span> (<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator iter = list1.begin(); iter != list1.end(); iter++)</div><div class="line">            <span class="built_in">cout</span> &lt;&lt; *iter &lt;&lt; <span class="string">" + "</span>;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; n &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">        list1.reverse();</div><div class="line">    &#125;</div><div class="line">    list1.push_front(n);</div><div class="line">    find_factor(sum - n, n - <span class="number">1</span>);<span class="comment">//n参与查找</span></div><div class="line">    list1.pop_front();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><a href="https://github.com/SanfenR/EveryDayC" target="_blank" rel="external">源码传送门</a></p>
 
       
@@ -445,14 +458,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/01/07/android/Android动态修改icon/" rel="next" title="Android动态修改icon">
+                <i class="fa fa-chevron-left"></i> Android动态修改icon
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/02/13/everydayc/day11/" rel="prev" title="合并已经排序的2条链表(day11)">
-                合并已经排序的2条链表(day11) <i class="fa fa-chevron-right"></i>
+              <a href="/2017/01/11/android/lazyfragment使用/" rel="prev" title="Android-Fragment懒加载">
+                Android-Fragment懒加载 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -485,8 +502,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/01/20/everydayc/day10/"
-           data-title="打印1到最大的n位数(day10)" data-url="http://yoursite.com/2016/01/20/everydayc/day10/">
+      <div class="ds-thread" data-thread-key="2017/01/08/everydayc/day9/"
+           data-title="和为n的连续正数序列(day9)" data-url="http://yoursite.com/2017/01/08/everydayc/day9/">
       </div>
     
   </div>
@@ -590,7 +607,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">3.</span> <span class="nav-text">实现</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">3.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拓展"><span class="nav-number">4.</span> <span class="nav-text">拓展</span></a></li></ol></div>
             
 
           </div>

@@ -282,6 +282,137 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/20/github上传问题/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="SanfenR">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ohqvqufyf.bkt.clouddn.com/head.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="SanfenR的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="SanfenR的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/20/github上传问题/" itemprop="url">
+                  GitHub不允许上传大于100M文件问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-20T00:00:00+08:00">
+                2016-05-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/05/20/github上传问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/20/github上传问题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">自己的项目的版本控制用的是Git，代码仓库在github托管。项目里用到了百度导航SDK，由于百度导航SDK有了新版本，于是就更新到了新版本，更新好了之后想把代码push到github上，结果出错了，被拒绝，具体信息是：Total 3007 (delta 664), reused 0 (delta 0)</div><div class="line">remote: error: GH001: Large files detected.</div><div class="line">remote: error: Trace: 7b7de6b9372ee392e0f3961b05ea6f33</div><div class="line">remote: error: See http://git.io/iEPt8g for more information.</div><div class="line">remote: error: File  XXX/XXX/BaiduNaviSDK/libbaiduNaviSDK.a is 102.68 MB; this exceeds GitHub&apos;s file size limit of 100.00 MB</div><div class="line">To https://github.com/XXX/XXXX.git。意思是有大文件，更多信息可到http://git.io/iEPt8g查看，文件libbaiduNaviSDK.a的大小超过了GitHub限制的100M大小。想要push，必须把这个文件移除，可是要怎么移除呢？</div></pre></td></tr></table></figure>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><h6 id="第一种解决方案"><a href="#第一种解决方案" class="headerlink" title="第一种解决方案"></a>第一种解决方案</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">如果这个文件是最近一次commit的，并且你还没有push到github，那么</div><div class="line">第一步输入命令 cd /Users/Dora/Desktop/XXX</div><div class="line">（cd后面的这个路径要换成你自己项目的路径），</div><div class="line">然后第二步输入命令 git rm --cached /Users/Dora/Desktop/XXX/XXX/libbaiduNaviSDK.a（加下划线部分是你自己的要移除的文件的路径），</div><div class="line">第三步输入命令 git commit --amend -CHEAD，</div><div class="line">执行完这步后，这个大文件将会从你的commit记录里移除，并且以后commit都将不会再把它commit了，这时候就可以git push把本地代码push到github上了。</div></pre></td></tr></table></figure>
+<h3 id="第二种解决方案"><a href="#第二种解决方案" class="headerlink" title="第二种解决方案"></a>第二种解决方案</h3><h5 id="用到一个叫BFG的工具。我们要到-https-rtyley-github-io-bfg-repo-cleaner-download-这个网站去下载并学习如何使用这个工具"><a href="#用到一个叫BFG的工具。我们要到-https-rtyley-github-io-bfg-repo-cleaner-download-这个网站去下载并学习如何使用这个工具" class="headerlink" title="用到一个叫BFG的工具。我们要到[https://rtyley.github.io/bfg-repo-cleaner/#download]这个网站去下载并学习如何使用这个工具"></a>用到一个叫BFG的工具。我们要到[<a href="https://rtyley.github.io/bfg-repo-cleaner/#download]这个网站去下载并学习如何使用这个工具" target="_blank" rel="external">https://rtyley.github.io/bfg-repo-cleaner/#download]这个网站去下载并学习如何使用这个工具</a></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">我们要cd进BFG文件所在目录，第一步输入命令</div><div class="line">java -jar bfg.jar --no-blob-protection --strip-blobs-bigger-than 50M my-repo.git</div><div class="line"></div><div class="line">（红色部分是你下载下来的文件的名字,蓝色部分是你需要移除的文件大小，橙色部分是你自己.git文件的路径），</div><div class="line">第二步cd my-repo.git ，</div><div class="line">第三步 git reflog expire --expire=now --all &amp;&amp; git gc --prune=now --aggressive，</div><div class="line">第四步 git push，</div><div class="line">到此大功告成。你的commit历史里所有大于50M的文件的commit全部被清除，这样你就可以push到github上了。这里只是记录了怎么处理遇到的问题，</div><div class="line">如果想要知道原理，则需要好好好去学习学习。</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/02/13/everydayc/day11/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -513,149 +644,6 @@
 <li>如果直接使用循环会导致int或者long都不够存储，因此使用string来存储数据，这里涉及到字符串以及字符串的加法。</li>
 </ul>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp;n)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (n &lt;= <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">char</span> *number = <span class="keyword">new</span> <span class="keyword">char</span>[n + <span class="number">1</span>];</div><div class="line">    <span class="built_in">memset</span>(number, <span class="string">'0'</span>, (n + <span class="number">1</span>) * <span class="keyword">sizeof</span>(<span class="keyword">char</span>));</div><div class="line">    number[n] = <span class="string">'\0'</span>;</div><div class="line"></div><div class="line">    printMax(number, <span class="number">0</span>, n);</div><div class="line"></div><div class="line">    <span class="keyword">delete</span>[] number;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">printMax</span><span class="params">(<span class="keyword">char</span> *number, <span class="keyword">const</span> <span class="keyword">int</span> index, <span class="keyword">const</span> <span class="keyword">int</span> size)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!number)</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">if</span> (index == size) &#123;<span class="comment">//嵌套截止条件</span></div><div class="line">        <span class="built_in">cout</span> &lt;&lt; number &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</div><div class="line">        number[index] = (<span class="keyword">char</span>) (i + <span class="string">'0'</span>);<span class="comment">//index---当前调整的位数</span></div><div class="line">        printMax(number, index + <span class="number">1</span>, size);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><a href="https://github.com/SanfenR/EveryDayC" target="_blank" rel="external">源码传送门</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/01/08/everydayc/day9/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="SanfenR">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ohqvqufyf.bkt.clouddn.com/head.jpeg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="SanfenR的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="SanfenR的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/08/everydayc/day9/" itemprop="url">
-                  和为n的连续正数序列(day9)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-01-08T00:00:00+08:00">
-                2016-01-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/01/08/everydayc/day9/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/08/everydayc/day9/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><ul>
-<li>题目：输入一个正数n，输出所有和为n 连续正数序列。<br>例如输入15，由于1+2+3+4+5=4+5+6=7+8=15，<br>所以输出3 个连续序列1-5、4-6 和7-8。</li>
-</ul>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
-<li>对于固定的left.当前sum值小于目标Sum，则right一直后移</li>
-<li>sum==Sum。则输出序列，且将right后移</li>
-<li>对于固定的right.,sum&gt;Sum时，始终将left左移动</li>
-</ol>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp;left, <span class="keyword">const</span> <span class="keyword">int</span> &amp;right)</span> </span>&#123;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">int</span> flag = <span class="number">0</span>;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"NO:"</span> &lt;&lt; ++flag &lt;&lt; <span class="string">"--"</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = left; i &lt;= right; ++i) &#123;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">" "</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">findSequence</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp;Sum)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> left = <span class="number">1</span>, right = <span class="number">1</span>, sum = <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span> (left &lt;= Sum / <span class="number">2</span>) &#123;</div><div class="line">        <span class="keyword">if</span> (sum == Sum) &#123;</div><div class="line">            print(left, right);</div><div class="line">            right++;</div><div class="line">            sum += right;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (sum &gt; Sum) &#123;</div><div class="line">            sum -= left;</div><div class="line">            left++;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            right++;</div><div class="line">            sum += right;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>简略写法：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">findSequence</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; Sum)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> left =<span class="number">1</span>, right = <span class="number">1</span>, sum = <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(left &lt;= Sum/<span class="number">2</span>) &#123;</div><div class="line">        <span class="keyword">while</span> (sum &gt; Sum) &#123;</div><div class="line">            sum -= left;</div><div class="line">            left ++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (sum == Sum) &#123;</div><div class="line">            print(left, right);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        right ++;</div><div class="line">        sum += right;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><ul>
-<li>题目：输入两个整数n和m，从数列1,2,3…n中随意取几个数，使其和等于m，要求列出所有的组合。</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; list1;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">find_factor</span><span class="params">(<span class="keyword">int</span> sum, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="comment">//递归出口</span></div><div class="line">    <span class="keyword">if</span> (n &lt;= <span class="number">0</span> || sum &lt; <span class="number">0</span>)</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    <span class="comment">//输出找到的数</span></div><div class="line">    <span class="keyword">if</span> (sum == n) &#123;</div><div class="line">        list1.reverse();</div><div class="line">        <span class="keyword">for</span> (<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator iter = list1.begin(); iter != list1.end(); iter++)</div><div class="line">            <span class="built_in">cout</span> &lt;&lt; *iter &lt;&lt; <span class="string">" + "</span>;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; n &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">        list1.reverse();</div><div class="line">    &#125;</div><div class="line">    list1.push_front(n);</div><div class="line">    find_factor(sum - n, n - <span class="number">1</span>);<span class="comment">//n参与查找</span></div><div class="line">    list1.pop_front();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><a href="https://github.com/SanfenR/EveryDayC" target="_blank" rel="external">源码传送门</a></p>
 
           
