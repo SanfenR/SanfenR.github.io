@@ -282,6 +282,148 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/21/everydayc/day7/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="SanfenR">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ohqvqufyf.bkt.clouddn.com/head.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="SanfenR的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="SanfenR的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/21/everydayc/day7/" itemprop="url">
+                  二叉树中找出和为某一值的所有路径(day7)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-21T00:00:00+08:00">
+                2016-12-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/12/21/everydayc/day7/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/21/everydayc/day7/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><ul>
+<li>题目：输入一个整数和一棵二元树。从树的根结点开始往下访问一直到叶结点所经过的所有结点形成一条路径。打印出和与输入整数相等的所有路径。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"> 例如输入整数22 和如下二元树</div><div class="line"></div><div class="line">      10</div><div class="line">     /  \</div><div class="line">    5   12</div><div class="line">   / \</div><div class="line">  4   7</div><div class="line"></div><div class="line">则打印出两条路径：10, 12 和10, 5, 7。</div></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
+<li>使用递归和栈结构。将当前路径保留在vector中。</li>
+</ul>
+<ol>
+<li>对于空节点，返回false；</li>
+<li>对于叶子节点，判断当前和是否为给定值，是则遍历输出栈中保存路径且返回true，否则返回false。</li>
+<li>对于非叶子节点，将当前根节点入栈，先后递归左、右子树。且递归完后，要弹出栈中保存的当前路径。</li>
+</ol>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> Node &#123;</div><div class="line">    <span class="keyword">int</span> value;</div><div class="line">    Node* left;</div><div class="line">    Node* right;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">decision</span><span class="params">(Node * head, <span class="keyword">int</span> sum, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;v)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(!head)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!head-&gt;left &amp;&amp; !head-&gt;right)&#123;</div><div class="line">        sum -= head-&gt;value;</div><div class="line">        <span class="keyword">if</span>(sum == <span class="number">0</span>)&#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v.size(); i++) &#123;</div><div class="line">                <span class="built_in">cout</span> &lt;&lt; v[i] &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="built_in">cout</span> &lt;&lt; head-&gt;value &lt;&lt; <span class="string">"\n"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        v.push_back(head-&gt;value);</div><div class="line">        sum -= head-&gt;value;</div><div class="line">        <span class="keyword">bool</span> left = decision(head-&gt;left, sum, v);</div><div class="line">        <span class="keyword">bool</span> right = decision(head-&gt;right, sum, v);</div><div class="line">        v.pop_back();</div><div class="line">        <span class="keyword">if</span> (left || right)&#123;</div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    Node n4=&#123;<span class="number">4</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>&#125;;</div><div class="line">    Node n5=&#123;<span class="number">7</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>&#125;;</div><div class="line">    Node n3=&#123;<span class="number">12</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>&#125;;</div><div class="line">    Node n2=&#123;<span class="number">5</span>,&amp;n4,&amp;n5&#125;;</div><div class="line">    Node n1=&#123;<span class="number">10</span>,&amp;n2,&amp;n3&#125;;</div><div class="line"></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v;</div><div class="line">    decision(&amp;n1,<span class="number">22</span>,v);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><a href="https://github.com/SanfenR/EveryDayC" target="_blank" rel="external">源码github</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/14/java/java-exectors/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2323,136 +2465,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/06/everydayc/day3/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="SanfenR">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ohqvqufyf.bkt.clouddn.com/head.jpeg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="SanfenR的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="SanfenR的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/06/everydayc/day3/" itemprop="url">
-                  链表删除(day3)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-06T00:00:00+08:00">
-                2016-10-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/10/06/everydayc/day3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/06/everydayc/day3/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="假设链表……—A–B–C–D…-，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O-n-。删除节点的实质为更改后驱指针指向。-这里，复制C的内容至B-此时B，C同时指向D-，删除节点C，即达到间接删除节点B的目的。-倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O-1-。"><a href="#假设链表……—A–B–C–D…-，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O-n-。删除节点的实质为更改后驱指针指向。-这里，复制C的内容至B-此时B，C同时指向D-，删除节点C，即达到间接删除节点B的目的。-倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O-1-。" class="headerlink" title="假设链表……—A–B–C–D….，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O(n)。删除节点的实质为更改后驱指针指向。 这里，复制C的内容至B(此时B，C同时指向D)，删除节点C，即达到间接删除节点B的目的。 倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O(1)。"></a>假设链表……—A–B–C–D….，要删除B。一般的做法是遍历链表并记录前驱节点，修改指针，时间为O(n)。删除节点的实质为更改后驱指针指向。 这里，复制C的内容至B(此时B，C同时指向D)，删除节点C，即达到间接删除节点B的目的。 倘若B是链尾节点。则需要线性遍历寻找前驱节点。以上思路，时间复杂度为O(1)。</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> ListNode &#123;</div><div class="line">    <span class="keyword">int</span> m_nKey;</div><div class="line">    ListNode *m_pNext;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteNode</span><span class="params">(ListNode* pListHead, ListNode* pToBeDeleted)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!pListHead || !pToBeDeleted) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (pListHead == pToBeDeleted)&#123;</div><div class="line">        <span class="keyword">delete</span> pListHead;</div><div class="line">        pListHead = <span class="literal">NULL</span>;</div><div class="line">        pToBeDeleted = <span class="literal">NULL</span>;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (pToBeDeleted-&gt;m_pNext != <span class="literal">NULL</span>) &#123;</div><div class="line">        ListNode *pNext = pToBeDeleted-&gt;m_pNext;</div><div class="line">        pToBeDeleted-&gt;m_nKey = pNext-&gt;m_nKey;</div><div class="line">        pToBeDeleted-&gt;m_pNext = pNext-&gt;m_pNext;</div><div class="line">        <span class="keyword">delete</span> pNext;</div><div class="line">        pNext = <span class="literal">NULL</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        ListNode* pNode = pListHead;</div><div class="line">        <span class="keyword">while</span>(pNode-&gt;m_pNext != pToBeDeleted) &#123;</div><div class="line">            pNode = pNode-&gt;m_pNext;</div><div class="line">        &#125;</div><div class="line">        pNode-&gt;m_pNext = <span class="literal">NULL</span>;</div><div class="line">        <span class="keyword">delete</span> pToBeDeleted;</div><div class="line">        pToBeDeleted = <span class="literal">NULL</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><a href="https://github.com/SanfenR/EveryDayC" target="_blank" rel="external">源码github</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2500,7 +2512,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
