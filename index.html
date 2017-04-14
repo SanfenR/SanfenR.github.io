@@ -282,6 +282,224 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/12/git命令/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="SanfenR">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ohqvqufyf.bkt.clouddn.com/head.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="SanfenR的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="SanfenR的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/12/git命令/" itemprop="url">
+                  git命令
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-12T00:00:00+08:00">
+                2017-04-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/12/git命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/12/git命令/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><figure class="highlight plain"><figcaption><span>init                              #初始化本地git仓库（创建新仓库）```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2. ```git config --global user.name &quot;xxx&quot;                       # 配置用户名</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>config --global user.email "xxx@xxx.com"             # 配置邮件```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">4. ```git config --global color.ui true                       # git status等命令自动着色</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>config --global color.status auto```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">6. ``` git config --global color.diff auto</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>config --global color.branch auto```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">8. ``` git config --global color.interactive auto</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>config --global --unset http.proxy                    # remove  proxy configuration on git ```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">10. ```git clone git+ssh://git@192.168.53.168/VT.git             # clone远程仓库</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>status                                                # 查看当前版本状态（是否修改）```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">12. ```git add xyz                                               # 添加xyz文件至index</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>add .                                                 # 增加当前子目录下所有更改过的文件至index```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">14. ```git commit -m &apos;xxx&apos;                                       # 提交</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>commit --amend -m 'xxx'                               # 合并上一次提交（用于反复修改）```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">16. ```git commit -am &apos;xxx&apos;                                      # 将add和commit合为一步</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>rm xxx                                                # 删除index中的文件```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">18. ```git rm -r *                                               # 递归删除</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>log                                                   # 显示提交日志```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">20. ```git log -1                                                # 显示1行日志 -n为n行</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>log -5```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">22. ```git log --stat                                            # 显示提交日志及相关变动文件</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>log -p -m```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">24. ```git show dfb02e6e4f2f7b573337763e5c0013802e392818         # 显示某个提交的详细内容</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>show dfb02                                            # 可只用commitid的前几位```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">26. ```git show HEAD                                             # 显示HEAD提交日志</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>show HEAD^                                            # 显示HEAD的父（上一个版本）的提交日志 ^^为上两个版本 ^5为上5个版本```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">28. ```git tag                                                   # 显示已存在的tag</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>tag -a v2.0 -m 'xxx'                                  # 增加v2.0的tag```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">30. ```git show v2.0                                             # 显示v2.0的日志及详细内容</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>log v2.0                                              # 显示v2.0的日志```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">32. ```git diff                                                  # 显示所有未添加至index的变更</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>diff --cached                                         # 显示所有已添加index但还未commit的变更```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">34. ```git diff HEAD^                                            # 比较与上一个版本的差异</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>diff HEAD -- ./lib                                    # 比较与HEAD版本lib目录的差异```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">36. ```git diff origin/master..master                            # 比较远程分支master上有本地分支master上没有的</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>diff origin/master..master --stat                     # 只显示差异的文件，不显示具体内容```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">38. ```git remote add origin git+ssh://git@192.168.53.168/VT.git # 增加远程定义（用于push/pull/fetch）</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>branch                                                # 显示本地分支```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">40. ```git branch --contains 50089                               # 显示包含提交50089的分支</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>branch -a                                             # 显示所有分支```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">42. ```git branch -r                                             # 显示所有原创分支</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>branch --merged                                       # 显示所有已合并到当前分支的分支```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">44. ```git branch --no-merged                                    # 显示所有未合并到当前分支的分支</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>branch -m master master_copy                          # 本地分支改名```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">46. ```git checkout -b master_copy                               # 从当前分支创建新分支master_copy并检出</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>checkout -b master master_copy                        # 上面的完整版```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">48. ```git checkout features/performance                         # 检出已存在的features/performance分支</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>checkout --track hotfixes/BJVEP933                    # 检出远程分支hotfixes/BJVEP933并创建本地跟踪分支```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">50. ```git checkout v2.0                                         # 检出版本v2.0</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>checkout -b devel origin/develop                      # 从远程分支develop创建新本地分支devel并检出```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">52. ```git checkout -- README                                    # 检出head版本的README文件（可用于修改错误回退）</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>merge origin/master                                   # 合并远程master分支至当前分支```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">54. ```git cherry-pick ff44785404a8e                             # 合并提交ff44785404a8e的修改</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>push origin master                                    # 将当前分支push到远程master分支```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">56. ```git push origin :hotfixes/BJVEP933                        # 删除远程仓库的hotfixes/BJVEP933分支</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>push --tags                                           # 把所有tag推送到远程仓库```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">58. ```git fetch                                                 # 获取所有远程分支（不更新本地分支，另需merge）</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>fetch --prune                                         # 获取所有原创分支并清除服务器上已删掉的分支```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">60. ```git pull origin master                                    # 获取远程分支master并merge到当前分支</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>mv README README2                                     # 重命名文件README为README2```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">62. ```git reset --hard HEAD                                     # 将当前版本重置为HEAD（通常用于merge失败回退）</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>rebase```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">64. ```git branch -d hotfixes/BJVEP933                           # 删除分支hotfixes/BJVEP933（本分支修改已合并到其他分支）</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>branch -D hotfixes/BJVEP933                           # 强制删除分支hotfixes/BJVEP933```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">66. ```git ls-files                                              # 列出git index包含的文件</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>show-branch                                           # 图示当前分支历史```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">68. ```git show-branch --all                                     # 图示所有分支历史</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>whatchanged                                           # 显示提交历史对应的文件修改```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">70. ```git revert dfb02e6e4f2f7b573337763e5c0013802e392818       # 撤销提交dfb02e6e4f2f7b573337763e5c0013802e392818</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>ls-tree HEAD                                          # 内部命令：显示某个git对象```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">72. ```git rev-parse v2.0                                        # 内部命令：显示某个ref对于的SHA1 HASH</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>reflog                                                # 显示所有提交，包括孤立节点```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">74. ```git show HEAD@&#123;5&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>show master@&#123;yesterday&#125;                               # 显示master分支昨天的状态```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">76. ```git log --pretty=format:&apos;%h %s&apos; --graph                   # 图示提交日志</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>show HEAD~3```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">78. ```git show -s --pretty=raw 2be7fcb476</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>stash                                                 # 暂存当前修改，将所有至为HEAD状态```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">80. ```git stash list                                            # 查看所有暂存</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>stash show -p stash@&#123;0&#125;                               # 参考第一次暂存```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">82. ```git stash apply stash@&#123;0&#125;                                 # 应用第一次暂存</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>grep "delete from"                                    # 文件中搜索文本“delete from”```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">84. ```git grep -e &apos;#define&apos; --and -e SORT_DIRENT</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>gc```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">86. ```git fsck</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>log --oneline --abbrev-commit --all --graph --decorate --color  # 显示所有branch提交历史图```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">88. ```git checkout --patch commitid filename                              # 合并指定commit的指定文件</div></pre></td></tr></table></figure>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/11/android/Android修改包名/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1551,160 +1769,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/01/java/BlockingQueue/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="SanfenR">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ohqvqufyf.bkt.clouddn.com/head.jpeg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="SanfenR的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="SanfenR的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/01/java/BlockingQueue/" itemprop="url">
-                  Java中的阻塞队列
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-01T00:00:00+08:00">
-                2017-01-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/01/01/java/BlockingQueue/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/01/java/BlockingQueue/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="http://ohqvqufyf.bkt.clouddn.com/blockingqueue.png" alt="image"></p>
-<h2 id="JAVA中的几种主要的阻塞队列"><a href="#JAVA中的几种主要的阻塞队列" class="headerlink" title="JAVA中的几种主要的阻塞队列"></a>JAVA中的几种主要的阻塞队列</h2><ol>
-<li>ArrayBlockingQueue: 基于数组实现的一个阻塞队列，在创建ArrayBlockingQueue对象必须指定容量大小。并且可以指定公平性和非公平性，默认情况下为非公平性，即不保存等待时间最长的队列有限能够访问队列。</li>
-<li>LinkedBlockingQueue: 基于链表实现的一个阻塞队列，在创建LinkedBlockingQueue对象如果不指定容量大小，则为Integer.MAX_VALUE.</li>
-<li>PriorityBlockingQueue: 以上2种队列都是先进先出队列，而PriorityBlockQueue却不是，它会按照元素的优先级对元素进行排序，按照优先级顺序出队，每次出队的元素都是优先级最高的元素。注意，此阻塞队列为无界阻塞队列，即容量没有上限。</li>
-<li>DelayQueue: 基于PriorityBlockingQueue: 基于PriortyQueue, 一种延时阻塞队列，DelayQueue中的元素只有当其指定的延迟时间到了，才能够从队列中获取到该元素。DelayQueue也是一种无界队列，因此往队列中插入数据的操作（生产者）永远不会被阻塞，而只有获取数据的操作（消费者）才会被阻塞。</li>
-</ol>
-<h2 id="阻塞队列的几个方法"><a href="#阻塞队列的几个方法" class="headerlink" title="阻塞队列的几个方法"></a>阻塞队列的几个方法</h2><ol>
-<li>put(E e): 向队尾存入元素，如果队列满了，则等待。</li>
-<li>tack(): 从队首取元素，如果队伍为空，则等待。</li>
-<li>offer(E e, long timeout, TimeUnil unit): 如果队列满了则等待一定时间，没有插入成功则返回false,成功则返回true.</li>
-<li>poll(long timeout, TimeUnit unit): 如果队列为空，则等待一定时间，当时间期限达到时，如果未取到，则返回null.</li>
-</ol>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><ul>
-<li>阻塞队列实现</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BlockingQueue</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> List&lt;Object&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> limit = <span class="number">10</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BlockingQueue</span><span class="params">(<span class="keyword">int</span> limit)</span></span>&#123;</div><div class="line">        <span class="keyword">this</span>.limit = limit;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 当队列满了的时候阻塞线程</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> item</div><div class="line">     * <span class="doctag">@throws</span> InterruptedException</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">enqueue</span><span class="params">(Object item)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</div><div class="line">        <span class="keyword">while</span> (<span class="keyword">this</span>.queue.size() == <span class="keyword">this</span>.limit) &#123;</div><div class="line">            wait();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.queue.size() &lt; <span class="keyword">this</span>.limit) &#123;</div><div class="line">            notifyAll();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">this</span>.queue.add(item);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 当队列为空的时候阻塞线程</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     * <span class="doctag">@throws</span> InterruptedException</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> Object <span class="title">dequeue</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</div><div class="line">        <span class="keyword">while</span> (<span class="keyword">this</span>.queue.size() == <span class="number">0</span>) &#123;</div><div class="line">            wait();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.queue.size() &gt; <span class="number">1</span>) &#123;</div><div class="line">            notifyAll();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.queue.remove(<span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>使用阻塞队列实现生产者消费者</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProducerConsumerPattern</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        BlockingQueue shareQueue = <span class="keyword">new</span> LinkedBlockingQueue&lt;&gt;();</div><div class="line"></div><div class="line">        Thread prodThread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Producer(shareQueue));</div><div class="line">        Thread consThread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Consumer(shareQueue));</div><div class="line"></div><div class="line">        prodThread.start();</div><div class="line">        consThread.start();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 生产者</div><div class="line">     */</div><div class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Producer</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> BlockingQueue shareQueue;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Producer</span><span class="params">(BlockingQueue shareQueue)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.shareQueue = shareQueue;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</div><div class="line">                System.out.println(<span class="string">"Produced: "</span> + i);</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    shareQueue.put(i);</div><div class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 消费者</div><div class="line">     */</div><div class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Consumer</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> java.util.concurrent.BlockingQueue shareQueue;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Consumer</span><span class="params">(BlockingQueue shareQueue)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.shareQueue = shareQueue;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    System.out.println(<span class="string">"Consumer: "</span> + shareQueue.take());</div><div class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>使用Lock和Condition实现阻塞队列</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BoundedBuffer</span> </span>&#123;</div><div class="line">    <span class="keyword">final</span> Lock lock = <span class="keyword">new</span> ReentrantLock();</div><div class="line">    <span class="keyword">final</span> Condition notFull = lock.newCondition();</div><div class="line">    <span class="keyword">final</span> Condition notEmpty = lock.newCondition();</div><div class="line"></div><div class="line">    <span class="keyword">final</span> Object[] items = <span class="keyword">new</span> Object[<span class="number">100</span>];</div><div class="line"></div><div class="line">    <span class="keyword">int</span> putptr, takeptr, count;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(Object x)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</div><div class="line">        lock.lock();</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="keyword">while</span> (count == items.length)</div><div class="line">                notFull.await();</div><div class="line">            items[putptr] = x;</div><div class="line">            <span class="keyword">if</span> (++putptr == items.length)</div><div class="line">                putptr = <span class="number">0</span>;</div><div class="line">            ++count;</div><div class="line">            notEmpty.signal();</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            lock.unlock();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">take</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</div><div class="line">        lock.lock();</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="keyword">while</span> (count == <span class="number">0</span>)</div><div class="line">                notEmpty.await();</div><div class="line">            Object x = items[takeptr];</div><div class="line">            <span class="keyword">if</span> (++takeptr == items.length)</div><div class="line">                takeptr = <span class="number">0</span>;</div><div class="line">            --count;</div><div class="line">            notFull.signal();</div><div class="line">            <span class="keyword">return</span> x;</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            lock.unlock();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><a href="https://github.com/SanfenR/JavaNoob/tree/master/BlockingQueue" target="_blank" rel="external">源码传送门</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1752,7 +1816,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
