@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title></title>
+      <title><![CDATA[解决java.lang.SecurityException]]></title>
       <url>http://yoursite.com/2017/10/10/java/%E8%A7%A3%E5%86%B3java.lang.SecurityException/</url>
       <content type="html"><![CDATA[<h3 id="解决java-lang-SecurityException-Invalid-signature-file-digest-for-Manifest-main-attributes"><a href="#解决java-lang-SecurityException-Invalid-signature-file-digest-for-Manifest-main-attributes" class="headerlink" title="解决java.lang.SecurityException: Invalid signature file digest for Manifest main attributes"></a>解决java.lang.SecurityException: Invalid signature file digest for Manifest main attributes</h3><p>当项目依赖其他jar包的时候，打出的jar包执行出错，抛出这个异常。</p>
 <p>原因：因为依赖jar包中的META-INF中有多余的.SF文件与当前jar包冲突，</p>
