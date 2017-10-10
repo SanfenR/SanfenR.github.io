@@ -4,6 +4,22 @@
   
     
     <entry>
+      <title></title>
+      <url>http://yoursite.com/2017/10/10/java/%E8%A7%A3%E5%86%B3java.lang.SecurityException/</url>
+      <content type="html"><![CDATA[<h3 id="解决java-lang-SecurityException-Invalid-signature-file-digest-for-Manifest-main-attributes"><a href="#解决java-lang-SecurityException-Invalid-signature-file-digest-for-Manifest-main-attributes" class="headerlink" title="解决java.lang.SecurityException: Invalid signature file digest for Manifest main attributes"></a>解决java.lang.SecurityException: Invalid signature file digest for Manifest main attributes</h3><p>当项目依赖其他jar包的时候，打出的jar包执行出错，抛出这个异常。</p>
+<p>原因：因为依赖jar包中的META-INF中有多余的.SF文件与当前jar包冲突，</p>
+<ul>
+<li><p>解决方案 一</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在打包前删除依赖jar包的.SF文件</div></pre></td></tr></table></figure>
+</li>
+<li><p>解决方案 二</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">在打完的jar包执行</div><div class="line"></div><div class="line">zip -d your.jar &apos;META-INF/.SF&apos; &apos;META-INF/.RSA&apos; &apos;META-INF/*SF&apos;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[git命令]]></title>
       <url>http://yoursite.com/2017/04/12/git%E5%91%BD%E4%BB%A4/</url>
       <content type="html"><![CDATA[<p>1.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git init #初始化本地git仓库（创建新仓库）</div></pre></td></tr></table></figure></p>
