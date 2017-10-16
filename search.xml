@@ -4,6 +4,67 @@
   
     
     <entry>
+      <title><![CDATA[Android-JNI&NDK(一)入门]]></title>
+      <url>http://yoursite.com/2017/10/16/android/Android-JNI&NDK(%E4%B8%80)%E5%85%A5%E9%97%A8/</url>
+      <content type="html"><![CDATA[<p>[TOC]</p>
+<h1 id="Android-JNI-amp-NDK-一-入门"><a href="#Android-JNI-amp-NDK-一-入门" class="headerlink" title="Android-JNI&amp;NDK(一)入门"></a>Android-JNI&amp;NDK(一)入门</h1><h2 id="一-前言"><a href="#一-前言" class="headerlink" title="一. 前言"></a>一. 前言</h2><p>最近项目中要求要使用so库实现数据加密，来提高数据的安全性，因为好久没用过Android调用native方法，特别写这一篇回忆一下用法。</p>
+<p><a href="https://developer.android.com/ndk/guides/index.html?hl=zh-cn" target="_blank" rel="external">官方教程</a></p>
+<h2 id="二-简介"><a href="#二-简介" class="headerlink" title="二. 简介"></a>二. 简介</h2><h3 id="NDK-Native-Development-Kit"><a href="#NDK-Native-Development-Kit" class="headerlink" title="NDK(Native Development Kit)"></a>NDK(Native Development Kit)</h3><ol>
+<li>Android NDK 是一套允许您使用原生代码语言（例如 C 和 C++）实现部分应用的工具集。在开发某些类型应用时，这有助于您重复使用以这些语言编写的代码库。</li>
+<li>NDK的作用<ul>
+<li>从设备获取卓越性能以用于计算密集型应用，例如游戏或物理模拟。</li>
+<li>重复使用您自己或其他开发者的 C 或 C++ 库。</li>
+<li>代码的保护。由于apk的java层代码很容易被反编译，而C/C++库反汇难度较大。</li>
+</ul>
+</li>
+</ol>
+<h3 id="JNI-Java-Native-Interface"><a href="#JNI-Java-Native-Interface" class="headerlink" title="JNI(Java Native Interface)"></a>JNI(Java Native Interface)</h3><ol>
+<li>JNI 是本地编程接口，它使得在 Java 虚拟机内部运行的 Java 代码能够与用其它语言(如 C、C++)编写的代码进行交互。</li>
+<li>JNI的作用<ul>
+<li>可以让java调用c语言的代码。</li>
+</ul>
+</li>
+</ol>
+<h2 id="三-NDK安装"><a href="#三-NDK安装" class="headerlink" title="三. NDK安装"></a>三. NDK安装</h2><p>在<figure class="highlight plain"><figcaption><span>SDKManager```下载更新ndk</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">![NDK下载](http://ohqvqufyf.bkt.clouddn.com/ndk_download.png)</div><div class="line"></div><div class="line"></div><div class="line">## 四. JNI使用</div><div class="line"></div><div class="line">### 创建项目</div><div class="line">1. 首先创建一个AS项目。</div><div class="line"></div><div class="line">    ![image](http://ohqvqufyf.bkt.clouddn.com/ndk_createproject.png)</div><div class="line"></div><div class="line">2. 配置gradle.properties文件</div></pre></td></tr></table></figure></p>
+<pre><code>    android.useDeprecatedNdk=true
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">    ![image](http://ohqvqufyf.bkt.clouddn.com/ndk_%E9%85%8D%E7%BD%AE1.png)</div><div class="line"></div><div class="line">3. 在local.properties中加入ndk和sdk的路径：</div></pre></td></tr></table></figure>
+
+ndk.dir=/Users/xxx/Library/Android/sdk/ndk-bundle
+
+sdk.dir=/Users/xxx/Library/Android/sdk
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">    ![image](http://ohqvqufyf.bkt.clouddn.com/ndk_%E9%85%8D%E7%BD%AE2.png)</div><div class="line"></div><div class="line">4. 配置build.gradle中配置ndk的生成的so名字和支持的CPU平台（下文会介绍在如何Android.mk中去配置）。</div></pre></td></tr></table></figure>
+
+ndk{
+        moduleName &quot;hello&quot;       //生成的so文件名字，调用C程序的代码中会用到该名字
+        abiFilters &quot;armeabi&quot;, &quot;armeabi-v7a&quot;, &quot;x86&quot; //输出指定三种平台下的so库
+    }
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">    ![image](http://ohqvqufyf.bkt.clouddn.com/ndk_%E9%85%8D%E7%BD%AE3.png)</div><div class="line"></div><div class="line">项目的准备工作做完了，接下来是代码的部分。</div><div class="line"></div><div class="line">### 使用JNI</div><div class="line"></div><div class="line">1. 创建native方法</div><div class="line"></div><div class="line">    ```java</div><div class="line">    public class MainActivity extends AppCompatActivity &#123;</div><div class="line">        TextView mHelloText;</div><div class="line">        @Override</div><div class="line">        protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">            super.onCreate(savedInstanceState);</div><div class="line">            setContentView(R.layout.activity_main);</div><div class="line">            mHelloText = (TextView) findViewById(R.id.hello);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        public native String sayHelloByJNI();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+
+![image](http://ohqvqufyf.bkt.clouddn.com/ndk_%E5%88%9B%E5%BB%BAnative%E6%96%B9%E6%B3%95.png)
+</code></pre><ol>
+<li><p>使用<figure class="highlight plain"><figcaption><span>-jni```命令MainActivity.java生成JNI的.h文件。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<p> cd app/src/main/java</p>
+<p> javah -jni co.fensan.android.jnidemo.MainActivity</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">![image](http://ohqvqufyf.bkt.clouddn.com/ndk_%E5%88%9B%E5%BB%BAh.png)</div><div class="line"></div><div class="line">发现在当前目录生成了``` co_fensan_android_jnidemo_MainActivity.h</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建JNI目录并将.h文件移动到jni目录<br> <img src="http://ohqvqufyf.bkt.clouddn.com/ndk_%E5%88%9B%E5%BB%BAjni%E6%96%87%E4%BB%B6.png" alt="image"></p>
+</li>
+</ol>
+<p>然后创建.cpp文件</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"co_fensan_android_jnidemo_MainActivity.h"</span></span></div><div class="line"></div><div class="line"><span class="function">JNIEXPORT jstring JNICALL</span></div><div class="line"><span class="title">Java_co_fensan_android_jnidemo_MainActivity_sayHelloByJNI</span><span class="params">(JNIEnv *env, jobject instance)</span> &#123;</div><div class="line">        <span class="keyword">return</span> env-&gt;NewStringUTF(<span class="string">"hello jni!"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://ohqvqufyf.bkt.clouddn.com/ndk_%E5%88%9B%E5%BB%BAcpp.png" alt="image"></p>
+<ol>
+<li>在MainActivity中引入hello库</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> &#123;</div><div class="line">        System.loadLibrary(<span class="string">"hello"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    TextView mHelloText;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        mHelloText = (TextView) findViewById(R.id.hello);</div><div class="line">        mHelloText.setText(sayHelloByJNI());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">native</span> String <span class="title">sayHelloByJNI</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code>![image](http://ohqvqufyf.bkt.clouddn.com/ndk_%E5%BC%95%E5%85%A5lib.png)
+</code></pre><h2 id="五-运行结果"><a href="#五-运行结果" class="headerlink" title="五. 运行结果"></a>五. 运行结果</h2><!--<img src="http://ohqvqufyf.bkt.clouddn.com/ndk_%E6%95%88%E6%9E%9C.png"/>-->
+<p><img src="http://ohqvqufyf.bkt.clouddn.com/ndk_%E6%95%88%E6%9E%9C.png" alt="image"></p>
+<p><a href="https://github.com/SanfenR/JNIDemo" target="_blank" rel="external">源码传送门</a></p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[解决java.lang.SecurityException]]></title>
       <url>http://yoursite.com/2017/10/10/java/%E8%A7%A3%E5%86%B3java.lang.SecurityException/</url>
       <content type="html"><![CDATA[<h3 id="解决java-lang-SecurityException-Invalid-signature-file-digest-for-Manifest-main-attributes"><a href="#解决java-lang-SecurityException-Invalid-signature-file-digest-for-Manifest-main-attributes" class="headerlink" title="解决java.lang.SecurityException: Invalid signature file digest for Manifest main attributes"></a>解决java.lang.SecurityException: Invalid signature file digest for Manifest main attributes</h3><p>当项目依赖其他jar包的时候，打出的jar包执行出错，抛出这个异常。</p>

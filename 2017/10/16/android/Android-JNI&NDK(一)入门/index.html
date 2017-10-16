@@ -102,22 +102,32 @@
 
 
 
-<meta name="description" content="摘要: 在后台与网络交互中，需要使用Service来和服务器保持连接，因此Service在被进程Kill掉后，主动开启Service是必要的，因此首先的检测Service是否已启动
-
-检测Service是否已启动1234567891011public static boolean isServiceRunning(String serviceClassName)&amp;#123;    final A">
+<meta name="description" content="[TOC]
+Android-JNI&amp;amp;NDK(一)入门一. 前言最近项目中要求要使用so库实现数据加密，来提高数据的安全性，因为好久没用过Android调用native方法，特别写这一篇回忆一下用法。
+官方教程
+二. 简介NDK(Native Development Kit)
+Android NDK 是一套允许您使用原生代码语言（例如 C 和 C++）实现部分应用的工具集。在开发某些类型应用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ActivityManager判断app运行状态">
-<meta property="og:url" content="http://yoursite.com/2017/02/28/android/ActivityManager检测Service与Activity是否正在运行/index.html">
+<meta property="og:title" content="Android-JNI&NDK(一)入门">
+<meta property="og:url" content="http://yoursite.com/2017/10/16/android/Android-JNI&NDK(一)入门/index.html">
 <meta property="og:site_name" content="SanfenR的博客">
-<meta property="og:description" content="摘要: 在后台与网络交互中，需要使用Service来和服务器保持连接，因此Service在被进程Kill掉后，主动开启Service是必要的，因此首先的检测Service是否已启动
-
-检测Service是否已启动1234567891011public static boolean isServiceRunning(String serviceClassName)&amp;#123;    final A">
-<meta property="og:updated_time" content="2017-02-28T13:08:31.000Z">
+<meta property="og:description" content="[TOC]
+Android-JNI&amp;amp;NDK(一)入门一. 前言最近项目中要求要使用so库实现数据加密，来提高数据的安全性，因为好久没用过Android调用native方法，特别写这一篇回忆一下用法。
+官方教程
+二. 简介NDK(Native Development Kit)
+Android NDK 是一套允许您使用原生代码语言（例如 C 和 C++）实现部分应用的工具集。在开发某些类型应用">
+<meta property="og:image" content="http://ohqvqufyf.bkt.clouddn.com/ndk_%E5%88%9B%E5%BB%BAjni%E6%96%87%E4%BB%B6.png">
+<meta property="og:image" content="http://ohqvqufyf.bkt.clouddn.com/ndk_%E5%88%9B%E5%BB%BAcpp.png">
+<meta property="og:image" content="http://ohqvqufyf.bkt.clouddn.com/ndk_%E6%95%88%E6%9E%9C.png">
+<meta property="og:updated_time" content="2017-10-16T13:11:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ActivityManager判断app运行状态">
-<meta name="twitter:description" content="摘要: 在后台与网络交互中，需要使用Service来和服务器保持连接，因此Service在被进程Kill掉后，主动开启Service是必要的，因此首先的检测Service是否已启动
-
-检测Service是否已启动1234567891011public static boolean isServiceRunning(String serviceClassName)&amp;#123;    final A">
+<meta name="twitter:title" content="Android-JNI&NDK(一)入门">
+<meta name="twitter:description" content="[TOC]
+Android-JNI&amp;amp;NDK(一)入门一. 前言最近项目中要求要使用so库实现数据加密，来提高数据的安全性，因为好久没用过Android调用native方法，特别写这一篇回忆一下用法。
+官方教程
+二. 简介NDK(Native Development Kit)
+Android NDK 是一套允许您使用原生代码语言（例如 C 和 C++）实现部分应用的工具集。在开发某些类型应用">
+<meta name="twitter:image" content="http://ohqvqufyf.bkt.clouddn.com/ndk_%E5%88%9B%E5%BB%BAjni%E6%96%87%E4%BB%B6.png">
 
 
 
@@ -145,13 +155,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/02/28/android/ActivityManager检测Service与Activity是否正在运行/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/16/android/Android-JNI&NDK(一)入门/"/>
 
 
 
 
 
-  <title> ActivityManager判断app运行状态 | SanfenR的博客 </title>
+  <title> Android-JNI&NDK(一)入门 | SanfenR的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -287,7 +297,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/28/android/ActivityManager检测Service与Activity是否正在运行/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/16/android/Android-JNI&NDK(一)入门/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="SanfenR">
@@ -311,7 +321,7 @@
             
             
               
-                ActivityManager判断app运行状态
+                Android-JNI&NDK(一)入门
               
             
           </h1>
@@ -326,8 +336,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-28T00:00:00+08:00">
-                2017-02-28
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-16T00:00:00+08:00">
+                2017-10-16
               </time>
             
 
@@ -345,8 +355,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/28/android/ActivityManager检测Service与Activity是否正在运行/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/28/android/ActivityManager检测Service与Activity是否正在运行/" itemprop="commentCount"></span>
+                <a href="/2017/10/16/android/Android-JNI&NDK(一)入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/10/16/android/Android-JNI&NDK(一)入门/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -372,14 +382,61 @@
       
 
       
-        <blockquote>
-<p>摘要: 在后台与网络交互中，需要使用Service来和服务器保持连接，因此Service在被进程Kill掉后，主动开启Service是必要的，因此首先的检测Service是否已启动</p>
-</blockquote>
-<h3 id="检测Service是否已启动"><a href="#检测Service是否已启动" class="headerlink" title="检测Service是否已启动"></a>检测Service是否已启动</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isServiceRunning</span><span class="params">(String serviceClassName)</span></span>&#123;</div><div class="line">    <span class="keyword">final</span> ActivityManager activityManager = (ActivityManager)Application.getContext().getSystemService(Context.ACTIVITY_SERVICE);</div><div class="line">    <span class="keyword">final</span> List&lt;RunningServiceInfo&gt; services = activityManager.getRunningServices(Integer.MAX_VALUE);</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (RunningServiceInfo runningServiceInfo : services) &#123;</div><div class="line">        <span class="keyword">if</span> (runningServiceInfo.service.getClassName().equals(serviceClassName))&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-<h3 id="检测Activity是否已启动"><a href="#检测Activity是否已启动" class="headerlink" title="检测Activity是否已启动"></a>检测Activity是否已启动</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 权限--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.GET_TASKS"</span>/&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">ActivityManager am = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);</div><div class="line">List&lt;RunningTaskInfo&gt; list = am.getRunningTasks(<span class="number">100</span>);</div><div class="line"><span class="keyword">boolean</span> isAppRunning = <span class="keyword">false</span>;</div><div class="line">String MY_PKG_NAME = <span class="string">"com.cyberblue.iitag"</span>;</div><div class="line"><span class="keyword">for</span> (RunningTaskInfo info : list) &#123;</div><div class="line">	<span class="keyword">if</span> (info.topActivity.getPackageName().equals(MY_PKG_NAME) || info.baseActivity.getPackageName().equals(MY_PKG_NAME)) &#123;</div><div class="line">		isAppRunning = <span class="keyword">true</span>;</div><div class="line">		Log.i(TAG,info.topActivity.getPackageName() + <span class="string">" info.baseActivity.getPackageName()="</span>+info.baseActivity.getPackageName());</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span>  <span class="keyword">boolean</span> <span class="title">isLauncherRunnig</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">boolean</span> result = <span class="keyword">false</span> ;</div><div class="line">        List&lt;String&gt; names = getAllTheLauncher();</div><div class="line">        ActivityManager mActivityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE) ;</div><div class="line">        List&lt;ActivityManager.RunningAppProcessInfo&gt; appList = mActivityManager.getRunningAppProcesses() ;</div><div class="line">        <span class="keyword">for</span> (RunningAppProcessInfo running : appList) &#123;</div><div class="line">                <span class="keyword">if</span> (running.importance == RunningAppProcessInfo.IMPORTANCE_FOREGROUND) &#123;</div><div class="line">                        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; names.size(); i++) &#123;</div><div class="line">                                <span class="keyword">if</span> (names.get(i).equals(running.processName)) &#123;</div><div class="line">                                        result = <span class="keyword">true</span> ;</div><div class="line">                                        <span class="keyword">break</span>;</div><div class="line">                                &#125;</div><div class="line">                        &#125;</div><div class="line">                &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result ;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="判断App是否运行"><a href="#判断App是否运行" class="headerlink" title="判断App是否运行"></a>判断App是否运行</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">   <span class="comment">/**</span></div><div class="line"> * 判断app是否正在运行</div><div class="line"> * <span class="doctag">@param</span> ctx</div><div class="line"> * <span class="doctag">@param</span> packageName</div><div class="line"> * <span class="doctag">@return</span></div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">appIsRunning</span><span class="params">(Context ctx,String packageName)</span></span></div><div class="line">&#123;</div><div class="line">	ActivityManager am = (ActivityManager) ctx.getSystemService(ACTIVITY_SERVICE);</div><div class="line"></div><div class="line">	List&lt;RunningAppProcessInfo&gt; runningAppProcesses = am.getRunningAppProcesses();</div><div class="line"></div><div class="line">	<span class="keyword">if</span>(runningAppProcesses!=<span class="keyword">null</span>)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">for</span> (RunningAppProcessInfo runningAppProcessInfo : runningAppProcesses) &#123;</div><div class="line"></div><div class="line">			<span class="keyword">if</span>(runningAppProcessInfo.processName.startsWith(packageName))</div><div class="line">			&#123;</div><div class="line">				<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line"> * app 是否在后台运行</div><div class="line"> * <span class="doctag">@param</span> ctx</div><div class="line"> * <span class="doctag">@param</span> packageName</div><div class="line"> * <span class="doctag">@return</span></div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">appIsBackgroundRunning</span><span class="params">(Context ctx,String packageName)</span></span></div><div class="line">&#123;</div><div class="line">	ActivityManager am = (ActivityManager) ctx.getSystemService(ACTIVITY_SERVICE);</div><div class="line"></div><div class="line">	List&lt;RunningAppProcessInfo&gt; runningAppProcesses = am.getRunningAppProcesses();</div><div class="line"></div><div class="line">	<span class="keyword">if</span>(runningAppProcesses!=<span class="keyword">null</span>)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">for</span> (RunningAppProcessInfo runningAppProcessInfo : runningAppProcesses) &#123;</div><div class="line"></div><div class="line">			<span class="keyword">if</span>(runningAppProcessInfo.processName.startsWith(packageName))</div><div class="line">			&#123;</div><div class="line">				<span class="keyword">return</span> runningAppProcessInfo.importance!=RunningAppProcessInfo.IMPORTANCE_FOREGROUND &amp;&amp; runningAppProcessInfo.importance!=RunningAppProcessInfo.IMPORTANCE_VISIBLE; <span class="comment">//排除无界面的app</span></div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <p>[TOC]</p>
+<h1 id="Android-JNI-amp-NDK-一-入门"><a href="#Android-JNI-amp-NDK-一-入门" class="headerlink" title="Android-JNI&amp;NDK(一)入门"></a>Android-JNI&amp;NDK(一)入门</h1><h2 id="一-前言"><a href="#一-前言" class="headerlink" title="一. 前言"></a>一. 前言</h2><p>最近项目中要求要使用so库实现数据加密，来提高数据的安全性，因为好久没用过Android调用native方法，特别写这一篇回忆一下用法。</p>
+<p><a href="https://developer.android.com/ndk/guides/index.html?hl=zh-cn" target="_blank" rel="external">官方教程</a></p>
+<h2 id="二-简介"><a href="#二-简介" class="headerlink" title="二. 简介"></a>二. 简介</h2><h3 id="NDK-Native-Development-Kit"><a href="#NDK-Native-Development-Kit" class="headerlink" title="NDK(Native Development Kit)"></a>NDK(Native Development Kit)</h3><ol>
+<li>Android NDK 是一套允许您使用原生代码语言（例如 C 和 C++）实现部分应用的工具集。在开发某些类型应用时，这有助于您重复使用以这些语言编写的代码库。</li>
+<li>NDK的作用<ul>
+<li>从设备获取卓越性能以用于计算密集型应用，例如游戏或物理模拟。</li>
+<li>重复使用您自己或其他开发者的 C 或 C++ 库。</li>
+<li>代码的保护。由于apk的java层代码很容易被反编译，而C/C++库反汇难度较大。</li>
+</ul>
+</li>
+</ol>
+<h3 id="JNI-Java-Native-Interface"><a href="#JNI-Java-Native-Interface" class="headerlink" title="JNI(Java Native Interface)"></a>JNI(Java Native Interface)</h3><ol>
+<li>JNI 是本地编程接口，它使得在 Java 虚拟机内部运行的 Java 代码能够与用其它语言(如 C、C++)编写的代码进行交互。</li>
+<li>JNI的作用<ul>
+<li>可以让java调用c语言的代码。</li>
+</ul>
+</li>
+</ol>
+<h2 id="三-NDK安装"><a href="#三-NDK安装" class="headerlink" title="三. NDK安装"></a>三. NDK安装</h2><p>在<figure class="highlight plain"><figcaption><span>SDKManager```下载更新ndk</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">![NDK下载](http://ohqvqufyf.bkt.clouddn.com/ndk_download.png)</div><div class="line"></div><div class="line"></div><div class="line">## 四. JNI使用</div><div class="line"></div><div class="line">### 创建项目</div><div class="line">1. 首先创建一个AS项目。</div><div class="line"></div><div class="line">    ![image](http://ohqvqufyf.bkt.clouddn.com/ndk_createproject.png)</div><div class="line"></div><div class="line">2. 配置gradle.properties文件</div></pre></td></tr></table></figure></p>
+<pre><code>    android.useDeprecatedNdk=true
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">    ![image](http://ohqvqufyf.bkt.clouddn.com/ndk_%E9%85%8D%E7%BD%AE1.png)</div><div class="line"></div><div class="line">3. 在local.properties中加入ndk和sdk的路径：</div></pre></td></tr></table></figure>
+
+ndk.dir=/Users/xxx/Library/Android/sdk/ndk-bundle
+
+sdk.dir=/Users/xxx/Library/Android/sdk
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">    ![image](http://ohqvqufyf.bkt.clouddn.com/ndk_%E9%85%8D%E7%BD%AE2.png)</div><div class="line"></div><div class="line">4. 配置build.gradle中配置ndk的生成的so名字和支持的CPU平台（下文会介绍在如何Android.mk中去配置）。</div></pre></td></tr></table></figure>
+
+ndk{
+        moduleName &quot;hello&quot;       //生成的so文件名字，调用C程序的代码中会用到该名字
+        abiFilters &quot;armeabi&quot;, &quot;armeabi-v7a&quot;, &quot;x86&quot; //输出指定三种平台下的so库
+    }
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">    ![image](http://ohqvqufyf.bkt.clouddn.com/ndk_%E9%85%8D%E7%BD%AE3.png)</div><div class="line"></div><div class="line">项目的准备工作做完了，接下来是代码的部分。</div><div class="line"></div><div class="line">### 使用JNI</div><div class="line"></div><div class="line">1. 创建native方法</div><div class="line"></div><div class="line">    ```java</div><div class="line">    public class MainActivity extends AppCompatActivity &#123;</div><div class="line">        TextView mHelloText;</div><div class="line">        @Override</div><div class="line">        protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">            super.onCreate(savedInstanceState);</div><div class="line">            setContentView(R.layout.activity_main);</div><div class="line">            mHelloText = (TextView) findViewById(R.id.hello);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        public native String sayHelloByJNI();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+
+![image](http://ohqvqufyf.bkt.clouddn.com/ndk_%E5%88%9B%E5%BB%BAnative%E6%96%B9%E6%B3%95.png)
+</code></pre><ol>
+<li><p>使用<figure class="highlight plain"><figcaption><span>-jni```命令MainActivity.java生成JNI的.h文件。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<p> cd app/src/main/java</p>
+<p> javah -jni co.fensan.android.jnidemo.MainActivity</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">![image](http://ohqvqufyf.bkt.clouddn.com/ndk_%E5%88%9B%E5%BB%BAh.png)</div><div class="line"></div><div class="line">发现在当前目录生成了``` co_fensan_android_jnidemo_MainActivity.h</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建JNI目录并将.h文件移动到jni目录<br> <img src="http://ohqvqufyf.bkt.clouddn.com/ndk_%E5%88%9B%E5%BB%BAjni%E6%96%87%E4%BB%B6.png" alt="image"></p>
+</li>
+</ol>
+<p>然后创建.cpp文件</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"co_fensan_android_jnidemo_MainActivity.h"</span></span></div><div class="line"></div><div class="line"><span class="function">JNIEXPORT jstring JNICALL</span></div><div class="line"><span class="title">Java_co_fensan_android_jnidemo_MainActivity_sayHelloByJNI</span><span class="params">(JNIEnv *env, jobject instance)</span> &#123;</div><div class="line">        <span class="keyword">return</span> env-&gt;NewStringUTF(<span class="string">"hello jni!"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://ohqvqufyf.bkt.clouddn.com/ndk_%E5%88%9B%E5%BB%BAcpp.png" alt="image"></p>
+<ol>
+<li>在MainActivity中引入hello库</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> &#123;</div><div class="line">        System.loadLibrary(<span class="string">"hello"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    TextView mHelloText;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        mHelloText = (TextView) findViewById(R.id.hello);</div><div class="line">        mHelloText.setText(sayHelloByJNI());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">native</span> String <span class="title">sayHelloByJNI</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code>![image](http://ohqvqufyf.bkt.clouddn.com/ndk_%E5%BC%95%E5%85%A5lib.png)
+</code></pre><h2 id="五-运行结果"><a href="#五-运行结果" class="headerlink" title="五. 运行结果"></a>五. 运行结果</h2><!--<img src="http://ohqvqufyf.bkt.clouddn.com/ndk_%E6%95%88%E6%9E%9C.png"/>-->
+<p><img src="http://ohqvqufyf.bkt.clouddn.com/ndk_%E6%95%88%E6%9E%9C.png" alt="image"></p>
+<p><a href="https://github.com/SanfenR/JNIDemo" target="_blank" rel="external">源码传送门</a></p>
 
       
     </div>
@@ -433,8 +490,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/13/everydayc/day11/" rel="next" title="合并已经排序的2条链表(day11)">
-                <i class="fa fa-chevron-left"></i> 合并已经排序的2条链表(day11)
+              <a href="/2017/10/10/java/解决java.lang.SecurityException/" rel="next" title="解决java.lang.SecurityException">
+                <i class="fa fa-chevron-left"></i> 解决java.lang.SecurityException
               </a>
             
           </div>
@@ -442,10 +499,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/05/essay/四月/" rel="prev" title="四月">
-                四月 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -477,8 +530,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/28/android/ActivityManager检测Service与Activity是否正在运行/"
-           data-title="ActivityManager判断app运行状态" data-url="http://yoursite.com/2017/02/28/android/ActivityManager检测Service与Activity是否正在运行/">
+      <div class="ds-thread" data-thread-key="2017/10/16/android/Android-JNI&NDK(一)入门/"
+           data-title="Android-JNI&NDK(一)入门" data-url="http://yoursite.com/2017/10/16/android/Android-JNI&NDK(一)入门/">
       </div>
     
   </div>
@@ -582,7 +635,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#检测Service是否已启动"><span class="nav-number">1.</span> <span class="nav-text">检测Service是否已启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检测Activity是否已启动"><span class="nav-number">2.</span> <span class="nav-text">检测Activity是否已启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断App是否运行"><span class="nav-number">3.</span> <span class="nav-text">判断App是否运行</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Android-JNI-amp-NDK-一-入门"><span class="nav-number">1.</span> <span class="nav-text">Android-JNI&NDK(一)入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-前言"><span class="nav-number">1.1.</span> <span class="nav-text">一. 前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-简介"><span class="nav-number">1.2.</span> <span class="nav-text">二. 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NDK-Native-Development-Kit"><span class="nav-number">1.2.1.</span> <span class="nav-text">NDK(Native Development Kit)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JNI-Java-Native-Interface"><span class="nav-number">1.2.2.</span> <span class="nav-text">JNI(Java Native Interface)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-NDK安装"><span class="nav-number">1.3.</span> <span class="nav-text">三. NDK安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五-运行结果"><span class="nav-number">1.4.</span> <span class="nav-text">五. 运行结果</span></a></li></ol></li></ol></div>
             
 
           </div>
